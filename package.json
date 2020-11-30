@@ -1,0 +1,23 @@
+{
+  "name": "dashboard",
+  "version": "1.0.0",
+  "description": "dashBoard",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Harris-Shelby/dashboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Harris-Shelby/dashboard/issues"
+  },
+  "homepage": "https://github.com/Harris-Shelby/dashboard#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
