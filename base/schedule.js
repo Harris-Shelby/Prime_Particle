@@ -1,5 +1,5 @@
 const { readFilePro, getStatPro, addContentPro } = require('./utils')
-const inputPath = '../test.json';
+const inputPath = '../../log/love_caddy.json';
 const LOGGER = require('../abstarcts/logger')
 
 let loggerData = null;
@@ -8,18 +8,16 @@ const fd = fs.openSync(inputPath, 'r');
 
 const app = async (type) => {
     try{
-        let newRawData = await readFilePro(inputPath)
         let newStat = await getStatPro(inputPath)
 
         if(type === 'init') {
-            loggerData = new LOGGER(newRawData, newStat);
+            loggerData = new LOGGER(newStat);
         } else {
-            await loggerData.update(newRawData, newStat);
-            if(loggerData.currMd5Hash === loggerData.preMd5Hash 
-                            || loggerData.currMd5Hash === loggerData.nullMd5Hash || loggerData.preMd5Hash === null) return
-                            console.log(loggerData.preMd5Hash, loggerData.currMd5Hash)
+            await loggerData.update(newStat);
+            if(loggerData.currStat.size === 0) return
+            console.log(loggerData.currStat.size, loggerData.preStat.size)
             const aa = await addContentPro(fd, loggerData.buffer, loggerData.offset, loggerData.len, loggerData.position)
-            console.log(aa.trim().split('\n'))
+            console.log(aa)
         }
 
     } catch (err) {
