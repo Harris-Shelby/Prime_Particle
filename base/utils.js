@@ -1,4 +1,5 @@
-const fs = require('fs')
+const fs = require('fs');
+const axios = require('axios');
 
 exports.getStatPro = file => {
     return new Promise((resolve, reject) => {
