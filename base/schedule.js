@@ -1,7 +1,6 @@
-const { readFilePro, getStatPro, addContentPro } = require('./utils')
-const inputPath = '../../log/love_caddy.json';
+const { readFilePro, getStatPro, addContentPro, parseDataPro } = require('./utils')
+const inputPath = '../log/love_caddy.json';
 const LOGGER = require('../abstarcts/logger');
-const ACCESSER = require('../abstarcts/accesser');
 
 let loggerData = null;
 const fs = require('fs');
@@ -17,9 +16,12 @@ const app = async (type) => {
             await loggerData.update(newStat);
             if(loggerData.currStat.size === 0) return
             console.log(loggerData.currStat.size, loggerData.preStat.size)
-            const aa = await addContentPro(fd, loggerData.buffer, loggerData.offset, loggerData.len, loggerData.position)
-            const bb = new ACCESSER(aa)
-            console.log(bb)
+            let accessersData_raw = await addContentPro(fd, loggerData.buffer, 
+                    loggerData.offset, loggerData.len, loggerData.position)
+            // console.log(accessersData_raw)
+            if(accessersData_raw[0] === '') return
+            let accessersData_pro = await parseDataPro(accessersData_raw)
+            // console.log(accessersData_pro)
         }
 
     } catch (err) {

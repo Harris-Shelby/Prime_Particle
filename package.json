@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon app.js",
     "test": "clinic bubbleprof -- node app.js",
-    "load": "autocannon -c 100 -p 1000  172.18.0.3:2015"
+    "load": "autocannon -c 1 -p 5  172.18.0.3:2015"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,10 @@
     "nodemon": "^2.0.6"
   },
   "dependencies": {
-    "axios": "^0.21.0"
+    "axios": "^0.21.0",
+    "express": "^4.17.1",
+    "ip2region": "^2.1.1",
+    "redis": "^3.0.2",
+    "response-time": "^2.3.2"
   }
 }
