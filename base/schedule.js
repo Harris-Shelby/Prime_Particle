@@ -1,4 +1,4 @@
-const { getStatPro, addContentPro } = require('./utils');
+const { getStatPro, addContentPro, parseDataPro } = require('./utils');
 const inputPath = '../log/love_caddy.json';
 const LOGGER = require('../abstarcts/logger');
 
@@ -23,9 +23,9 @@ const app = async (type) => {
 				loggerData.len,
 				loggerData.position,
 			);
-			// console.log(accessersData_raw)
 			if (accessersData_raw[0] === '') return;
-			// console.log(accessersData_pro)
+			const accessersData_pro = await parseDataPro(accessersData_raw);
+			console.log(accessersData_pro);
 		}
 	} catch (err) {
 		console.log(err);

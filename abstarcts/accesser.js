@@ -1,23 +1,13 @@
+const moment = require('moment');
 const IP2Region = require('ip2region').default;
 const query = new IP2Region();
-
-// const getPositionPro = (remote) => {
-//     return new Promise((resolve, reject) => {
-//         axios.get(`http://ip-api.com/json/${remote}`)
-//             .then(res => {
-//                 resolve(res.data);
-//             })
-//             .catch(err => {
-//                 reject('Request to faster, please try later again!')
-//             })
-//     })
-// };
 
 module.exports = class ACCESSER {
 	constructor(newLogger) {
 		this.level = newLogger.level;
 		this.status = newLogger.status;
-		this.ts = newLogger.ts;
+		this.ts = moment.unix(newLogger.ts).format('YYYY-MM-DD HH:mm:ss');
+		this.name = newLogger.ts;
 		this.duration = newLogger.duration;
 		this.size = newLogger.size;
 		this.common_log = newLogger.common_log;

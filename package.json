@@ -1,48 +1,54 @@
 {
-  "name": "dashboard",
-  "version": "1.0.0",
-  "description": "dashBoard",
-  "main": "app.js",
-  "scripts": {
-    "start": "nodemon app.js",
-    "test": "clinic bubbleprof -- node app.js",
-    "load": "autocannon -c 1 -p 5  172.18.0.3:2015"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Harris-Shelby/dashboard.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Harris-Shelby/dashboard/issues"
-  },
-  "homepage": "https://github.com/Harris-Shelby/dashboard#readme",
-  "devDependencies": {
-    "autocannon": "^6.5.0",
-    "eslint": "^7.15.0",
-    "eslint-config-prettier": "^7.0.0",
-    "eslint-plugin-prettier": "^3.2.0",
-    "eslint-plugin-react": "^7.21.5",
-    "husky": "^4.3.5",
-    "lint-staged": "^10.5.3",
-    "nodemon": "^2.0.6",
-    "prettier": "^2.2.1"
-  },
-  "dependencies": {
-    "axios": "^0.21.0",
-    "express": "^4.17.1",
-    "ip2region": "^2.1.1",
-    "redis": "^3.0.2",
-    "response-time": "^2.3.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": "eslint --cache --fix"
-  } 
+	"name": "dashboard",
+	"version": "1.0.0",
+	"description": "dashBoard",
+	"main": "app.js",
+	"scripts": {
+		"start": "nodemon app.js",
+		"test": "clinic bubbleprof -- node app.js",
+		"load": "autocannon -c 1 -p 5  172.18.0.3:2015",
+		"server:prod": "NODE_ENV=production nodemon server.js",
+		"server:dev": "nodemon server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Harris-Shelby/dashboard.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Harris-Shelby/dashboard/issues"
+	},
+	"homepage": "https://github.com/Harris-Shelby/dashboard#readme",
+	"devDependencies": {
+		"autocannon": "^6.5.0",
+		"clinic": "^8.0.1",
+		"eslint": "^7.15.0",
+		"eslint-config-prettier": "^7.0.0",
+		"eslint-plugin-prettier": "^3.2.0",
+		"eslint-plugin-react": "^7.21.5",
+		"husky": "^4.3.5",
+		"lint-staged": "^10.5.3",
+		"nodemon": "^2.0.6",
+		"prettier": "^2.2.1"
+	},
+	"dependencies": {
+		"axios": "^0.21.0",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"ip2region": "^2.1.1",
+		"moment": "^2.29.1",
+		"mongoose": "^5.11.5",
+		"redis": "^3.0.2",
+		"response-time": "^2.3.2"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.js": "eslint --cache --fix"
+	}
 }
