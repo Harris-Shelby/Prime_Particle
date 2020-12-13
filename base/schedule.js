@@ -24,7 +24,7 @@ const app = async (type) => {
 				loggerData.position,
 			);
 			if (accessersData_raw[0] === '') return;
-			const accessersData_pro = await parseDataPro(accessersData_raw);
+			let accessersData_pro = await parseDataPro(accessersData_raw);
 			console.log(accessersData_pro);
 		}
 	} catch (err) {

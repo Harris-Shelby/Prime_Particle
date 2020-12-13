@@ -34,7 +34,7 @@ exports.parseDataPro = (data) => {
 	return new Promise((resolve, reject) => {
 		if (!data) reject('LogData is empty! 😢');
 		// console.log(data[0] === '');
-		const accessersData_pro = data.map((singleAccesser) => {
+		let accessersData_pro = data.map((singleAccesser) => {
 			let OBJ_singleAccesser = new ACCESSER(JSON.parse(singleAccesser));
 			// console.log(OBJ_singleAccesser)
 			saveData(OBJ_singleAccesser);
