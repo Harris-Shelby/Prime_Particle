@@ -20,7 +20,7 @@ module.exports = class ACCESSER {
 		this.url = request.uri;
 		this.User_Agent = request.headers['User-Agent'];
 		request.headers['X-Forwarded-For']
-			? (this.remote_addr = request.headers['X-Forwarded-For'])
+			? (this.remote_addr = request.headers['X-Forwarded-For'][0])
 			: (this.remote_addr = request.remote_addr.split(':')[0]);
 		this.relegation = query.search(this.remote_addr);
 	}

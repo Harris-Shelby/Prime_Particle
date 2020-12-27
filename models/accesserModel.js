@@ -38,7 +38,7 @@ const accesserSchema = new mongoose.Schema({
 		default: ['robot'],
 	},
 	remote_addr: {
-		type: [String],
+		type: String,
 		required: [true, 'An accesser must have a IP'],
 	},
 	relegation: {
