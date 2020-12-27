@@ -1,6 +1,7 @@
 const { app, fsWatchPro } = require('./base/schedule');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const server = require('./base/server');
 
 dotenv.config({ path: './config.env' });
 
@@ -17,9 +18,9 @@ const DB = process.env.DATABASE.replace(
 
 		// Accesser APi listen
 
-		// server.listen(4000, () => {
-		// 	console.log('APP run on port 3000');
-		// });
+		server.listen(4000, () => {
+			console.log('APP run on port 4000');
+		});
 
 		// mongoose connection
 		mongoose
