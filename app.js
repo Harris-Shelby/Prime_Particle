@@ -1,9 +1,8 @@
 const { app, fsWatchPro } = require('./base/schedule');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const server = require('./base/server');
-
 dotenv.config({ path: './config.env' });
+const server = require('./base/server');
 
 const DB = process.env.DATABASE.replace(
 	'<PASSWORD>',

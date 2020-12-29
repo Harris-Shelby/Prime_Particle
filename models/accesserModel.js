@@ -37,6 +37,12 @@ const accesserSchema = new mongoose.Schema({
 		type: Array,
 		default: ['robot'],
 	},
+	req_headers: {
+		type: Object,
+	},
+	resp_headers: {
+		type: Object,
+	},
 	remote_addr: {
 		type: String,
 		required: [true, 'An accesser must have a IP'],
