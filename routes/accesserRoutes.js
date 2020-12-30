@@ -3,6 +3,13 @@ const accesserController = require('./../controllers/accesserController');
 
 const router = express.Router();
 
+router
+	.route('/top-5-latest')
+	.get(
+		accesserController.aliasTopAccessers,
+		accesserController.getAllAccessers,
+	);
+
 router.route('/').get(accesserController.getAllAccessers);
 
 router
