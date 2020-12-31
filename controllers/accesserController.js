@@ -92,6 +92,7 @@ exports.deleteAccesser = async (req, res) => {
 
 exports.getAccesserStats = async (req, res) => {
 	try {
+		console.log(req.query);
 		// if (CreateAt) {
 		// let d1 = new Date(moment(new Date(parseInt(CreateAt, 10))).format('YYYY-MM-DD'));
 		// let d2 = new Date(moment(new Date(parseInt(CreateAt, 10))).add(1, 'days').format('YYYY-MM-DD'));
