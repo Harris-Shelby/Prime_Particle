@@ -1,14 +1,14 @@
-const moment = require('moment-timezone');
+const moment = require('moment');
 const IP2Region = require('ip2region').default;
 const query = new IP2Region();
 
-module.exports = class ACCESSER {
+class ACCESSER {
 	constructor(newLogger) {
 		this.level = newLogger.level;
 		this.status = newLogger.status;
-		this.ts = moment
-			.tz(newLogger.ts * 1000 + 28800000, 'Asia/Shanghai')
-			.format();
+		this.ts = this.ts = moment
+			.unix(newLogger.ts + 28800)
+			.format('YYYY-MM-DD HH:mm:ss');
 		this.name = newLogger.ts;
 		this.duration = newLogger.duration;
 		this.size = newLogger.size;
@@ -28,4 +28,6 @@ module.exports = class ACCESSER {
 			: (this.remote_addr = request.remote_addr.split(':')[0]);
 		this.relegation = query.search(this.remote_addr);
 	}
-};
+}
+
+module.exports = ACCESSER;

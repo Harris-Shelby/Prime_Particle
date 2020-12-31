@@ -1,8 +1,8 @@
-const LOGGER = class {
+class LOGGER {
 	constructor(newStat) {
-		this.update(newStat);
+		this.init(newStat);
 	}
-	update(newStat) {
+	init(newStat) {
 		if (newStat.size === 0) return;
 		this.preStat = this.currStat || { size: 0 };
 		this.currStat = newStat;
@@ -10,6 +10,6 @@ const LOGGER = class {
 		this.buffer = Buffer.alloc(this.len);
 		(this.offset = 0), (this.position = this.preStat.size);
 	}
-};
+}
 
 module.exports = LOGGER;

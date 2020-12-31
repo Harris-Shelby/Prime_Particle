@@ -1,6 +1,6 @@
 const { getStatPro, addContentPro, parseDataPro } = require('./utils');
 const inputPath = '../log/love_caddy.json';
-const LOGGER = require('../abstarcts/logger');
+const LOGGER = require('../utils/logger');
 
 let loggerData = null;
 const fs = require('fs');
@@ -8,15 +8,15 @@ const fd = fs.openSync(inputPath, 'r');
 
 const app = async (type) => {
 	try {
-		let newStat = await getStatPro(inputPath);
+		const newStat = await getStatPro(inputPath);
 
 		if (type === 'init') {
 			loggerData = new LOGGER(newStat);
 		} else {
-			await loggerData.update(newStat);
+			await loggerData.init(newStat);
 			if (loggerData.currStat.size === 0) return;
 			console.log(loggerData.currStat.size, loggerData.preStat.size);
-			let accessersData_raw = await addContentPro(
+			const accessersData_raw = await addContentPro(
 				fd,
 				loggerData.buffer,
 				loggerData.offset,
@@ -24,7 +24,7 @@ const app = async (type) => {
 				loggerData.position,
 			);
 			if (accessersData_raw[0] === '') return;
-			let accessersData_pro = await parseDataPro(accessersData_raw);
+			const accessersData_pro = await parseDataPro(accessersData_raw);
 			console.log(accessersData_pro);
 		}
 	} catch (err) {

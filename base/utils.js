@@ -1,5 +1,5 @@
 const fs = require('fs');
-const ACCESSER = require('../abstarcts/accesser');
+const ACCESSER = require('../utils/accesser');
 const Accesser = require('../models/accesserModel');
 
 exports.getStatPro = (file) => {
@@ -34,8 +34,8 @@ exports.parseDataPro = (data) => {
 	return new Promise((resolve, reject) => {
 		if (!data) reject('LogData is empty! 😢');
 		// console.log(data[0] === '');
-		let accessersData_pro = data.map((singleAccesser) => {
-			let OBJ_singleAccesser = new ACCESSER(JSON.parse(singleAccesser));
+		const accessersData_pro = data.map((singleAccesser) => {
+			const OBJ_singleAccesser = new ACCESSER(JSON.parse(singleAccesser));
 			// console.log(OBJ_singleAccesser)
 			saveData(OBJ_singleAccesser);
 			// Accesser.create(OBJ_singleAccesser);
@@ -47,7 +47,7 @@ exports.parseDataPro = (data) => {
 };
 
 const saveData = (data) => {
-	let newAccesser = new Accesser(data);
+	const newAccesser = new Accesser(data);
 	newAccesser
 		.save()
 		.then(() => {
