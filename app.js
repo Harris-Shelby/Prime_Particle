@@ -32,7 +32,6 @@ const DB = process.env.DATABASE.replace(
 			.then(() => {
 				console.log('DB connection successful!');
 			});
-
 		// File watcher
 
 		fsWatchPro();

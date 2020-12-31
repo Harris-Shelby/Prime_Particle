@@ -10,6 +10,8 @@ router
 		accesserController.getAllAccessers,
 	);
 
+router.route('/accesser-Stats').get(accesserController.getAccesserStats);
+
 router.route('/').get(accesserController.getAllAccessers);
 
 router

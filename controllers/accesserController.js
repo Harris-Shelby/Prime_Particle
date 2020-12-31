@@ -1,5 +1,6 @@
 const Accesser = require('../models/accesserModel');
 const APIFeatures = require('./../utils/apiFeatures');
+const moment = require('moment');
 
 exports.aliasTopAccessers = (req, res, next) => {
 	req.query.limit = '5';
@@ -80,6 +81,45 @@ exports.deleteAccesser = async (req, res) => {
 		res.status(204).json({
 			status: 'success',
 			data: null,
+		});
+	} catch (err) {
+		res.status(400).json({
+			status: 'fail',
+			message: err,
+		});
+	}
+};
+
+exports.getAccesserStats = async (req, res) => {
+	try {
+		// if (CreateAt) {
+		// let d1 = new Date(moment(new Date(parseInt(CreateAt, 10))).format('YYYY-MM-DD'));
+		// let d2 = new Date(moment(new Date(parseInt(CreateAt, 10))).add(1, 'days').format('YYYY-MM-DD'));
+		const d1 = new Date(moment(new Date()).format('YYYY-MM-DD'));
+		const d2 = new Date(moment(new Date()).add(1, 'days').format('YYYY-MM-DD'));
+		const stats = await Accesser.aggregate([
+			{
+				$match: {
+					ts: {
+						$gte: d1,
+						$lt: d2,
+					},
+				},
+			},
+			{
+				$group: {
+					_id: '$User_Agent',
+					numofAccessers: { $sum: 1 },
+					avgDuration: { $avg: '$duration' },
+				},
+			},
+		]);
+
+		res.status(203).json({
+			status: 'success',
+			data: {
+				stats,
+			},
 		});
 	} catch (err) {
 		res.status(400).json({
