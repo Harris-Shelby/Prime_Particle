@@ -93,9 +93,6 @@ exports.deleteAccesser = async (req, res) => {
 exports.getDailyAccessers = async (req, res) => {
 	try {
 		console.log(req.query);
-		// if (CreateAt) {
-		// let d1 = new Date(moment(new Date(parseInt(CreateAt, 10))).format('YYYY-MM-DD'));
-		// let d2 = new Date(moment(new Date(parseInt(CreateAt, 10))).add(1, 'days').format('YYYY-MM-DD'));
 		const d1 = new Date(moment(new Date()).format('YYYY-MM-DD'));
 		const d2 = new Date(moment(new Date()).add(1, 'days').format('YYYY-MM-DD'));
 		const stats = await Accesser.aggregate([
@@ -166,10 +163,7 @@ exports.getMonthlyAccessers = async (req, res) => {
 					_id: { $dayOfMonth: '$ts' },
 					numofAccessers: { $sum: 1 },
 					avgDuration: { $avg: '$duration' },
-					// ts: { $push: '$ts' },
-					// url: { $push: '$url' },
 					User_Agent: { $push: '$User_Agent' },
-					// remote_addr: { $push: '$remote_addr' },
 					relegation: { $push: '$relegation' },
 				},
 			},
@@ -183,6 +177,9 @@ exports.getMonthlyAccessers = async (req, res) => {
 			},
 			{
 				$sort: { numofAccessers: -1 },
+			},
+			{
+				$limit: 7,
 			},
 		]);
 
