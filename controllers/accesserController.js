@@ -112,7 +112,22 @@ exports.getAccesserStats = async (req, res) => {
 					_id: '$User_Agent',
 					numofAccessers: { $sum: 1 },
 					avgDuration: { $avg: '$duration' },
+					ts: { $push: '$ts' },
+					url: { $push: '$url' },
+					remote_addr: { $push: '$remote_addr' },
+					relegation: { $push: '$relegation' },
 				},
+			},
+			{
+				$addFields: { User_Agent: '$_id' },
+			},
+			{
+				$project: {
+					_id: 0,
+				},
+			},
+			{
+				$sort: { numofAccessers: -1 },
 			},
 		]);
 
@@ -129,3 +144,14 @@ exports.getAccesserStats = async (req, res) => {
 		});
 	}
 };
+
+// exports.getMonthlyPlan = async (req, res) => {
+// 	try {
+// 		const year = req.params.month * 1;
+// 	} catch (err) {
+// 		res.status(400).json({
+// 			status: 'fail',
+// 			message: err,
+// 		});
+// 	}
+// };
