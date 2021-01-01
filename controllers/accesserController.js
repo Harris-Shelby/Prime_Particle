@@ -90,7 +90,7 @@ exports.deleteAccesser = async (req, res) => {
 	}
 };
 
-exports.getAccesserStats = async (req, res) => {
+exports.getDailyAccessers = async (req, res) => {
 	try {
 		console.log(req.query);
 		// if (CreateAt) {
@@ -145,13 +145,57 @@ exports.getAccesserStats = async (req, res) => {
 	}
 };
 
-// exports.getMonthlyPlan = async (req, res) => {
-// 	try {
-// 		const year = req.params.month * 1;
-// 	} catch (err) {
-// 		res.status(400).json({
-// 			status: 'fail',
-// 			message: err,
-// 		});
-// 	}
-// };
+exports.getMonthlyAccessers = async (req, res) => {
+	try {
+		const m1 = new Date(moment(new Date()).format('YYYY-MM'));
+		const m2 = new Date(
+			moment(new Date()).add(1, 'months').format('YYYY-MM-DD'),
+		);
+
+		const stats = await Accesser.aggregate([
+			{
+				$match: {
+					ts: {
+						$gte: m1,
+						$lt: m2,
+					},
+				},
+			},
+			{
+				$group: {
+					_id: { $dayOfMonth: '$ts' },
+					numofAccessers: { $sum: 1 },
+					avgDuration: { $avg: '$duration' },
+					// ts: { $push: '$ts' },
+					// url: { $push: '$url' },
+					User_Agent: { $push: '$User_Agent' },
+					// remote_addr: { $push: '$remote_addr' },
+					relegation: { $push: '$relegation' },
+				},
+			},
+			{
+				$addFields: { day: '$_id' },
+			},
+			{
+				$project: {
+					_id: 0,
+				},
+			},
+			{
+				$sort: { numofAccessers: -1 },
+			},
+		]);
+
+		res.status(203).json({
+			status: 'success',
+			data: {
+				stats,
+			},
+		});
+	} catch (err) {
+		res.status(400).json({
+			status: 'fail',
+			message: err,
+		});
+	}
+};

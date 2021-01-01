@@ -10,9 +10,9 @@ router
 		accesserController.getAllAccessers,
 	);
 
-router.route('/accesser-stats').get(accesserController.getAccesserStats);
+router.route('/daily-stats').get(accesserController.getDailyAccessers);
 
-router.route('/monthly-plan').get(accesserController.getMonthlyPlan);
+router.route('/monthly-stats').get(accesserController.getMonthlyAccessers);
 
 router.route('/').get(accesserController.getAllAccessers);
 
