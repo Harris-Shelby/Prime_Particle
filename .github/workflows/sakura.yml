@@ -13,7 +13,7 @@ env:
 jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
-    runs-on: ubuntu-latest
+    runs-on: Ubuntu-20.04
     steps:
       # Build
       - name: Build Docker image
