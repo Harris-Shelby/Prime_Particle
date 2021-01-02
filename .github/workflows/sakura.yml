@@ -11,9 +11,14 @@ env:
   GITHUB_SHA: ${{ github.sha }}
 
 jobs:
-  setup-build-publish-deploy:
-    name: Setup, Build, Publish, and Deploy
-    runs-on: Ubuntu-20.04
+    build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+      with:
+        persist-credentials: false
+        
     steps:
       # Build
       - name: Build Docker image
