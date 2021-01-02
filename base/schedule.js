@@ -15,7 +15,7 @@ const app = async (type) => {
 		} else {
 			await loggerData.init(newStat);
 			if (loggerData.currStat.size === 0) return;
-			console.log(loggerData.currStat.size, loggerData.preStat.size);
+			// console.log(loggerData.currStat.size, loggerData.preStat.size);
 			const accessersData_raw = await addContentPro(
 				fd,
 				loggerData.buffer,
@@ -24,8 +24,7 @@ const app = async (type) => {
 				loggerData.position,
 			);
 			if (accessersData_raw[0] === '') return;
-			const accessersData_pro = await parseDataPro(accessersData_raw);
-			console.log(accessersData_pro);
+			parseDataPro(accessersData_raw);
 		}
 	} catch (err) {
 		console.log(err);

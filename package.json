@@ -5,8 +5,8 @@
 	"main": "app.js",
 	"scripts": {
 		"start": "nodemon app.js",
-		"test": "clinic bubbleprof -- node app.js",
-		"load": "autocannon -c 1 -p 5  172.18.0.3:2015",
+		"test": "clinic doctor -- node app.js",
+		"load": "autocannon -c 1 -p 5  172.18.0.4:2015",
 		"server:prod": "NODE_ENV=production nodemon server.js",
 		"server:dev": "nodemon server.js"
 	},

@@ -51,7 +51,7 @@ const saveData = (data) => {
 	newAccesser
 		.save()
 		.then(() => {
-			console.log('Yep!');
+			console.log('Yep,Accesser data saved!');
 		})
 		.catch((err) => {
 			console.log(err);
