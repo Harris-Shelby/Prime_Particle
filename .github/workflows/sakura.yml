@@ -16,9 +16,6 @@ jobs:
     runs-on: [self-hosted, linux, ARM64]
     steps:
 
-    - name: Checkout
-      uses: actions/checkout@v2
-
     # Build
     - name: Build Docker image
       run: |        
