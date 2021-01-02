@@ -1,14 +1,14 @@
 const { getStatPro, addContentPro, parseDataPro } = require('./utils');
-const inputPath = '../log/love_caddy.json';
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
 const LOGGER = require('../utils/logger');
-
 let loggerData = null;
 const fs = require('fs');
-const fd = fs.openSync(inputPath, 'r');
+const fd = fs.openSync(process.env.FILEPATH, 'r');
 
 const app = async (type) => {
 	try {
-		const newStat = await getStatPro(inputPath);
+		const newStat = await getStatPro(process.env.FILEPATH);
 
 		if (type === 'init') {
 			loggerData = new LOGGER(newStat);
@@ -37,8 +37,8 @@ const app = async (type) => {
 const fsWatchPro = () => {
 	// eslint-disable-next-line no-undef
 	return new Promise((resolve, reject) => {
-		fs.watch(inputPath, () => {
-			if (!inputPath) reject('we could not get file');
+		fs.watch(process.env.FILEPATH, () => {
+			if (!process.env.FILEPATH) reject('we could not get file');
 			resolve(app('update'));
 		});
 	});
