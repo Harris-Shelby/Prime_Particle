@@ -82,10 +82,10 @@ accesserSchema.post(/^find/, function (doc, next) {
 	next();
 });
 
-accesserSchema.pre('aggregate', function (next) {
-	this.pipline().unshift({ $match: { isRobot: { $ne: true } } });
-	next();
-});
+// accesserSchema.pre('aggregate', function (next) {
+// 	this.pipline().unshift({ $match: { isRobot: { $ne: true } } });
+// 	next();
+// });
 
 const Accesser = mongoose.model('Accesser', accesserSchema);
 
