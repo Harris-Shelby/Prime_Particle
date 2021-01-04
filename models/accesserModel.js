@@ -9,6 +9,11 @@ const accesserSchema = new mongoose.Schema({
 		type: String,
 		trim: true,
 	},
+	country: String,
+	province: String,
+	city: String,
+	isp: String,
+	isRobot: Boolean,
 	status: Number,
 	ts: Date,
 	duration: Number,
@@ -51,6 +56,35 @@ const accesserSchema = new mongoose.Schema({
 		type: Object,
 		required: [true, 'An accesser must have IPRegin'],
 	},
+});
+
+accesserSchema.pre('save', function (next) {
+	const regex = ['谷歌', 'Finance-and-Promoting-Technology'];
+	this.country = this.relegation.country;
+	this.province = this.relegation.country;
+	this.city = this.relegation.city;
+	this.isp = this.relegation.isp;
+	this.isRobot = regex.some((element) => {
+		return this.isp === element;
+	});
+
+	next();
+});
+
+accesserSchema.pre(/^find/, function (next) {
+	this.find({ isRobot: { $ne: true } });
+	this.start = Date.now();
+	next();
+});
+
+accesserSchema.post(/^find/, function (doc, next) {
+	console.log(`Query took ${Date.now() - this.start} milliseconds!`);
+	next();
+});
+
+accesserSchema.pre('aggregate', function (next) {
+	this.pipline().unshift({ $match: { isRobot: { $ne: true } } });
+	next();
 });
 
 const Accesser = mongoose.model('Accesser', accesserSchema);
