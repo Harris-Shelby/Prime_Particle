@@ -1,11 +1,16 @@
 const express = require('express');
 const responseTime = require('response-time');
+const morgan = require('morgan');
 
 const AppError = require('../utils/appError');
 const globalErrorHandler = require('../controllers/errorController');
 const ipReginRoute = require('../routes/ipRegionRoute');
 const accessersRoute = require('../routes/accesserRoutes');
 const server = express();
+
+if (process.env.NODE_ENV === 'delelopment') {
+	server.use(morgan('dev'));
+}
 
 server.use(responseTime());
 server.use(express.json());

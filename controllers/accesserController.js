@@ -12,8 +12,6 @@ exports.aliasTopAccessers = (req, res, next) => {
 };
 
 exports.getAllAccessers = catchAsync(async (req, res) => {
-	console.log(req.query);
-
 	const features = new APIFeatures(Accesser.find(), req.query)
 		.filter()
 		.sort()
@@ -77,7 +75,6 @@ exports.deleteAccesser = catchAsync(async (req, res, next) => {
 });
 
 exports.getDailyAccessers = catchAsync(async (req, res) => {
-	console.log(req.query);
 	const d1 = new Date(moment(new Date()).format('YYYY-MM-DD'));
 	const d2 = new Date(moment(new Date()).add(1, 'days').format('YYYY-MM-DD'));
 	const stats = await Accesser.aggregate([

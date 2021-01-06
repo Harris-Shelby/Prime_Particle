@@ -33,7 +33,6 @@ class APIFeatures {
 		} else {
 			this.query = this.query.select('-__v');
 		}
-		// console.log(this.query);
 		return this;
 	}
 	paginate() {

@@ -77,10 +77,10 @@ accesserSchema.pre(/^find/, function (next) {
 	next();
 });
 
-accesserSchema.post(/^find/, function (doc, next) {
-	console.log(`Query took ${Date.now() - this.start} milliseconds!`);
-	next();
-});
+// accesserSchema.post(/^find/, function (doc, next) {
+// 	console.log(`Query took ${Date.now() - this.start} milliseconds!`);
+// 	next();
+// });
 
 // accesserSchema.pre('aggregate', function (next) {
 // 	this.pipline().unshift({ $match: { isRobot: { $ne: true } } });
