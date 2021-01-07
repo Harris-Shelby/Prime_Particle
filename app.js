@@ -9,6 +9,13 @@ const DB = process.env.DATABASE.replace(
 	process.env.DATABASE_PASSWORD,
 );
 
+process.on('uncaughtException', (err) => {
+	console.log('UNCAUGHT EXCEPTION!, shutting down...');
+	console.log(err.name, err.message);
+
+	process.exit(1);
+});
+
 (async () => {
 	try {
 		// Init
@@ -39,3 +46,10 @@ const DB = process.env.DATABASE.replace(
 		console.log(err);
 	}
 })();
+
+process.on('unhandledRejection', (err) => {
+	console.log('UNHANDLED REJECTION!, shutting down...');
+	console.log(err.name, err.message);
+
+	process.exit(1);
+});

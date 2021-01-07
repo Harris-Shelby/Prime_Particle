@@ -8,7 +8,7 @@ const ipReginRoute = require('../routes/ipRegionRoute');
 const accessersRoute = require('../routes/accesserRoutes');
 const server = express();
 
-if (process.env.NODE_ENV === 'delelopment') {
+if (process.env.NODE_ENV === 'development') {
 	server.use(morgan('dev'));
 }
 
