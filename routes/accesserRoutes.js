@@ -1,5 +1,6 @@
 const express = require('express');
 const accesserController = require('./../controllers/accesserController');
+const authController = require('../controllers/authController');
 
 const router = express.Router();
 
@@ -14,7 +15,9 @@ router.route('/daily-stats').get(accesserController.getDailyAccessers);
 
 router.route('/monthly-stats').get(accesserController.getMonthlyAccessers);
 
-router.route('/').get(accesserController.getAllAccessers);
+router
+	.route('/')
+	.get(authController.protect, accesserController.getAllAccessers);
 
 router
 	.route('/:id')

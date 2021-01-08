@@ -16,6 +16,11 @@ if (process.env.NODE_ENV === 'development') {
 server.use(responseTime());
 server.use(express.json());
 
+server.use((req, res, next) => {
+	console.log(req.headers);
+	next();
+});
+
 server.use('/api/v1/ipRegion', ipReginRoute);
 server.use('/api/v1/accessers', accessersRoute);
 server.use('/api/v1/users', usersRoute);
