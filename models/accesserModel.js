@@ -59,7 +59,7 @@ const accesserSchema = new mongoose.Schema({
 });
 
 accesserSchema.pre('save', function (next) {
-	const regex = ['谷歌', 'Finance-and-Promoting-Technology'];
+	const regex = ['谷歌'];
 	this.country = this.relegation.country;
 	this.province = this.relegation.country;
 	this.city = this.relegation.city;
