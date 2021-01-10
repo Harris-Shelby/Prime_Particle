@@ -23,6 +23,10 @@ router
 	.route('/:id')
 	.get(accesserController.getAccesser)
 	.patch(accesserController.updateAccesser)
-	.delete(accesserController.deleteAccesser);
+	.delete(
+		authController.protect,
+		authController.restrictTo('admin', 'shelby'),
+		accesserController.deleteAccesser,
+	);
 
 module.exports = router;
