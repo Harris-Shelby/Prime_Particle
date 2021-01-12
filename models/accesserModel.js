@@ -56,6 +56,18 @@ const accesserSchema = new mongoose.Schema({
 		type: Object,
 		required: [true, 'An accesser must have IPRegin'],
 	},
+	locations: [
+		{
+			type: {
+				type: String,
+				default: 'Point',
+				enum: ['Point'],
+			},
+			coordinates: [Number],
+			address: String,
+			description: String,
+		},
+	],
 });
 
 accesserSchema.pre('save', function (next) {
@@ -82,10 +94,10 @@ accesserSchema.pre(/^find/, function (next) {
 // 	next();
 // });
 
-// accesserSchema.pre('aggregate', function (next) {
-// 	this.pipline().unshift({ $match: { isRobot: { $ne: true } } });
-// 	next();
-// });
+accesserSchema.pre('aggregate', function (next) {
+	this.pipline().unshift({ $match: { isRobot: { $ne: true } } });
+	next();
+});
 
 const Accesser = mongoose.model('Accesser', accesserSchema);
 
