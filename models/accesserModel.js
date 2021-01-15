@@ -95,7 +95,7 @@ accesserSchema.pre(/^find/, function (next) {
 // });
 
 accesserSchema.pre('aggregate', function (next) {
-	this.pipline().unshift({ $match: { isRobot: { $ne: true } } });
+	this.pipeline().unshift({ $match: { isRobot: { $ne: true } } });
 	next();
 });
 
