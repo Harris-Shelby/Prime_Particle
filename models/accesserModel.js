@@ -79,15 +79,14 @@ accesserSchema.pre('save', async function (next) {
 	a.status === 'success'
 		? this.relegation === a
 		: (this.relegation = query.search(this.remote_addr));
-
-	this.isRobot = regex.some((element) => {
-		return this.isp === element;
-	});
-
+	console.log(a);
 	this.country = this.relegation.country;
 	this.province = this.relegation.country;
 	this.city = this.relegation.city;
 	this.isp = this.relegation.isp;
+	this.isRobot = regex.some((element) => {
+		return this.isp === element;
+	});
 	next();
 });
 
