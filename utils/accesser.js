@@ -1,6 +1,4 @@
 const moment = require('moment');
-const IP2Region = require('ip2region').default;
-const query = new IP2Region();
 
 class ACCESSER {
 	constructor(newLogger) {
@@ -26,7 +24,6 @@ class ACCESSER {
 		request.headers['X-Forwarded-For']
 			? (this.remote_addr = request.headers['X-Forwarded-For'][0])
 			: (this.remote_addr = request.remote_addr.split(':')[0]);
-		this.relegation = query.search(this.remote_addr);
 	}
 }
 

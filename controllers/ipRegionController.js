@@ -3,21 +3,18 @@ const redis = require('redis');
 const { promisify } = require('util');
 
 const Client = redis.createClient({
-	host: '172.18.0.4',
-	port: 6379,
+	host: process.env.REDIS_IP,
+	port: process.env.REIDS_PORT,
 });
 
 const GET_ASYNC = promisify(Client.get).bind(Client);
 const SET_ASYNC = promisify(Client.set).bind(Client);
 
-exports.getIpRegion = async (req, res) => {
+exports.getIpRegion = async (remote) => {
 	try {
-		const { remote } = req.params;
 		const reply = await GET_ASYNC(remote);
 		if (reply) {
-			console.log('using cached data');
-			res.send(JSON.parse(reply));
-			return;
+			return JSON.parse(reply);
 		}
 		const respone = await axios.get(`http://ip-api.com/json/${remote}`);
 
@@ -25,10 +22,9 @@ exports.getIpRegion = async (req, res) => {
 			remote,
 			JSON.stringify(respone.data),
 			'EX',
-			30,
+			300,
 		);
-		console.log('new data cached', saveResult);
-		res.send(respone.data);
+		return saveResult;
 	} catch (err) {
 		console.log(err.message);
 	}

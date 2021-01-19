@@ -9,7 +9,6 @@ const hpp = require('hpp');
 
 const AppError = require('../utils/appError');
 const globalErrorHandler = require('../controllers/errorController');
-const ipReginRoute = require('../routes/ipRegionRoute');
 const accessersRoute = require('../routes/accesserRoutes');
 const usersRoute = require('../routes/userRoutes');
 
@@ -57,7 +56,6 @@ server.use(
 	}),
 );
 
-server.use('/api/v1/ipRegion', ipReginRoute);
 server.use('/api/v1/accessers', accessersRoute);
 server.use('/api/v1/users', usersRoute);
 

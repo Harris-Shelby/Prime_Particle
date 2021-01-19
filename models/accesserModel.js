@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const IP2Region = require('ip2region').default;
+const query = new IP2Region();
+const ipRegion = require('../controllers/ipRegionController');
 
 const accesserSchema = new mongoose.Schema({
 	name: {
@@ -54,7 +57,7 @@ const accesserSchema = new mongoose.Schema({
 	},
 	relegation: {
 		type: Object,
-		required: [true, 'An accesser must have IPRegin'],
+		// required: [true, 'An accesser must have IPRegin'],
 	},
 	locations: [
 		{
@@ -70,16 +73,21 @@ const accesserSchema = new mongoose.Schema({
 	],
 });
 
-accesserSchema.pre('save', function (next) {
+accesserSchema.pre('save', async function (next) {
 	const regex = ['谷歌'];
-	this.country = this.relegation.country;
-	this.province = this.relegation.country;
-	this.city = this.relegation.city;
-	this.isp = this.relegation.isp;
+	let a = await ipRegion.getIpRegion(this.remote_addr);
+	a.status === 'success'
+		? this.relegation === a
+		: (this.relegation = query.search(this.remote_addr));
+
 	this.isRobot = regex.some((element) => {
 		return this.isp === element;
 	});
 
+	this.country = this.relegation.country;
+	this.province = this.relegation.country;
+	this.city = this.relegation.city;
+	this.isp = this.relegation.isp;
 	next();
 });
 
