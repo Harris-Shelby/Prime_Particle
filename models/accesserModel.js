@@ -79,7 +79,6 @@ accesserSchema.pre('save', async function (next) {
 	a.status === 'success'
 		? (this.relegation = a)
 		: (this.relegation = query.search(this.remote_addr));
-	console.log(this.relegation);
 
 	this.country = this.relegation.country;
 	this.province = this.relegation.country;
