@@ -77,7 +77,7 @@ accesserSchema.pre('save', async function (next) {
 	const regex = ['谷歌'];
 	let a = await ipRegion.getIpRegion(this.remote_addr);
 	a.status === 'success'
-		? this.relegation === a
+		? (this.relegation = a)
 		: (this.relegation = query.search(this.remote_addr));
 	console.log(this.relegation);
 
