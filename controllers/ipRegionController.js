@@ -18,8 +18,14 @@ exports.getIpRegion = async (remote) => {
 		}
 		const respone = await axios.get(`http://ip-api.com/json/${remote}`);
 
-		await SET_ASYNC(remote, JSON.stringify(respone.data), 'EX', 300);
-		return respone;
+		const saveResult = await SET_ASYNC(
+			remote,
+			JSON.stringify(respone.data),
+			'EX',
+			300,
+		);
+		console.log(saveResult);
+		return saveResult;
 	} catch (err) {
 		console.log(err.message);
 	}
