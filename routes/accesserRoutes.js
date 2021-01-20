@@ -1,8 +1,12 @@
 const express = require('express');
 const accesserController = require('./../controllers/accesserController');
 const authController = require('../controllers/authController');
+// const reviewController = require('../controllers/reviewController');
+const reviewRoutes = require('../routes/reviewRoutes');
 
 const router = express.Router();
+
+router.use('/:accesserId/reviews', reviewRoutes);
 
 router
 	.route('/top-5-latest')
@@ -28,5 +32,13 @@ router
 		authController.restrictTo('admin', 'shelby'),
 		accesserController.deleteAccesser,
 	);
+
+// router
+// 	.route('/:accesserId/reviews')
+// 	.post(
+// 		authController.protect,
+// 		authController.restrictTo('admin'),
+// 		reviewController.createReview,
+// 	);
 
 module.exports = router;

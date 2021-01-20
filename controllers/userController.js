@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
+const factory = require('./handlerFactory');
 
 const filterObj = (obj, ...allowFields) => {
 	const newObj = {};
@@ -9,18 +10,6 @@ const filterObj = (obj, ...allowFields) => {
 	});
 	return newObj;
 };
-
-exports.getAllUsers = catchAsync(async (req, res) => {
-	const users = await User.find();
-
-	res.status(201).json({
-		status: 'success',
-		results: users.length,
-		data: {
-			users,
-		},
-	});
-});
 
 exports.updateMe = catchAsync(async (req, res, next) => {
 	// Create err if user posts password data
@@ -57,3 +46,9 @@ exports.deleteMe = catchAsync(async (req, res) => {
 		data: null,
 	});
 });
+exports.getAllUsers = factory.getAll(User);
+exports.getUser = factory.getOne(User);
+
+// Do not update password with this
+exports.updateUser = factory.updateOne(User);
+exports.deleteUser = factory.deleteOne(User);

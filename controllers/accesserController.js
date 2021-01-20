@@ -1,8 +1,7 @@
 const Accesser = require('../models/accesserModel');
-const APIFeatures = require('../utils/apiFeatures');
 const moment = require('moment');
 const catchAsync = require('../utils/catchAsync');
-const AppError = require('../utils/appError');
+const factory = require('./handlerFactory');
 
 exports.aliasTopAccessers = (req, res, next) => {
 	req.query.limit = '5';
@@ -11,68 +10,10 @@ exports.aliasTopAccessers = (req, res, next) => {
 	next();
 };
 
-exports.getAllAccessers = catchAsync(async (req, res) => {
-	const features = new APIFeatures(Accesser.find(), req.query)
-		.filter()
-		.sort()
-		.limitFields()
-		.paginate();
-	const accessers = await features.query;
-
-	res.status(201).json({
-		status: 'success',
-		results: accessers.length,
-		data: {
-			accessers,
-		},
-	});
-});
-
-exports.getAccesser = catchAsync(async (req, res, next) => {
-	const accesser = await Accesser.findById(req.params.id);
-
-	if (!accesser) {
-		return next(new AppError('Nothing found with that ID', 404));
-	}
-
-	res.status(200).json({
-		status: 'success',
-		data: {
-			accesser,
-		},
-	});
-});
-
-exports.updateAccesser = catchAsync(async (req, res, next) => {
-	const accesser = await Accesser.findByIdAndUpdate(req.params.id, req.body, {
-		new: true,
-		runValidators: true,
-	});
-
-	if (!accesser) {
-		return next(new AppError('Nothing found with that ID', 404));
-	}
-
-	res.status(200).json({
-		status: 'success',
-		data: {
-			accesser,
-		},
-	});
-});
-
-exports.deleteAccesser = catchAsync(async (req, res, next) => {
-	const accesser = await Accesser.findByIdAndDelete(req.params.id);
-
-	if (!accesser) {
-		return next(new AppError('Nothing found with that ID', 404));
-	}
-
-	res.status(204).json({
-		status: 'success',
-		data: null,
-	});
-});
+exports.getAllAccessers = factory.getAll(Accesser);
+exports.getAccesser = factory.getOne(Accesser, { path: 'reviews' });
+exports.updateAccesser = factory.updateOne(Accesser);
+exports.deleteAccesser = factory.deleteOne(Accesser);
 
 exports.getDailyAccessers = catchAsync(async (req, res) => {
 	const d1 = new Date(moment(new Date()).format('YYYY-MM-DD'));

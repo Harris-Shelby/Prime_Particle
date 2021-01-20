@@ -3,74 +3,86 @@ const IP2Region = require('ip2region').default;
 const query = new IP2Region();
 const ipRegion = require('../controllers/ipRegionController');
 
-const accesserSchema = new mongoose.Schema({
-	name: {
-		type: Number,
-		unique: true,
-	},
-	level: {
-		type: String,
-		trim: true,
-	},
-	country: String,
-	province: String,
-	city: String,
-	isp: String,
-	isRobot: Boolean,
-	status: Number,
-	ts: Date,
-	duration: Number,
-	size: Number,
-	common_log: {
-		type: String,
-		trim: true,
-	},
-	proto: {
-		type: String,
-		trim: true,
-	},
-	method: {
-		type: String,
-		trim: true,
-	},
-	host: {
-		type: String,
-		trim: true,
-	},
-	url: {
-		type: String,
-		trim: true,
-	},
-	User_Agent: {
-		type: Array,
-		default: ['robot'],
-	},
-	req_headers: {
-		type: Object,
-	},
-	resp_headers: {
-		type: Object,
-	},
-	remote_addr: {
-		type: String,
-		required: [true, 'An accesser must have a IP'],
-	},
-	relegation: {
-		type: Object,
-		// required: [true, 'An accesser must have IPRegin'],
-	},
-	locations: [
-		{
-			type: {
-				type: String,
-				default: 'Point',
-				enum: ['Point'],
-			},
-			coordinates: [Number],
-			address: String,
-			description: String,
+const accesserSchema = new mongoose.Schema(
+	{
+		name: {
+			type: Number,
+			unique: true,
 		},
-	],
+		level: {
+			type: String,
+			trim: true,
+		},
+		country: String,
+		province: String,
+		city: String,
+		isp: String,
+		isRobot: Boolean,
+		status: Number,
+		ts: Date,
+		duration: Number,
+		size: Number,
+		common_log: {
+			type: String,
+			trim: true,
+		},
+		proto: {
+			type: String,
+			trim: true,
+		},
+		method: {
+			type: String,
+			trim: true,
+		},
+		host: {
+			type: String,
+			trim: true,
+		},
+		url: {
+			type: String,
+			trim: true,
+		},
+		User_Agent: {
+			type: Array,
+			default: ['robot'],
+		},
+		req_headers: {
+			type: Object,
+		},
+		resp_headers: {
+			type: Object,
+		},
+		remote_addr: {
+			type: String,
+			required: [true, 'An accesser must have a IP'],
+		},
+		relegation: {
+			type: Object,
+			// required: [true, 'An accesser must have IPRegin'],
+		},
+		locations: [
+			{
+				type: {
+					type: String,
+					default: 'Point',
+					enum: ['Point'],
+				},
+				coordinates: [Number],
+				address: String,
+				description: String,
+			},
+		],
+	},
+	{
+		toJSON: { virtuals: true },
+		toObject: { virtuals: true },
+	},
+);
+// virtual populate
+accesserSchema.virtual('reviews', {
+	ref: 'Review',
+	foreignField: 'accesser',
+	localField: '_id',
 });
 
 accesserSchema.pre('save', async function (next) {
