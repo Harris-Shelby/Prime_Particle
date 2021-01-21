@@ -26,7 +26,11 @@ router
 router
 	.route('/:id')
 	.get(accesserController.getAccesser)
-	.patch(accesserController.updateAccesser)
+	.patch(
+		authController.protect,
+		authController.restrictTo('admin', 'shelby'),
+		accesserController.updateAccesser,
+	)
 	.delete(
 		authController.protect,
 		authController.restrictTo('admin', 'shelby'),

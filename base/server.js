@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const responseTime = require('response-time');
 const morgan = require('morgan');
@@ -16,8 +17,12 @@ const reviewRoute = require('../routes/reviewRoutes');
 const server = express();
 // Global middleware
 // Set security http header
+server.use(express.static(path.join(`${__dirname}/../`, 'public')));
+
 server.use(helmet());
 
+server.set('view engine', 'pug');
+server.set('views', path.join(`${__dirname}/../`, 'views'));
 // Development logger
 if (process.env.NODE_ENV === 'development') {
 	server.use(morgan('dev'));
@@ -56,6 +61,11 @@ server.use(
 		],
 	}),
 );
+
+// Routes
+server.get('/', (req, res) => {
+	res.status(200).render('base');
+});
 
 server.use('/api/v1/accessers', accessersRoute);
 server.use('/api/v1/users', usersRoute);
