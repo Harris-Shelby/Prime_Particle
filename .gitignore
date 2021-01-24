@@ -110,3 +110,8 @@ aqua*
 index.html
 
 config.env
+
+icon-font.css
+style.comp.css
+style.concat.css
+style.prefix.css
