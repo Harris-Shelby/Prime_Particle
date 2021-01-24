@@ -5,7 +5,7 @@ html
         meta(name='viewport' content='width=device-width, initial-scale=1')
         title Sakura Dashboard
         //- link(rel='stylesheet', href='https://cdn.jsdelivr.net/gh/alphardex/aqua.css/dist/aqua.min.css')
-        //- link(rel="stylesheet", href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.2/css/all.min.css")
+        link(rel="stylesheet", href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.2/css/all.min.css")
         link(rel='stylesheet', href='css/style.css')
     body
     main.container
@@ -44,32 +44,46 @@ html
                         button.btn.btn-secondary.btn-round.monthly
                             i.far.fa-calendar &nbsp; Month
                 ul.section-timelinebox
-                    li.section-timelinebox__item
+                    li.section-timelinebox__item.warning
                         div.day Mon
                         div.day-number 22
-                        div.day-dot(style="--dot-color: var(--warning-color);") 
-                    li.section-timelinebox__item
+                        div.day-dot
+                    li.section-timelinebox__item.primary
                         div.day Tue
                         div.day-number 23
-                        div.day-dot(style="--dot-color: var(--primary-color);")
-                    li.section-timelinebox__item
+                        div.day-dot
+                    li.section-timelinebox__item.danger
                         div.day Wed
                         div.day-number 24
-                        div.day-dot(style="--dot-color: var(--danger-color);")
+                        div.day-dot
                     li.section-timelinebox__item.active
                         div.day Thu
                         div.day-number 25
-                        div.day-dot(style="--dot-color: var(--danger-color);")
-                    li.section-timelinebox__item
+                        div.day-dot
+                    li.section-timelinebox__item.warning
                         div.day Fri
                         div.day-number 26
-                        div.day-dot(style="--dot-color: var(--warning-color);")
-                    li.section-timelinebox__item
+                        div.day-dot
+                    li.section-timelinebox__item.danger
                         div.day Sat
                         div.day-number 27
-                        div.day-dot(style="--dot-color: var(--danger-color);")
-                    li.section-timelinebox__item
+                        div.day-dot
+                    li.section-timelinebox__item.primary
                         div.day Sun
                         div.day-number 28
-                        div.day-dot(style="--dot-color: var(--primary-color);")
+                        div.day-dot
+            section.section-weekly
+                div.section-titlebox
+                    div.section-titlebox--main
+                        h2.heading-secondary Weekly Reports
+                    div.section-titlebox--sub
+                        div.options
+                            span.options__item Today
+                            span.options__item.active Week
+                            span.options__item Month
+                        //- ul.junk-list
+                        //-     li.junk-list__item
+                        //-         div.junk-icon
+                        //-         div.junk-name
+                        //-         div.junk-size
         div.dashboard__controller happy too

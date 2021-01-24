@@ -1,0 +1,16 @@
+.options {
+	display: flex;
+
+	&__item {
+		font-weight: lighter;
+		font-size: 14px;
+	}
+
+	&__item:not(.active) {
+		opacity: 0.5;
+	}
+
+	&__item:not(:last-child) {
+		margin-right: 21px;
+	}
+}
