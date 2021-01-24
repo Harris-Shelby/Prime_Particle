@@ -6,8 +6,12 @@
 	"scripts": {
 		"start": "nodemon app.js",
 		"start:prod": "NODE_ENV=production nodemon app.js",
-		"compile:sass": "node-sass sass/main.scss public/css/style.css",
-		"compile:dev": "node-sass sass/main.scss public/css/style.css -w",
+		"watch:sass": "node-sass sass/main.scss public/css/style.css -w",
+		"compile:sass": "node-sass sass/main.scss public/css/style.comp.css",
+		"concat:css": "concat -o public/css/style.concat.css public/css/icon-font.css public/css/style.comp.css",
+		"prefix:css": "postcss --use autoprefixer -b 'last 10 versions' public/css/style.concat.css -o public/css/style.prefix.css",
+		"compress:css": "node-sass public/css/style.prefix.css public/css/style.css --output-style compressed",
+		"build:css": "npm-run-all compile:sass concat:css prefix:css compress:css",
 		"test": "clinic doctor -- node app.js",
 		"load": "autocannon -c 1 -p 5  172.18.0.4:2015"
 	},
@@ -24,7 +28,9 @@
 	"homepage": "https://github.com/Harris-Shelby/dashboard#readme",
 	"devDependencies": {
 		"autocannon": "^6.5.0",
+		"autoprefixer": "^10.2.3",
 		"clinic": "^8.0.1",
+		"concat": "^1.0.3",
 		"eslint": "^7.15.0",
 		"eslint-config-prettier": "^7.0.0",
 		"eslint-plugin-prettier": "^3.2.0",
@@ -33,6 +39,8 @@
 		"lint-staged": "^10.5.3",
 		"node-sass": "^5.0.0",
 		"nodemon": "^2.0.6",
+		"npm-run-all": "^4.1.5",
+		"postcss-cli": "^8.3.1",
 		"prettier": "^2.2.1"
 	},
 	"dependencies": {
