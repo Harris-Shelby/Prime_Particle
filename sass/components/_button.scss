@@ -1,0 +1,37 @@
+.btn {
+	color: #fff;
+	padding: 9px 0;
+	line-height: 1;
+	border: none;
+	&-round {
+		border-radius: 30px;
+	}
+	&-danger {
+		background-color: rgba(237, 84, 100, 1);
+	}
+}
+
+.btn-group {
+	margin-left: 24px;
+
+	.btn:first-child {
+		padding-left: 18px;
+		padding-right: 3px;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	.btn:last-child {
+		padding-left: 3px;
+		padding-right: 18px;
+		border-right: none;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+}
+
+.monthly {
+	background-color: $color-grey-light;
+	border: none;
+	padding: 9px 18px;
+	color: $color-purple-dark;
+}

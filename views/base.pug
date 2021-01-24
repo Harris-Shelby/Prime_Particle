@@ -4,7 +4,7 @@ html
         meta(charset='UTF-8')
         meta(name='viewport' content='width=device-width, initial-scale=1')
         title Sakura Dashboard
-        link(rel='stylesheet', href='https://cdn.jsdelivr.net/gh/alphardex/aqua.css/dist/aqua.min.css')
+        //- link(rel='stylesheet', href='https://cdn.jsdelivr.net/gh/alphardex/aqua.css/dist/aqua.min.css')
         link(rel="stylesheet", href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.2/css/all.min.css")
         link(rel='stylesheet', href='css/style.css')
     body
@@ -27,7 +27,49 @@ html
                 li.navigation__item
                     a.navigation__link.fas.fa-sign-out-alt(href="#")
         div.dashboard__view
-            header.dashboard__banner
-                h2 Hi! Harris Shelby
-                p Welcome back, Sir!
+            header.welcome__banner
+                h1.heading-primary 
+                    span.heading-primary--main Hi,Harris Shelby!
+                    span.heading-primary--sub Welcome back, Sir!
+            section.section-monthly
+                div.section-titlebox
+                    div.section-titlebox--main
+                        h2.heading-secondary Mar 22-28
+                        div.btn-group
+                            button.btn.btn-danger.btn-round
+                                i.fas.fa-chevron-left
+                            button.btn.btn-danger.btn-round
+                                i.fas.fa-chevron-right               
+                    div.section-titlebox--sub
+                        button.btn.btn-secondary.btn-round.monthly
+                            i.far.fa-calendar &nbsp; Month
+                ul.section-timelinebox
+                    li.section-timelinebox__item
+                        div.day Mon
+                        div.day-number 22
+                        div.day-dot(style="--dot-color: var(--warning-color);") 
+                    li.section-timelinebox__item
+                        div.day Tue
+                        div.day-number 23
+                        div.day-dot(style="--dot-color: var(--primary-color);")
+                    li.section-timelinebox__item
+                        div.day Wed
+                        div.day-number 24
+                        div.day-dot(style="--dot-color: var(--danger-color);")
+                    li.section-timelinebox__item.active
+                        div.day Thu
+                        div.day-number 25
+                        div.day-dot(style="--dot-color: var(--danger-color);")
+                    li.section-timelinebox__item
+                        div.day Fri
+                        div.day-number 26
+                        div.day-dot(style="--dot-color: var(--warning-color);")
+                    li.section-timelinebox__item
+                        div.day Sat
+                        div.day-number 27
+                        div.day-dot(style="--dot-color: var(--danger-color);")
+                    li.section-timelinebox__item
+                        div.day Sun
+                        div.day-number 28
+                        div.day-dot(style="--dot-color: var(--primary-color);")
         div.dashboard__controller happy too

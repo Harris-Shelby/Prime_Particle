@@ -1,0 +1,27 @@
+.heading-primary {
+	color: $color-white;
+
+	&--main {
+		display: block;
+		font-size: 2rem;
+		margin-block-start: 0.83em;
+		margin-block-end: 0.83em;
+		margin-inline-start: 0px;
+		margin-inline-end: 0px;
+	}
+
+	&--sub {
+		display: block;
+		font-size: 1rem;
+		margin-block-start: 1em;
+		margin-block-end: 1em;
+		margin-inline-start: 0px;
+		margin-inline-end: 0px;
+		font-weight: lighter;
+	}
+}
+
+.heading-secondary {
+	font-size: 18px;
+	font-weight: lighter;
+}

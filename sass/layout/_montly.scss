@@ -1,0 +1,55 @@
+.section-titlebox {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 28px 0;
+
+	&--main {
+		display: grid;
+		grid-template-columns: repeat(2, auto);
+		align-items: center;
+	}
+
+	&--sub {
+	}
+}
+
+.section-timelinebox {
+	display: grid;
+	grid-template-columns: repeat(7, auto);
+	column-gap: 21px;
+	padding: 18px 0;
+	border: 1px solid $color-grey-light;
+	border-left: none;
+	border-right: none;
+	list-style-type: none;
+
+	&__item {
+		display: grid;
+		grid-template-rows: repeat(3, auto);
+		justify-items: center;
+		padding: 16px 12px;
+		border-radius: 20px;
+	}
+	.day {
+		font-weight: bold;
+		margin-bottom: 18px;
+	}
+	.day-number {
+		margin-bottom: 8px;
+		font-size: 1.5rem;
+		font-weight: lighter;
+	}
+	.day-dot {
+		width: 6px;
+		height: 6px;
+		color: var(--dot-color);
+		background: currentColor;
+		border-radius: 50%;
+	}
+	.active {
+		color: white;
+		background: $color-red-light;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+	}
+}
