@@ -5,7 +5,7 @@ html
         meta(name='viewport' content='width=device-width, initial-scale=1')
         title Sakura Dashboard
         //- link(rel='stylesheet', href='https://cdn.jsdelivr.net/gh/alphardex/aqua.css/dist/aqua.min.css')
-        //- link(rel="stylesheet", href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.2/css/all.min.css")
+        link(rel="stylesheet", href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.2/css/all.min.css")
         link(rel='stylesheet', href='css/style.css')
     body
     main.container
@@ -82,24 +82,41 @@ html
                             span.options__item.active Week
                             span.options__item Month
                 ul.overview-list
-                    li.overview__item.warning
+                    li.overview__item.warning.active
                         div.overview-icon 
                             i.far.fa-user
                         div.overview-name Users
-                        div.overview-size 100 pers
+                        div.overview-size 10 Pe
                     li.overview__item.danger
                         div.overview-icon 
                             i.far.fa-file
                         div.overview-name Pageviews
-                        div.overview-size 1000 cout
+                        div.overview-size 10 Co
                     li.overview__item.primary
                         div.overview-icon 
                             i.fas.fa-desktop
                         div.overview-name Computer
-                        div.overview-size 10 Cout
+                        div.overview-size 10 Co
                     li.overview__item.warning
                         div.overview-icon 
                             i.fab.fa-instagram
                         div.overview-name Mobile
-                        div.overview-size 10 Cout
+                        div.overview-size 10 Co
+            section.section-weekly
+                div.section-titlebox
+                    div.section-titlebox--main
+                        h2.heading-secondary Updating Monitoring
+                ul.monitor-list
+                    li.monitor__item
+                        div.monitor__item-textbox 
+                            div.monitor-type System Files
+                            div.monitor-date March 2020
+                        div.monitor__item-gaugebox
+                            a.gauge(href="#" style="--gauge-value: 25; --gauge-max-value: 100;")
+                    li.monitor__item
+                        div.monitor__item-textbox 
+                            div.monitor-type Applications
+                            div.monitor-date March 2020
+                        div.monitor__item-gaugebox
+                            a.gauge(href="#" style="--gauge-value: 25; --gauge-max-value: 100;")
         div.dashboard__controller happy too
