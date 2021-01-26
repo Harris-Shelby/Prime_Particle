@@ -43,7 +43,7 @@
 	.day-dot {
 		width: 6px;
 		height: 6px;
-		color: var(--dot-color);
+		color: var(--color);
 		background: currentColor;
 		border-radius: 50%;
 	}
@@ -51,17 +51,5 @@
 		color: white;
 		background: $color-red-light;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-	}
-
-	.warning {
-		--dot-color: rgba(255, 206, 82, 1);
-	}
-
-	.primary {
-		--dot-color: rgba(78, 192, 233, 1);
-	}
-
-	.danger {
-		--dot-color: rgba(237, 84, 100, 1);
 	}
 }

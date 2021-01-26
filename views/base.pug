@@ -5,7 +5,7 @@ html
         meta(name='viewport' content='width=device-width, initial-scale=1')
         title Sakura Dashboard
         //- link(rel='stylesheet', href='https://cdn.jsdelivr.net/gh/alphardex/aqua.css/dist/aqua.min.css')
-        link(rel="stylesheet", href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.2/css/all.min.css")
+        //- link(rel="stylesheet", href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.2/css/all.min.css")
         link(rel='stylesheet', href='css/style.css')
     body
     main.container
@@ -81,9 +81,25 @@ html
                             span.options__item Today
                             span.options__item.active Week
                             span.options__item Month
-                        //- ul.junk-list
-                        //-     li.junk-list__item
-                        //-         div.junk-icon
-                        //-         div.junk-name
-                        //-         div.junk-size
+                ul.overview-list
+                    li.overview__item.warning
+                        div.overview-icon 
+                            i.far.fa-user
+                        div.overview-name Users
+                        div.overview-size 100 pers
+                    li.overview__item.danger
+                        div.overview-icon 
+                            i.far.fa-file
+                        div.overview-name Pageviews
+                        div.overview-size 1000 cout
+                    li.overview__item.primary
+                        div.overview-icon 
+                            i.fas.fa-desktop
+                        div.overview-name Computer
+                        div.overview-size 10 Cout
+                    li.overview__item.warning
+                        div.overview-icon 
+                            i.fab.fa-instagram
+                        div.overview-name Mobile
+                        div.overview-size 10 Cout
         div.dashboard__controller happy too
