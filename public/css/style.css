@@ -98,6 +98,12 @@ body {
   padding: 0;
   margin: 0;
   list-style-type: none; }
+  .monitor-list .active {
+    color: white;
+    background: #332a7c; }
+    .monitor-list .active .gauge::before {
+      color: white;
+      background: #332a7c; }
 
 .monitor__item {
   display: grid;
@@ -118,6 +124,31 @@ body {
   .monitor__item-gaugebox {
     padding: 0 0 0 40px;
     border-left: 1px solid #e7eaee; }
+    .monitor__item-gaugebox .gauge {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      position: relative;
+      --gauge-percentage: calc(var(--gauge-value) / var(--gauge-max-value) * 100%);
+      color: #565388;
+      font-weight: lighter;
+      background: conic-gradient(#ed5464 var(--gauge-percentage), #f7f7fd 0);
+      counter-reset: value var(--gauge-value); }
+      .monitor__item-gaugebox .gauge::before {
+        position: absolute;
+        top: auto;
+        left: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        border-radius: inherit;
+        width: 87%;
+        height: 87%;
+        content: counter(value) "%"; }
 
 .options {
   display: flex; }
