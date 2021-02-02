@@ -213,6 +213,34 @@ body {
     font-weight: bold;
     white-space: nowrap; }
 
+.statistics {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); }
+
+.accessers-list {
+  display: grid;
+  gap: 40px;
+  padding: 30px 0 0 0;
+  margin: 0;
+  list-style-type: none; }
+  .accessers-list__item {
+    display: flex;
+    align-items: center; }
+    .accessers-list__item .User-agent {
+      box-sizing: border-box;
+      padding-right: 36px;
+      max-width: 32px; }
+    .accessers-list__item .progress-bar {
+      height: 0.6rem;
+      width: 300px;
+      box-sizing: border-box;
+      border-radius: 3px;
+      appearance: none; }
+
 .container {
   display: grid;
   grid-template-columns: repeat(3, auto);
@@ -339,3 +367,8 @@ body {
   color: white;
   background: #fcba40;
   border-radius: 20px; }
+
+.dashboard__controller {
+  padding: 18px 48px;
+  background: #f7f7fd;
+  border-radius: 30px; }

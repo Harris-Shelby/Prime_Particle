@@ -1,0 +1,33 @@
+.statistics {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1%);
+}
+
+.accessers-list {
+    display: grid;
+    gap: 40px;
+    padding: 30px 0 0 0;
+    margin: 0;
+    list-style-type: none;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        .User-agent {
+            box-sizing: border-box;
+            padding-right: 36px;
+            max-width: 32px;
+        }
+        .progress-bar {
+            height: 0.6rem;
+            width: 300px;
+            box-sizing: border-box;
+            border-radius: 3px;
+            appearance: none;
+        }
+    }
+}
