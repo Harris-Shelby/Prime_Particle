@@ -231,6 +231,8 @@ body {
     display: flex;
     align-items: center; }
     .accessers-list__item .User-agent {
+      font-size: 14px;
+      font-weight: lighter;
       box-sizing: border-box;
       padding-right: 36px;
       max-width: 32px; }
@@ -238,8 +240,18 @@ body {
       height: 0.6rem;
       width: 300px;
       box-sizing: border-box;
-      border-radius: 3px;
-      appearance: none; }
+      border-radius: 10px; }
+      .accessers-list__item .progress-bar::-webkit-progress-bar {
+        background-color: #f7f7fd;
+        border-radius: 7px; }
+      .accessers-list__item .progress-bar::-webkit-progress-value {
+        background-color: #4ec0e9;
+        border-radius: 7px; }
+  .accessers-list .active .User-agent {
+    color: #ffce52; }
+  .accessers-list .active .progress-bar::-webkit-progress-value {
+    background-color: #ffce52;
+    border-radius: 7px; }
 
 .container {
   display: grid;
