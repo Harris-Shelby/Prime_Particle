@@ -2,43 +2,76 @@ const moment = require('moment');
 
 class CALENDAR {
 	constructor(day) {
-		this.currtDay = moment(day).format('E') * 1;
+		this.currDay = moment(day).format('E') * 1;
 		this.currWeek = [];
-		this.getCurrWeek();
+		this.getCurrWeek(day);
 	}
-	getCurrWeek() {
-		[...Array(this.currtDay)].forEach((day, index) => {
+	async getPreWeek() {
+		const newcurrWeek = await this.currWeek.map((day) => {
+			day.newDay = day.newDay.subtract(7, 'days');
+			day.dayofWeek = day.newDay.format('ddd');
+			day.monofYear = day.newDay.format('MMM');
+			day.dayofMonth = day.newDay.format('DD');
+		});
+		this.currWeek = newcurrWeek;
+	}
+	async getNextWeek() {
+		const newcurrWeek = await this.currWeek.map((day) => {
+			day.newDay = day.newDay.add(7, 'days');
+			day.dayofWeek = day.newDay.format('ddd');
+			day.monofYear = day.newDay.format('MMM');
+			day.dayofMonth = day.newDay.format('DD');
+		});
+		this.currWeek = newcurrWeek;
+	}
+	getCurrWeek(dayy) {
+		[...Array(this.currDay)].forEach((day, index) => {
 			const today = false;
-			const id = this.currtDay - index;
-			const newDay = moment(new Date()).subtract(index + 1, 'days');
+			const id = this.currDay - index;
+			const newDay = moment(dayy).subtract(id, 'days');
 			const dayofWeek = newDay.format('ddd');
 			const monofYear = newDay.format('MMM');
 			const dayofMonth = newDay.format('DD');
 			this.currWeek.push({
-				id,
 				today,
 				dayofWeek,
 				monofYear,
 				dayofMonth,
+				newDay,
 			});
 		});
-		[...Array(8 - this.currtDay)].forEach((day, index) => {
-			let today, id;
-			index === 0 ? (today = true) : (today = false);
-			id = this.currtDay + index;
-			const newDay = moment(new Date()).add(index, 'days');
-			const dayofWeek = newDay.format('ddd');
-			const monofYear = newDay.format('MMM');
-			const dayofMonth = newDay.format('DD');
+		if (this.currDay === 7) {
+			const today = true;
+			const newDay = dayy;
+			const dayofWeek = dayy.format('ddd');
+			const monofYear = dayy.format('MMM');
+			const dayofMonth = dayy.format('DD');
 			this.currWeek.push({
-				id,
 				today,
 				dayofWeek,
 				monofYear,
 				dayofMonth,
+				newDay,
 			});
-		});
+			this.currWeek.splice(0, 1);
+		} else {
+			[...Array(7 - this.currDay)].forEach((day, index) => {
+				let today;
+				index === 0 ? (today = true) : (today = false);
+				const newDay = moment(dayy).add(index, 'days');
+				const dayofWeek = newDay.format('ddd');
+				const monofYear = newDay.format('MMM');
+				const dayofMonth = newDay.format('DD');
+				this.currWeek.push({
+					today,
+					dayofWeek,
+					monofYear,
+					dayofMonth,
+					newDay,
+				});
+			});
+		}
 	}
 }
 
-console.log(new CALENDAR(Date.now()));
+module.exports = CALENDAR;

@@ -9,7 +9,10 @@ block content
         section.section-monthly
             div.section-titlebox
                 div.section-titlebox--main
-                    h2.heading-secondary Mar 22-28
+                    if calendar.currWeek[0].monofYear === calendar.currWeek[6].monofYear
+                        h2.heading-secondary= `${calendar.currWeek[0].monofYear} ${calendar.currWeek[0].dayofMonth}-${calendar.currWeek[6].dayofMonth}`
+                    else 
+                        h2.heading-secondary= `${calendar.currWeek[0].monofYear} ${calendar.currWeek[0].dayofMonth}-${calendar.currWeek[6].monofYear} ${calendar.currWeek[6].dayofMonth}`
                     div.btn-group
                         button.btn.btn-danger.btn-round
                             i.fas.fa-chevron-left
@@ -19,34 +22,58 @@ block content
                     button.btn.btn-secondary.btn-round.monthly
                         i.far.fa-calendar &nbsp; Month
             ul.section-timelinebox
-                li.section-timelinebox__item.warning
-                    div.day Mon
-                    div.day-number 22
-                    div.day-dot
-                li.section-timelinebox__item.primary
-                    div.day Tue
-                    div.day-number 23
-                    div.day-dot
-                li.section-timelinebox__item.danger
-                    div.day Wed
-                    div.day-number 24
-                    div.day-dot
-                li.section-timelinebox__item.active
-                    div.day Thu
-                    div.day-number 25
-                    div.day-dot
-                li.section-timelinebox__item.warning
-                    div.day Fri
-                    div.day-number 26
-                    div.day-dot
-                li.section-timelinebox__item.danger
-                    div.day Sat
-                    div.day-number 27
-                    div.day-dot
-                li.section-timelinebox__item.primary
-                    div.day Sun
-                    div.day-number 28
-                    div.day-dot
+                each day in calendar.currWeek
+                    if day.today
+                        li.section-timelinebox__item.active
+                            div.day= day.dayofWeek
+                            div.day-number= day.dayofMonth
+                            div.day-dot
+                    else 
+                        case day.dayofWeek
+                            when 'Wed'
+                                li.section-timelinebox__item.danger
+                                    div.day= day.dayofWeek
+                                    div.day-number= day.dayofMonth
+                                    div.day-dot
+                            when 'Mon'
+                                li.section-timelinebox__item.warning
+                                    div.day= day.dayofWeek
+                                    div.day-number= day.dayofMonth
+                                    div.day-dot
+                            when 'Thu'
+                                li.section-timelinebox__item.warning
+                                    div.day= day.dayofWeek
+                                    div.day-number= day.dayofMonth
+                                    div.day-dot
+                            default
+                                li.section-timelinebox__item.primary
+                                    div.day= day.dayofWeek
+                                    div.day-number= day.dayofMonth
+                                    div.day-dot
+                //- li.section-timelinebox__item.primary
+                //-     div.day Tue
+                //-     div.day-number 23
+                //-     div.day-dot
+                //- li.section-timelinebox__item.danger
+                //-     div.day Wed
+                //-     div.day-number 24
+                //-     div.day-dot
+                //- li.section-timelinebox__item.active
+                //-     div.day Thu
+                //-     div.day-number 25
+                //-     div.day-dot
+                //- li.section-timelinebox__item.warning
+                //-     div.day Fri
+                //-     div.day-number 26
+                //-     div.day-dot
+                //- li.section-timelinebox__item.danger
+                //-     div.day Sat
+                //-     div.day-number 27
+                //-     div.day-dot
+                //- li.section-timelinebox__item.primary
+                //-     div.day Sun
+                //-     div.day-number 28
+                //-     div.day-dot
         section.section-weekly
             div.section-titlebox
                 div.section-titlebox--main
