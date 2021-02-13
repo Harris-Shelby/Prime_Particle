@@ -13,6 +13,7 @@ const globalErrorHandler = require('../controllers/errorController');
 const accessersRoute = require('../routes/accesserRoutes');
 const usersRoute = require('../routes/userRoutes');
 const reviewRoute = require('../routes/reviewRoutes');
+const viewRoute = require('../routes/viewRoutes');
 
 const server = express();
 // Global middleware
@@ -63,10 +64,7 @@ server.use(
 );
 
 // Routes
-server.get('/', (req, res) => {
-	res.status(200).render('base');
-});
-
+server.use('/', viewRoute);
 server.use('/api/v1/accessers', accessersRoute);
 server.use('/api/v1/users', usersRoute);
 server.use('/api/v1/reviews', reviewRoute);
