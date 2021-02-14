@@ -8,8 +8,43 @@
 .section-monthly {
 }
 
+.dashboard__view {
+	grid-row: 2/4;
+}
+
+.dashboard__space {
+	grid-row: 2/3;
+	.section-titlebox {
+		display: flex;
+		flex-direction: row-reverse;
+		align-content: flex-start;
+		align-items: center;
+		margin-top: 0;
+		margin-right: 4rem;
+		.options {
+			display: flex;
+			align-items: center;
+			&__item {
+				opacity: 1;
+				font-weight: lighter;
+				font-size: 16px;
+				&:not(:last-child) {
+					margin-right: 2.7rem;
+				}
+
+				.usr-logo {
+					display: inline-block;
+					width: 4rem;
+					border-radius: 1rem;
+				}
+			}
+		}
+	}
+}
+
 .dashboard__controller {
+	grid-row: 3/4;
 	padding: 18px 48px;
-    background: rgba(247,247,253,1);
-    border-radius: 30px;
+	background: rgba(247, 247, 253, 1);
+	border-radius: 30px;
 }

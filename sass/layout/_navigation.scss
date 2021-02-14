@@ -5,11 +5,12 @@
 		justify-items: center;
 		color: white;
 		background-color: $color-primary-dark;
-		border-radius: 4rem;
+		border-radius: 3rem;
+		grid-row: 1/5;
 	}
 	&__logo {
-		padding: 4.5rem 2.5rem;
-		font-size: 18px;
+		padding: 3.6rem 1.8rem;
+		font-size: 1.8rem;
 		font-weight: bold;
 		color: white;
 		text-decoration: none;
@@ -31,6 +32,11 @@
 	}
 
 	&__link {
+		color: white;
+		text-decoration: none;
+	}
+	&__logout {
+		padding: 3.6rem 1.8rem;
 		color: white;
 		text-decoration: none;
 	}

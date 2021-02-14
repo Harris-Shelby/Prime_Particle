@@ -1,6 +1,16 @@
 extends base
 
-block content
+block append head
+    script(src='/js/mapbox.js')
+
+mixin overviewBox(classs, icon, label, size)
+    li(class= `overview__item ${classs}`)
+        div.overview-icon 
+            i(class= `${icon}`)
+        div.overview-name= label
+        div.overview-size= size
+
+block view
     div.dashboard__view
         header.welcome__banner
             h1.heading-primary 
@@ -50,30 +60,6 @@ block content
                                     div.day= day.dayofWeek
                                     div.day-number= day.dayofMonth
                                     div.day-dot
-                //- li.section-timelinebox__item.primary
-                //-     div.day Tue
-                //-     div.day-number 23
-                //-     div.day-dot
-                //- li.section-timelinebox__item.danger
-                //-     div.day Wed
-                //-     div.day-number 24
-                //-     div.day-dot
-                //- li.section-timelinebox__item.active
-                //-     div.day Thu
-                //-     div.day-number 25
-                //-     div.day-dot
-                //- li.section-timelinebox__item.warning
-                //-     div.day Fri
-                //-     div.day-number 26
-                //-     div.day-dot
-                //- li.section-timelinebox__item.danger
-                //-     div.day Sat
-                //-     div.day-number 27
-                //-     div.day-dot
-                //- li.section-timelinebox__item.primary
-                //-     div.day Sun
-                //-     div.day-number 28
-                //-     div.day-dot
         section.section-weekly
             div.section-titlebox
                 div.section-titlebox--main
@@ -84,26 +70,10 @@ block content
                         span.options__item.active Week
                         span.options__item Month
             ul.overview-list
-                li.overview__item.warning.active
-                    div.overview-icon 
-                        i.far.fa-user
-                    div.overview-name Users
-                    div.overview-size 10 Pe
-                li.overview__item.danger
-                    div.overview-icon 
-                        i.far.fa-file
-                    div.overview-name Pageviews
-                    div.overview-size 10 Co
-                li.overview__item.primary
-                    div.overview-icon 
-                        i.fas.fa-desktop
-                    div.overview-name Computer
-                    div.overview-size 10 Co
-                li.overview__item.warning
-                    div.overview-icon 
-                        i.fab.fa-instagram
-                    div.overview-name Mobile
-                    div.overview-size 10 Co
+                +overviewBox('warning active', 'far fa-user', 'Users', '10 Pe')
+                +overviewBox('danger', 'far fa-file', 'Pageviews', '10 Co')
+                +overviewBox('primary', 'fas fa-desktop', 'Computer', '10 Co')
+                +overviewBox('warning', 'fab fa-instagram', 'Mobile', '10 Co')
         section.section-weekly
             div.section-titlebox
                 div.section-titlebox--main
@@ -121,14 +91,25 @@ block content
                         div.monitor-date March 2020
                     div.monitor__item-gaugebox
                         a.gauge(href="#" style="--gauge-value: 50; --gauge-max-value: 100;")
+block space 
+    div.dashboard__space
+        div.section-titlebox
+            div.options
+                span.options__item 
+                    i.fas.fa-cog
+                span.options__item
+                    i.far.fa-bell
+                span.options__item
+                    img.usr-logo(src="img/wechat__signature.jpg")
+block controller
     div.dashboard__controller 
         section.section-weekly
             div.section-titlebox
                 div.section-titlebox--main
                     h2.heading-secondary Other Functions
-            p(style="font-weight:lighter;font-size:14px") Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium modi fugiat totam id amet, tempora exercitationem mollitia illum doloribus nisi officia eaque, hic dicta quaerat consequuntur sed nam recusandae earum.
+            p(style="font-weight:lighter;font-size:14px") Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium modi fugiat totam id amet, tempora exercitationem mollitia illum doloribus nisi officia eaque, hic dicta quaerat consequuntur sed nam recusandae earum.lorem
         section.section-accessers
-            div.section-titlebox
+            div.section-titlebox    
                 div.section-titlebox--main
                     h2.heading-secondary Accessers 
             div.statistics
