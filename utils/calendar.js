@@ -43,9 +43,9 @@ class CALENDAR {
 		if (this.currDay === 7) {
 			const today = true;
 			const newDay = dayy;
-			const dayofWeek = dayy.format('ddd');
-			const monofYear = dayy.format('MMM');
-			const dayofMonth = dayy.format('DD');
+			const dayofWeek = moment(dayy).format('ddd');
+			const monofYear = moment(dayy).format('MMM');
+			const dayofMonth = moment(dayy).format('DD');
 			this.currWeek.push({
 				today,
 				dayofWeek,
