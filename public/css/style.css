@@ -94,6 +94,9 @@ body {
 #map {
   border-radius: 15px; }
 
+.marker {
+  font-size: 2rem; }
+
 .monitor-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
