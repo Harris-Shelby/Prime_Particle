@@ -91,6 +91,9 @@ body {
   padding: 9px 18px;
   color: #565388; }
 
+#map {
+  border-radius: 15px; }
+
 .monitor-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

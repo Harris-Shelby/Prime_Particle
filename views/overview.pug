@@ -1,7 +1,8 @@
 extends base
 
 block append head
-    script(src='/js/mapbox.js')
+    script(src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js')
+    link(href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet')
 
 mixin overviewBox(classs, icon, label, size)
     li(class= `overview__item ${classs}`)
@@ -107,6 +108,9 @@ block controller
             div.section-titlebox
                 div.section-titlebox--main
                     h2.heading-secondary Other Functions
+            div#map(style='width: 400px; height: 300px;',data-locations=`${JSON.stringify(dailyStats.map((accesser) => {
+                return accesser.relegation[0]
+            }))}`)
             p(style="font-weight:lighter;font-size:14px") Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium modi fugiat totam id amet, tempora exercitationem mollitia illum doloribus nisi officia eaque, hic dicta quaerat consequuntur sed nam recusandae earum.lorem
         section.section-accessers
             div.section-titlebox    

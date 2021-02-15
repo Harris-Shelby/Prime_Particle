@@ -20,7 +20,7 @@ const server = express();
 // Set security http header
 server.use(express.static(path.join(`${__dirname}/../`, 'public')));
 
-server.use(helmet());
+server.use(helmet({ contentSecurityPolicy: false }));
 
 server.set('view engine', 'pug');
 server.set('views', path.join(`${__dirname}/../`, 'views'));
