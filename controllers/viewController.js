@@ -92,3 +92,7 @@ exports.getOverview = catchAsync(async (req, res) => {
 		monthlyStats,
 	});
 });
+
+exports.getLoginForm = (req, res) => {
+	res.status(200).render('login');
+};

@@ -1,5 +1,8 @@
 extends base
 
+block nav 
+    include _navigation 
+
 block append head
     script(src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js')
     link(href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet')
@@ -115,27 +118,27 @@ block controller
         section.section-accessers
             div.section-titlebox    
                 div.section-titlebox--main
-                    h2.heading-secondary Accessers 
+                    h2.heading-secondary Statistics Panel
             div.statistics
                 ul.accessers-list
                     li.accessers-list__item
-                        span.User-agent Mo
+                        span.User-agent Sun
                         progress.progress-bar(max="145",value="109")
                     li.accessers-list__item
-                        span.User-agent Mo
+                        span.User-agent Mon
                         progress.progress-bar(max="145",value="74")
                     li.accessers-list__item.active
-                        span.User-agent aas
+                        span.User-agent Tue
                         progress.progress-bar(max="145",value="55")
                     li.accessers-list__item
-                        span.User-agent Mo
+                        span.User-agent Wed
                         progress.progress-bar(max="145",value="109")
                     li.accessers-list__item
-                        span.User-agent Mo
+                        span.User-agent Thu
                         progress.progress-bar(max="145",value="109")
                     li.accessers-list__item
-                        span.User-agent Mo
+                        span.User-agent Fir
                         progress.progress-bar(max="145",value="109")
                     li.accessers-list__item
-                        span.User-agent Mo
+                        span.User-agent Sat
                         progress.progress-bar(max="145",value="109")
