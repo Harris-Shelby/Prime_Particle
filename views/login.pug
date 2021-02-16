@@ -2,21 +2,6 @@ extends base
 
 block view
     .form-container#formContainer
-        .form__signin
-            form.form-box(action="#")
-                h1.heading__form-primary Sign in
-                .social-box
-                    a.social(href="#")
-                        i.fab.fa-facebook-f
-                    a.social(href="#") 
-                        i.fab.fa-google-plus-g
-                    a.social(href="#")
-                        i.fab.fa-linkedin-in
-                span.heading__form-3th or use your account
-                input(type="email" placeholder="Email")
-                input(type="password" placeholder="Password")
-                a#forgetPasswd(href='#') Forgot your password?
-                button Sign In
         .form__signup
             form.form-box(action="#")
                 h1.heading__form-primary Create Account
@@ -32,13 +17,29 @@ block view
                 input(type="email" placeholder="Email")
                 input(type="password" placeholder="Password")
                 button Sign Up
+        .form__signin
+            form.form-box(action="#")
+                h1.heading__form-primary Sign in
+                .social-box
+                    a.social(href="#")
+                        i.fab.fa-facebook-f
+                    a.social(href="#") 
+                        i.fab.fa-google-plus-g
+                    a.social(href="#")
+                        i.fab.fa-linkedin-in
+                span.heading__form-3th or use your account
+                input(type="email" placeholder="Email")
+                input(type="password" placeholder="Password")
+                a#forgetPasswd(href='#') Forgot your password?
+                button Sign In
+
         .form__overlay
             .overlay-box
                 .overlay__panel.overlay-left
-                    h1 Welcome Back!
-                    p.overlay__panel-p To keep connected with us please login with your personal info
-                    button.ghost#signin Sign In
-                .overlay__panel.overlay-right
                     h1 Hello, Friend!
                     p.overlay__panel-p Enter your personal details and start journey with us
                     button.ghost#signup Sign Up
+                .overlay__panel.overlay-right
+                    h1 Welcome Back!
+                    p.overlay__panel-p To keep connected with us please login with your personal info
+                    button.ghost#signin Sign In

@@ -365,25 +365,24 @@ body {
 .form__signin {
   transition: all 0.6s ease-in-out; }
 
-.form__signup {
-  transform: translateX(-50%);
-  grid-column: 3/4;
-  opacity: 0;
-  z-index: 1; }
-
 .form__signin {
-  grid-column: 1/2;
-  z-index: 2;
-  opacity: 1; }
-
-.form-container.right-panel-active .form__signin {
-  transform: translateX(50%);
-  opacity: 0; }
-
-.form-container.right-panel-active .form__signup {
   transform: translateX(0);
   opacity: 1;
   z-index: 5; }
+
+.form__signup {
+  transform: translateX(50%);
+  opacity: 0;
+  z-index: 2; }
+
+.form-container.right-panel-active .form__signup {
+  opacity: 1;
+  transform: translateX(0); }
+
+.form-container.right-panel-active .form__signin {
+  transform: translateX(-50%);
+  opacity: 0;
+  z-index: 1; }
 
 .form-box {
   display: flex;
@@ -447,6 +446,7 @@ button.ghost {
   border-color: #ffffff; }
 
 .form__overlay {
+  transform: translateX(-100%);
   position: absolute;
   top: 0;
   left: 50%;
@@ -457,21 +457,21 @@ button.ghost {
   z-index: 100; }
 
 .form-container.right-panel-active .form__overlay {
-  transform: translateX(-100%); }
+  transform: translateX(0); }
 
 .overlay-box {
-  background: #FF416C;
-  background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-  background: linear-gradient(to right, #FF4B2B, #FF416C);
+  background: #ff416c;
+  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
-  color: #FFFFFF;
+  color: #ffffff;
   position: relative;
   left: -100%;
   height: 100%;
   width: 200%;
-  transform: translateX(0);
+  transform: translateX(50%);
   transition: transform 0.6s ease-in-out; }
 
 .overlay__panel {
@@ -495,22 +495,22 @@ button.ghost {
     margin: 20px 0 30px; }
 
 .overlay-left {
-  transform: translateX(-20%);
-  transition: transform 0.6s ease-in-out; }
-
-.form-container.right-panel-active .overlay-left {
-  transform: translateX(0); }
-
-.overlay-right {
-  right: 0;
   transform: translateX(0);
   transition: transform 0.6s ease-in-out; }
 
+.form-container.right-panel-active .overlay-left {
+  transform: translateX(-20%); }
+
+.overlay-right {
+  right: 0;
+  transform: translateX(20%);
+  transition: transform 0.6s ease-in-out; }
+
 .form-container.right-panel-active .overlay-right {
-  transform: translateX(20%); }
+  transform: translateX(0); }
 
 .form-container.right-panel-active .overlay-box {
-  transform: translateX(50%); }
+  transform: translateX(0); }
 
 @keyframes show {
   0%,
