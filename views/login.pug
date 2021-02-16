@@ -2,21 +2,6 @@ extends base
 
 block view
     .form-container#formContainer
-        .form__signup
-            form.form-box(action="#")
-                h1.heading__form-primary Create Account
-                .social-box
-                    a.social(href="#")
-                        i.fab.fa-facebook-f
-                    a.social(href="#") 
-                        i.fab.fa-google-plus-g
-                    a.social(href="#")
-                        i.fab.fa-linkedin-in
-                span.heading__form-3th or use your email for registration
-                input(type="text" placeholder="Name")
-                input(type="email" placeholder="Email")
-                input(type="password" placeholder="Password")
-                button Sign Up
         .form__signin
             form.form-box(action="#")
                 h1.heading__form-primary Sign in
@@ -32,6 +17,21 @@ block view
                 input(type="password" placeholder="Password")
                 a#forgetPasswd(href='#') Forgot your password?
                 button Sign In
+        .form__signup
+            form.form-box(action="#")
+                h1.heading__form-primary Create Account
+                .social-box
+                    a.social(href="#")
+                        i.fab.fa-facebook-f
+                    a.social(href="#") 
+                        i.fab.fa-google-plus-g
+                    a.social(href="#")
+                        i.fab.fa-linkedin-in
+                span.heading__form-3th or use your email for registration
+                input(type="text" placeholder="Name")
+                input(type="email" placeholder="Email")
+                input(type="password" placeholder="Password")
+                button Sign Up
         .form__overlay
             .overlay-box
                 .overlay__panel.overlay-left
