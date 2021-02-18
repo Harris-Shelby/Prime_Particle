@@ -1,5 +1,8 @@
 extends base
 
+block append head
+    script(src='https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js')
+    
 block view
     .form-container#formContainer
         .form__signup
@@ -18,7 +21,7 @@ block view
                 input(type="password" placeholder="Password")
                 button Sign Up
         .form__signin
-            form.form-box(action="#")
+            form.form-box#loginForm
                 h1.heading__form-primary Sign in
                 .social-box
                     a.social(href="#")
@@ -28,10 +31,10 @@ block view
                     a.social(href="#")
                         i.fab.fa-linkedin-in
                 span.heading__form-3th or use your account
-                input(type="email" placeholder="Email")
-                input(type="password" placeholder="Password")
+                input#loginEmail(type="email" placeholder="Email")
+                input#loginPasswd(type="password" placeholder="Password")
                 a#forgetPasswd(href='#') Forgot your password?
-                button Sign In
+                button(type="submit") Sign In
 
         .form__overlay
             .overlay-box

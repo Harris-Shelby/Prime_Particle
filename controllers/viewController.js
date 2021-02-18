@@ -2,7 +2,6 @@ const catchAsync = require('../utils/catchAsync');
 const Calender = require('../utils/calendar');
 const moment = require('moment');
 const Accesser = require('../models/accesserModel');
-const calendar = new Calender(Date.now());
 
 const getDailyAccessers = async () => {
 	const d1 = new Date(moment(new Date()).format('YYYY-MM-DD'));
@@ -85,6 +84,7 @@ const getMonthlyAccessers = async () => {
 exports.getOverview = catchAsync(async (req, res) => {
 	const dailyStats = await getDailyAccessers();
 	const monthlyStats = await getMonthlyAccessers();
+	const calendar = new Calender(Date.now());
 	res.status(200).render('overview', {
 		title: 'overviews',
 		calendar,
