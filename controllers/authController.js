@@ -109,10 +109,11 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
 		if (currentUser.changedPasswordAfter(decoded.iat)) {
 			return next();
 		}
-		// There is a
-		req.user = currentUser;
-		next();
+		// There is a logged in user
+		res.locals.user = currentUser;
+		return next();
 	}
+	next();
 });
 
 exports.restrictTo = (...roles) => {

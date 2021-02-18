@@ -103,8 +103,12 @@ block space
                     i.fas.fa-cog
                 span.options__item
                     i.far.fa-bell
-                span.options__item
-                    img.usr-logo(src="img/wechat__signature.jpg")
+                if user
+                    span.options__item
+                        img.usr-logo(src="img/wechat__signature.jpg")
+                else
+                    span.options__item
+                        i.far.fa-user
 block controller
     div.dashboard__controller 
         section.section-weekly
