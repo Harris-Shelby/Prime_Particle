@@ -8466,8 +8466,7 @@ exports.hideAlert = hideAlert;
 var showAlert = function showAlert(type, msg) {
   hideAlert();
   var markup = "<div class=\"alert alert--".concat(type, "\">").concat(msg, "</div>");
-  document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
-  window.setTimeout(hideAlert, 5000);
+  document.querySelector('body').insertAdjacentHTML('afterbegin', markup); // window.setTimeout(hideAlert, 5000);
 };
 
 exports.showAlert = showAlert;
@@ -8477,7 +8476,7 @@ exports.showAlert = showAlert;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.login = void 0;
+exports.logout = exports.login = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -8540,6 +8539,47 @@ var login = /*#__PURE__*/function () {
 }();
 
 exports.login = login;
+
+var logout = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+    var res;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return (0, _axios.default)({
+              method: 'GET',
+              url: 'https://sakura.qsomula.top/api/v1/users/logout'
+            });
+
+          case 3:
+            res = _context2.sent;
+            if (res.data.status = 'success') location.reload(true);
+            _context2.next = 11;
+            break;
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0);
+            (0, _alerts.showAlert)('error', 'Error logging out! Try again.');
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+
+  return function logout() {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+exports.logout = logout;
 },{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -8808,6 +8848,7 @@ var signUpButton = document.getElementById('signup');
 var signInButton = document.getElementById('signin');
 var container = document.getElementById('formContainer');
 var loginForm = document.getElementById('loginForm');
+var logOutBtn = document.getElementById('logout');
 var mapBox = document.getElementById('map'); // Values
 
 if (mapBox) {
@@ -8822,6 +8863,10 @@ if (signInButton || signUpButton) {
   signInButton.addEventListener('click', function () {
     container.classList.remove('right-panel-active');
   });
+}
+
+if (logOutBtn) {
+  logOutBtn.addEventListener('click', _login.logout);
 }
 
 if (loginForm) {
@@ -8860,7 +8905,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45295" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43755" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
