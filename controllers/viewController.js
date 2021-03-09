@@ -96,3 +96,9 @@ exports.getOverview = catchAsync(async (req, res) => {
 exports.getLoginForm = (req, res) => {
 	res.status(200).render('login');
 };
+
+exports.getAccount = (req, res) => {
+	res.status(200).render('account', {
+		title: 'Your account',
+	});
+};

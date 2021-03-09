@@ -74,7 +74,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 	) {
 		token = req.headers.authorization.split(' ')[1];
 	} else if (req.cookies.jwt) {
-		token = req.cookie.jwt;
+		token = req.cookies.jwt;
 	}
 	if (!token) {
 		return next(
@@ -98,6 +98,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 	}
 	// Grant access to protected routes
 	req.user = currentUser;
+	res.locals.user = currentUser;
 	next();
 });
 
