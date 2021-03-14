@@ -66,7 +66,6 @@ server.use(
 );
 
 server.use((req, res, next) => {
-	// console.log(req.cookies);
 	next();
 });
 

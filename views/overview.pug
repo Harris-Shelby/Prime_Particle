@@ -105,14 +105,15 @@ block space
                 span.options__item
                     i.far.fa-bell
                 span.options__item 
-                    a(href="/me")
+                    a.space__link(href="/me")
                         i.fas.fa-cog
                 if user
                     span.options__item
                         img.usr-logo(src=`/img/users/${user.photo}`)
                 else
                     span.options__item
-                        i.far.fa-user
+                        a.space__link(href="/login")
+                            i.far.fa-user
 block controller
     div.dashboard__controller 
         section.section-weekly

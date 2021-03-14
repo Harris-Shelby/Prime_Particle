@@ -659,6 +659,9 @@ button.ghost {
           display: inline-block;
           width: 4rem;
           border-radius: 1rem; }
+        .dashboard__space .section-titlebox .options__item .space__link {
+          color: #565388;
+          text-decoration: none; }
 
 .dashboard__controller {
   grid-row: 3/4;
