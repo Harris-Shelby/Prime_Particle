@@ -18,7 +18,10 @@ block view
     div.dashboard__view
         header.welcome__banner
             h1.heading-primary 
-                span.heading-primary--main= `Hi,${user.name}!`
+                if user
+                    span.heading-primary--main= `Hi,${user.name}!`
+                else
+                    span.heading-primary--main Hi,Shelby boy!
                 span.heading-primary--sub Welcome back, Sir!
         section.section-primary
             div.section-titlebox

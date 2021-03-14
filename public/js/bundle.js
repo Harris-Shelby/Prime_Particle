@@ -8499,7 +8499,7 @@ var login = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://penguin.linux.test:4000/api/v1/users/login',
+              url: 'https://sakura.qsomula.top/api/v1/users/login',
               data: {
                 email: email,
                 password: password
@@ -8904,7 +8904,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41775" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43215" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
