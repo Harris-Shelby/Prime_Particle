@@ -6,10 +6,10 @@ export const login = async (email, password) => {
 	try {
 		const res = await axios({
 			method: 'POST',
-			url: 'https://sakura.qsomula.top/api/v1/users/login',
+			url: 'http://penguin.linux.test:4000/api/v1/users/login',
 			data: {
 				email,
-				password
+				password	
 			}
 		})
 		if (res.data.status === 'success') {

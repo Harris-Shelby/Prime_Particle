@@ -3,63 +3,60 @@ extends base
 block nav 
     include _navigation 
 
-mixin overviewBox(classs, icon, label, size)
-    li(class= `overview__item ${classs}`)
-        div.overview-icon 
-            i(class= `${icon}`)
-        div.overview-name= label
-        div.overview-size= size
-
 block view
-
-
-    div.dashboard__view
+    div.dashboard__view.speccc
         header.welcome__banner
             h1.heading-primary 
                 span.heading-primary--main Hi,Harris Shelby!
                 span.heading-primary--sub Welcome back, Sir!
-        section.section-weekly
+        section.section-secondary
             div.section-titlebox
                 div.section-titlebox--main
-                    h2.heading-secondary Weekly Reports
-                div.section-titlebox--sub
-                    div.options
-                        span.options__item Today
-                        span.options__item.active Week
-                        span.options__item Month
-            ul.overview-list
-                +overviewBox('warning active', 'far fa-user', 'Users', '10 Pe')
-                +overviewBox('danger', 'far fa-file', 'Pageviews', '10 Co')
-                +overviewBox('primary', 'fas fa-desktop', 'Computer', '10 Co')
-                +overviewBox('warning', 'fab fa-instagram', 'Mobile', '10 Co')
-        section.section-weekly
+                    h2.heading-secondary Your Profile
+            form.form.form-user-data
+                .form__group
+                label.form__label(for='name') Name
+                input#name.form__input(type='text', value=`${user.name}`, required, name='name')
+                .form__group.ma-bt-md
+                label.form__label(for='email') Email address
+                input#email.form__input(type='email', value=`${user.email}`, required, name='email')
+                .form__group.form__photo-upload
+                img.form__user-photo(src=`/img/users/${user.photo}`, alt='User photo')
+                input.form__upload(type='file', accept='image/*', id='photo', name='photo')
+                label(for='photo') Choose new photo
+                
+                .form__group.right
+                button.btnbtn-secondary.btn-round Save settings
+block controller
+    div.dashboard__controller.speccc
+        section.section-secondary
             div.section-titlebox
                 div.section-titlebox--main
-                    h2.heading-secondary Updating Monitoring
-            ul.monitor-list
-                li.monitor__item
-                    div.monitor__item-textbox 
-                        div.monitor-type System Files
-                        div.monitor-date March 2020
-                    div.monitor__item-gaugebox
-                        a.gauge(href="#" style="--gauge-value: 25; --gauge-max-value: 100;")
-                li.monitor__item.active
-                    div.monitor__item-textbox 
-                        div.monitor-type Applications
-                        div.monitor-date March 2020
-                    div.monitor__item-gaugebox
-                        a.gauge(href="#" style="--gauge-value: 50; --gauge-max-value: 100;")
-//- block space 
-//-     div.dashboard__space
-//-         div.section-titlebox
-//-             div.options
-//-                 span.options__item
-//-                     i.far.fa-bell
-//-                 span.options__item 
-//-                     i.fas.fa-cog
-//-                 if user
-//-                     span.options__item
-//-                         img.usr-logo(src="img/wechat__signature.jpg")
-//-                 else
-//-                     span.options__item
-//-                         i.far.fa-user
+                    h2.heading-secondary Password change
+            form.form.form-user-password
+                .form__group
+                label.form__label(for='password-current') Current password
+                input#password-current.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                .form__group
+                label.form__label(for='password') New password
+                input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                .form__group.ma-bt-lg
+                label.form__label(for='password-confirm') Confirm password
+                input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                .form__group.right
+                button.btnbtn-secondary.btn-round Save password
+
+block space 
+    div.dashboard__space
+        div.section-titlebox
+            div.options
+                span.options__item
+                    i.far.fa-bell
+                span.options__item 
+                    i.fas.fa-cog
+                if user
+                    span.options__item
+                        img.usr-logo(src=`/img/users/${user.photo}`)
+                else
+                    span.options__item
+                        i.far.fa-user

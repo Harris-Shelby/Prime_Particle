@@ -91,6 +91,79 @@ body {
   padding: 9px 18px;
   color: #565388; }
 
+.form__input {
+  display: block;
+  font-family: inherit;
+  font-size: 1.5rem;
+  color: inherit;
+  padding: 1.25rem 1.75rem;
+  border: none;
+  width: 100%;
+  background-color: #fff;
+  background-color: #f2f2f2;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.form__input:focus {
+  outline: none;
+  border-bottom: 3px solid #55c57a; }
+
+.form__input:focus:invalid {
+  border-bottom: 3px solid #ff7730; }
+
+.form__input::-webkit-input-placeholder {
+  color: #bbbbbb; }
+
+.form__group:not(:last-child) {
+  margin-bottom: 2.5rem; }
+
+.form__photo-upload {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 1.6rem; }
+
+.form__user-photo {
+  height: 7.5rem;
+  width: 7.5rem;
+  border-radius: 50%;
+  margin-right: 2rem; }
+
+.form__upload {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1; }
+
+.form__upload + label {
+  color: #565388;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: lighter;
+  border-bottom: 1px solid rgba(247, 247, 253, 0.664);
+  padding: 3px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  cursor: pointer;
+  border-radius: 20px; }
+
+.form__upload + label:hover {
+  background-color: rgba(247, 247, 253, 0.664);
+  -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  -webkit-transform: translateY(-2px);
+  transform: translateY(-2px); }
+
 #map {
   border-radius: 15px; }
 
@@ -348,6 +421,16 @@ body {
   padding: 3.6rem 1.8rem;
   color: white;
   text-decoration: none; }
+
+.section-secondary .heading-secondary {
+  font-size: 25px;
+  font-weight: bolder; }
+
+.dashboard__view.speccc {
+  min-width: 520px; }
+
+.dashboard__controller.speccc {
+  min-width: 520px; }
 
 .form-container {
   grid-column: 2/3;

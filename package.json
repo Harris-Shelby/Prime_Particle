@@ -70,11 +70,6 @@
 		"validator": "^13.5.2",
 		"xss-clean": "^0.1.1"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
-	},
 	"lint-staged": {
 		"*.js": "eslint --cache --fix"
 	}

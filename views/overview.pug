@@ -18,9 +18,9 @@ block view
     div.dashboard__view
         header.welcome__banner
             h1.heading-primary 
-                span.heading-primary--main Hi,Harris Shelby!
+                span.heading-primary--main= `Hi,${user.name}!`
                 span.heading-primary--sub Welcome back, Sir!
-        section.section-monthly
+        section.section-primary
             div.section-titlebox
                 div.section-titlebox--main
                     if calendar.currWeek[0].monofYear === calendar.currWeek[6].monofYear
@@ -64,7 +64,7 @@ block view
                                     div.day= day.dayofWeek
                                     div.day-number= day.dayofMonth
                                     div.day-dot
-        section.section-weekly
+        section.section-primary
             div.section-titlebox
                 div.section-titlebox--main
                     h2.heading-secondary Weekly Reports
@@ -78,7 +78,7 @@ block view
                 +overviewBox('danger', 'far fa-file', 'Pageviews', '10 Co')
                 +overviewBox('primary', 'fas fa-desktop', 'Computer', '10 Co')
                 +overviewBox('warning', 'fab fa-instagram', 'Mobile', '10 Co')
-        section.section-weekly
+        section.section-primary
             div.section-titlebox
                 div.section-titlebox--main
                     h2.heading-secondary Updating Monitoring
@@ -102,10 +102,11 @@ block space
                 span.options__item
                     i.far.fa-bell
                 span.options__item 
-                    i.fas.fa-cog
+                    a(href="/me")
+                        i.fas.fa-cog
                 if user
                     span.options__item
-                        img.usr-logo(src="img/wechat__signature.jpg")
+                        img.usr-logo(src=`/img/users/${user.photo}`)
                 else
                     span.options__item
                         i.far.fa-user
