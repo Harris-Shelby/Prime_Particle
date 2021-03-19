@@ -8499,7 +8499,7 @@ var login = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://penguin.linux.test:4000/api/v1/users/login',
+              url: 'https://sakura.qsomula.top/api/v1/users/login',
               data: {
                 email: email,
                 password: password
@@ -8605,7 +8605,7 @@ var updateSetting = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            url = type === 'password' ? 'http://penguin.linux.test:4000/api/v1/users/updateMyPassword' : 'http://penguin.linux.test:4000/api/v1/users/updateMe';
+            url = type === 'password' ? 'https://sakura.qsomula.top/api/v1/users/updateMyPassword' : 'https://sakura.qsomula.top/api/v1/users/updateMe';
             _context.next = 4;
             return (0, _axios.default)({
               method: 'PATCH',
@@ -8951,12 +8951,12 @@ if (loginForm) {
 if (userDataForm) {
   userDataForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    (0, _updateSettings.updateSetting)({
-      name: name,
-      email: email
-    }, 'data');
+    var form = new FormData();
+    form.append('name', document.getElementById('name').value);
+    form.append('email', document.getElementById('email').value);
+    form.append('photo', document.getElementById('photo').files[0]);
+    console.log(form);
+    (0, _updateSettings.updateSetting)(form, 'data');
   });
 }
 
@@ -9027,7 +9027,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46585" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46449" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

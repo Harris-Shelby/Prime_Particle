@@ -5,8 +5,8 @@ export const updateSetting = async (data, type) => {
 	try {
 		const url =
 			type === 'password'
-				? 'http://penguin.linux.test:4000/api/v1/users/updateMyPassword'
-				: 'http://penguin.linux.test:4000/api/v1/users/updateMe';
+				? 'https://sakura.qsomula.top/api/v1/users/updateMyPassword'
+				: 'https://sakura.qsomula.top/api/v1/users/updateMe';
 
 		const res = await axios({
 			method: 'PATCH',

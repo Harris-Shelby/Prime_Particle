@@ -68,6 +68,7 @@
 		"pug": "^3.0.0",
 		"redis": "^3.0.2",
 		"response-time": "^2.3.2",
+		"sharp": "^0.27.2",
 		"validator": "^13.5.2",
 		"xss-clean": "^0.1.1"
 	},
