@@ -6,5 +6,8 @@
     Prime Particle
   </h1>
 
+[![Prime Docker](https://github.com/Harris-Shelby/Prime_Particle/actions/workflows/prime_dockerCompose.yml/badge.svg?branch=main)](https://github.com/Harris-Shelby/Prime_Particle/actions/workflows/prime_dockerCompose.yml)
+[![Last Commit](https://img.shields.io/github/last-commit/Harris-Shelby/Prime_Particle.svg)](https://github.com/Harris-Shelby/Prime_Particle/commits) 
 
-[![🌸Dashboard Engine](https://github.com/Harris-Shelby/Prime_Particle/actions/workflows/sakura.yml/badge.svg)](https://github.com/Harris-Shelby/Prime_Particle/actions/workflows/sakura.yml)
+<img src="public/img/preview1.png"  height="200px">
+<img src="public/img/preview2.png"  height="200px">
