@@ -102,3 +102,9 @@ exports.getAccount = (req, res) => {
 		title: 'Your account',
 	});
 };
+
+exports.getBlog = (req, res) => {
+	res.status(200).render('blog', {
+		title: 'qso Blog',
+	});
+};
