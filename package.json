@@ -1,7 +1,7 @@
 {
-	"name": "dashboard",
+	"name": "Prime_Particle",
 	"version": "1.0.0",
-	"description": "dashBoard",
+	"description": "Prime_Particle",
 	"main": "app.js",
 	"scripts": {
 		"start": "nodemon app.js",
