@@ -50,4 +50,11 @@ module.exports = class Email {
 	async sendWelcome() {
 		await this.send('welcome', 'Welcome to the Shelby family!');
 	}
+
+	async sendPasswordReset() {
+		await this.send(
+			'passwordReset',
+			'Your password reset token (only valid for 10min)',
+		);
+	}
 };
