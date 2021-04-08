@@ -41,29 +41,29 @@ block view
             ul.section-timelinebox
                 each day in calendar.currWeek
                     if day.today
-                        li.section-timelinebox__item.active
+                        a(href='#',id=day).section-timelinebox__item.active
                             div.day= day.dayofWeek
                             div.day-number= day.dayofMonth
                             div.day-dot
                     else 
                         case day.dayofWeek
                             when 'Wed'
-                                li.section-timelinebox__item.danger
+                                a(href='#',id=day.newDay).section-timelinebox__item.danger
                                     div.day= day.dayofWeek
                                     div.day-number= day.dayofMonth
                                     div.day-dot
                             when 'Mon'
-                                li.section-timelinebox__item.warning
+                                a(href='#',id=day.newDay).section-timelinebox__item.warning
                                     div.day= day.dayofWeek
                                     div.day-number= day.dayofMonth
                                     div.day-dot
                             when 'Thu'
-                                li.section-timelinebox__item.warning
+                                a(href='#',id=day.newDay).section-timelinebox__item.warning
                                     div.day= day.dayofWeek
                                     div.day-number= day.dayofMonth
                                     div.day-dot
                             default
-                                li.section-timelinebox__item.primary
+                                a(href='#',id=day.newDay).section-timelinebox__item.primary
                                     div.day= day.dayofWeek
                                     div.day-number= day.dayofMonth
                                     div.day-dot

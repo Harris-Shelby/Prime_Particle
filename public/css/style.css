@@ -361,11 +361,18 @@ body {
   border-right: none;
   list-style-type: none; }
   .section-timelinebox__item {
+    color: #565388;
+    text-decoration: none;
     display: grid;
     grid-template-rows: repeat(3, auto);
     justify-items: center;
     padding: 16px 12px;
-    border-radius: 20px; }
+    border-radius: 20px;
+    transition: all 0.2s; }
+  .section-timelinebox__item:hover {
+    transform: scale(1.1);
+    background: #f7f7fd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04); }
   .section-timelinebox .day {
     font-weight: bold;
     margin-bottom: 18px; }

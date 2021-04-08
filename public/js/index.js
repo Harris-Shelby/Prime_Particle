@@ -11,6 +11,7 @@ const loginForm = document.getElementById('loginForm');
 const logOutBtn = document.getElementById('logout')
 const userDataForm = document.querySelector('.form-user-data')
 const userPasswordForm = document.querySelector('.form-user-password');
+const timelinebox = document.querySelector('.section-timelinebox');
 
 const mapBox = document.getElementById('map')
 
@@ -71,4 +72,17 @@ if(userPasswordForm) {
             document.getElementById('password').value = '';
             document.getElementById('password-confirm').value = '';
         })
+}
+
+if (timelinebox) {
+    timelinebox.addEventListener('click', e => {
+        e.preventDefault();
+        const isTimelineboxItem = Object.values(e.target.classList).indexOf('section-timelinebox__item')
+        const isTimelineboxItem_child = Object.values(e.target.parentNode.classList).indexOf('section-timelinebox__item')
+        if (isTimelineboxItem > -1) {
+            console.log(1)
+        } else if (isTimelineboxItem_child > -1) {
+            console.log(2)
+        }
+    });
 }
