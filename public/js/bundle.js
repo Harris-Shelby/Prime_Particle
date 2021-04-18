@@ -8499,7 +8499,7 @@ var login = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://sakura.qsomula.top/api/v1/users/login',
+              url: 'https://sakura.qsomula.top/api/v1/users/login',
               data: {
                 email: email,
                 password: password
