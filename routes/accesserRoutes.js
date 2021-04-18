@@ -15,7 +15,7 @@ router
 		accesserController.getAllAccessers,
 	);
 
-router.route('/daily-stats').get(accesserController.getDailyAccessers);
+router.route('/daily-stats/:id').get(accesserController.getDailyAccessers);
 
 router.route('/monthly-stats').get(accesserController.getMonthlyAccessers);
 

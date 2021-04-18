@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import '@babel/polyfill'
 import { displayMap } from './mapbox'
+import { getAccesser } from './getFun'
 import { login, logout} from './login'
 import { updateSetting } from './updateSettings'
 // DOM elememt
@@ -75,16 +76,27 @@ if(userPasswordForm) {
 }
 
 if (timelinebox) {
-    timelinebox.addEventListener('click', e => {
+    timelinebox.addEventListener('click', async e => {
         e.preventDefault();
         const isTimelineboxItem = Object.values(e.target.classList).indexOf('section-timelinebox__item')
         const isTimelineboxItem_child = Object.values(e.target.parentNode.classList).indexOf('section-timelinebox__item')
         if (isTimelineboxItem > -1) {
             document.querySelector('.section-timelinebox__item.active').classList.remove('active');
             e.target.classList.add('active')
+            const newDateAccesser = await getAccesser(e.target.id)
+            const newLocationData = newDateAccesser.map((accesser) => {
+                return accesser.relegation[0]
+            })
+            displayMap(newLocationData)
         } else if (isTimelineboxItem_child > -1) {
             document.querySelector('.section-timelinebox__item.active').classList.remove('active');
             e.target.parentNode.classList.add('active')
+            const newDateAccesser = await getAccesser(e.target.parentNode.id)
+            const newLocationData = newDateAccesser.map((accesser) => {
+                return accesser.relegation[0]
+            })
+            displayMap(newLocationData)
         }
+
     });
 }

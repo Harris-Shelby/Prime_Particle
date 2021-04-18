@@ -42,7 +42,7 @@ class CALENDAR {
 		});
 		if (this.currDay === 7) {
 			const today = true;
-			const newDay = dayy;
+			const newDay = moment(dayy);
 			const dayofWeek = moment(dayy).format('ddd');
 			const monofYear = moment(dayy).format('MMM');
 			const dayofMonth = moment(dayy).format('DD');

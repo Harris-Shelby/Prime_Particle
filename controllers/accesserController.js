@@ -16,8 +16,11 @@ exports.updateAccesser = factory.updateOne(Accesser);
 exports.deleteAccesser = factory.deleteOne(Accesser);
 
 exports.getDailyAccessers = catchAsync(async (req, res) => {
-	const d1 = new Date(moment(new Date()).format('YYYY-MM-DD'));
-	const d2 = new Date(moment(new Date()).add(1, 'days').format('YYYY-MM-DD'));
+	const d1 = new Date(moment(req.params.id).format('YYYY-MM-DD'));
+	const d2 = new Date(
+		moment(req.params.id).add(1, 'days').format('YYYY-MM-DD'),
+	);
+	console.log(d2);
 	const stats = await Accesser.aggregate([
 		{
 			$match: {

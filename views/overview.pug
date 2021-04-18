@@ -41,7 +41,7 @@ block view
             ul.section-timelinebox
                 each day in calendar.currWeek
                     if day.today
-                        a(href='#',id=day).section-timelinebox__item.active
+                        a(href='#',id=day.newDay).section-timelinebox__item.active
                             div.day= day.dayofWeek
                             div.day-number= day.dayofMonth
                             div.day-dot
