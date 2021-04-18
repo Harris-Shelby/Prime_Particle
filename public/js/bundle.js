@@ -8499,7 +8499,7 @@ var login = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://penguin.linux.test:4000/api/v1/users/login',
+              url: 'http://sakura.qsomula.top/api/v1/users/login',
               data: {
                 email: email,
                 password: password
@@ -9008,9 +9008,11 @@ if (timelinebox) {
     var isTimelineboxItem_child = Object.values(e.target.parentNode.classList).indexOf('section-timelinebox__item');
 
     if (isTimelineboxItem > -1) {
-      console.log(1);
+      document.querySelector('.section-timelinebox__item.active').classList.remove('active');
+      e.target.classList.add('active');
     } else if (isTimelineboxItem_child > -1) {
-      console.log(2);
+      document.querySelector('.section-timelinebox__item.active').classList.remove('active');
+      e.target.parentNode.classList.add('active');
     }
   });
 }
@@ -9042,7 +9044,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33567" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43513" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -80,9 +80,11 @@ if (timelinebox) {
         const isTimelineboxItem = Object.values(e.target.classList).indexOf('section-timelinebox__item')
         const isTimelineboxItem_child = Object.values(e.target.parentNode.classList).indexOf('section-timelinebox__item')
         if (isTimelineboxItem > -1) {
-            console.log(1)
+            document.querySelector('.section-timelinebox__item.active').classList.remove('active');
+            e.target.classList.add('active')
         } else if (isTimelineboxItem_child > -1) {
-            console.log(2)
+            document.querySelector('.section-timelinebox__item.active').classList.remove('active');
+            e.target.parentNode.classList.add('active')
         }
     });
 }
