@@ -13,6 +13,8 @@ const logOutBtn = document.getElementById('logout')
 const userDataForm = document.querySelector('.form-user-data')
 const userPasswordForm = document.querySelector('.form-user-password');
 const timelinebox = document.querySelector('.section-timelinebox');
+const preWeek = document.getElementById('preWeek');
+const nextWeek = document.getElementById('nextWeek');
 
 const mapBox = document.getElementById('map')
 
@@ -99,4 +101,10 @@ if (timelinebox) {
         }
 
     });
+}
+
+if (preWeek) {
+    preWeek.addEventListener('click', e => {
+        console.log(e.target)
+    })
 }
