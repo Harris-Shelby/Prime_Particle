@@ -77,8 +77,9 @@ block view
                         span.options__item.active Week
                         span.options__item Month
             ul.overview-list
-                +overviewBox('warning active', 'far fa-user', 'Users', '10 Pe')
-                +overviewBox('danger', 'far fa-file', 'Pageviews', '10 Co')
+                - const pageViews = 100
+                +overviewBox('warning active', 'far fa-user', 'Users', `${dailyStats.length} Pe`)
+                +overviewBox('danger', 'far fa-file', 'Pageviews', `${pageViews}Co`)
                 +overviewBox('primary', 'fas fa-desktop', 'Computer', '10 Co')
                 +overviewBox('warning', 'fab fa-instagram', 'Mobile', '10 Co')
         section.section-primary
@@ -98,6 +99,11 @@ block view
                         div.monitor-date March 2020
                     div.monitor__item-gaugebox
                         a.gauge(href="#" style="--gauge-value: 50; --gauge-max-value: 100;")
+        section.section-primary
+            div.section-titlebox
+                div.section-titlebox--main
+                    h2.heading-secondary Locations Panel
+                
 block space 
     div.dashboard__space
         div.section-titlebox

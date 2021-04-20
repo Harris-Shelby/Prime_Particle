@@ -85,6 +85,7 @@ exports.getOverview = catchAsync(async (req, res) => {
 	const dailyStats = await getDailyAccessers();
 	const monthlyStats = await getMonthlyAccessers();
 	const calendar = new Calender(Date.now());
+	console.log(dailyStats);
 	res.status(200).render('overview', {
 		title: 'overviews',
 		calendar,
