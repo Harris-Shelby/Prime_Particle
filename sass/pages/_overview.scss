@@ -7,10 +7,13 @@
 
 .dashboard__view {
 	grid-row: 2/4;
+	grid-column: 2/4;
 }
 
 .dashboard__space {
 	grid-row: 2/3;
+	grid-column: 4/4;
+	max-width: 500px;
 	.section-titlebox {
 		display: flex;
 		flex-direction: row-reverse;
@@ -45,7 +48,9 @@
 
 .dashboard__controller {
 	grid-row: 3/4;
+	grid-column: 4/4;
 	padding: 18px 48px;
 	background: rgba(247, 247, 253, 1);
 	border-radius: 30px;
+	max-width: 500px;
 }

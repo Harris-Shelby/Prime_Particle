@@ -99,6 +99,15 @@ block view
                         div.monitor-date March 2020
                     div.monitor__item-gaugebox
                         a.gauge(href="#" style="--gauge-value: 50; --gauge-max-value: 100;")
+        section.section-primary
+            div.section-titlebox
+                div.section-titlebox--main
+                    h2.heading-secondary Accesser lists
+            ul.devices-list 
+                each day in dailyStats
+                    li.devices__item
+                        span=day.deviceInfo[0]
+                        span=day.city[0]
 block space 
     div.dashboard__space
         div.section-titlebox

@@ -24,6 +24,8 @@ const getDailyAccessers = async () => {
 				url: { $push: '$url' },
 				remote_addr: { $push: '$remote_addr' },
 				relegation: { $push: '$relegation' },
+				deviceInfo: { $push: '$deviceInfo' },
+				city: { $push: '$city' },
 			},
 		},
 		{

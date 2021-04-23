@@ -91,6 +91,25 @@ body {
   padding: 9px 18px;
   color: #565388; }
 
+.devices-list {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style-type: none; }
+
+.devices__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  font-size: 14px;
+  font-weight: lighter;
+  border-radius: 15px;
+  background-color: #f7f7fd; }
+
 .form__input {
   display: block;
   font-family: inherit;
@@ -643,10 +662,13 @@ button.ghost {
   border-radius: 20px; }
 
 .dashboard__view {
-  grid-row: 2/4; }
+  grid-row: 2/4;
+  grid-column: 2/4; }
 
 .dashboard__space {
-  grid-row: 2/3; }
+  grid-row: 2/3;
+  grid-column: 4/4;
+  max-width: 500px; }
   .dashboard__space .section-titlebox {
     display: flex;
     flex-direction: row-reverse;
@@ -673,6 +695,8 @@ button.ghost {
 
 .dashboard__controller {
   grid-row: 3/4;
+  grid-column: 4/4;
   padding: 18px 48px;
   background: #f7f7fd;
-  border-radius: 30px; }
+  border-radius: 30px;
+  max-width: 500px; }
