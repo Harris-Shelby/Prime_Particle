@@ -15,9 +15,11 @@ const userPasswordForm = document.querySelector('.form-user-password');
 const timelinebox = document.querySelector('.section-timelinebox');
 const preWeek = document.getElementById('preWeek');
 const nextWeek = document.getElementById('nextWeek');
+const devicesList = document.querySelector('.devices-list')
 
 const mapBox = document.getElementById('map')
 
+const html = '<li class="devices__item"><span>{{deviceInfo}}</span><span>{{city}}</span></li>'
 // Values
 
 
@@ -79,6 +81,7 @@ if(userPasswordForm) {
 
 if (timelinebox) {
     timelinebox.addEventListener('click', async e => {
+        let newHTML = ''
         e.preventDefault();
         const isTimelineboxItem = Object.values(e.target.classList).indexOf('section-timelinebox__item')
         const isTimelineboxItem_child = Object.values(e.target.parentNode.classList).indexOf('section-timelinebox__item')
@@ -89,7 +92,14 @@ if (timelinebox) {
             const newLocationData = newDateAccesser.map((accesser) => {
                 return accesser.relegation[0]
             })
+            devicesList.querySelectorAll('*').forEach(n => n.remove())
+            newDateAccesser.forEach(e => {
+                let html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0])
+                let html2 = html1.replace('{{city}}',e.city[0])
+                newHTML += html2
+            });
             displayMap(newLocationData)
+            devicesList.insertAdjacentHTML('afterbegin', newHTML);
         } else if (isTimelineboxItem_child > -1) {
             document.querySelector('.section-timelinebox__item.active').classList.remove('active');
             e.target.parentNode.classList.add('active')
@@ -98,6 +108,13 @@ if (timelinebox) {
                 return accesser.relegation[0]
             })
             displayMap(newLocationData)
+            devicesList.querySelectorAll('*').forEach(n => n.remove())
+            newDateAccesser.forEach(e => {
+                let html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0])
+                let html2 = html1.replace('{{city}}',e.city[0])
+                newHTML += html2
+            });
+            devicesList.insertAdjacentHTML('afterbegin', newHTML);
         }
 
     });

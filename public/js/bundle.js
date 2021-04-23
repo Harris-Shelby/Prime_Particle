@@ -8502,7 +8502,7 @@ var getAccesser = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'GET',
-              url: "https://sakura.qsomula.top/api/v1/accessers/daily-stats/".concat(id)
+              url: "http://penguin.linux.test:4000/api/v1/accessers/daily-stats/".concat(id)
             });
 
           case 3:
@@ -8992,7 +8992,9 @@ var userPasswordForm = document.querySelector('.form-user-password');
 var timelinebox = document.querySelector('.section-timelinebox');
 var preWeek = document.getElementById('preWeek');
 var nextWeek = document.getElementById('nextWeek');
-var mapBox = document.getElementById('map'); // Values
+var devicesList = document.querySelector('.devices-list');
+var mapBox = document.getElementById('map');
+var html = '<li class="devices__item"><span>{{deviceInfo}}</span><span>{{city}}</span></li>'; // Values
 
 if (mapBox) {
   var locations = JSON.parse(mapBox.dataset.locations);
@@ -9076,54 +9078,75 @@ if (userPasswordForm) {
 if (timelinebox) {
   timelinebox.addEventListener('click', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
-      var isTimelineboxItem, isTimelineboxItem_child, newDateAccesser, newLocationData, _newDateAccesser, _newLocationData;
+      var newHTML, isTimelineboxItem, isTimelineboxItem_child, newDateAccesser, newLocationData, _newDateAccesser, _newLocationData;
 
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              newHTML = '';
               e.preventDefault();
               isTimelineboxItem = Object.values(e.target.classList).indexOf('section-timelinebox__item');
               isTimelineboxItem_child = Object.values(e.target.parentNode.classList).indexOf('section-timelinebox__item');
 
               if (!(isTimelineboxItem > -1)) {
-                _context2.next = 13;
+                _context2.next = 17;
                 break;
               }
 
               document.querySelector('.section-timelinebox__item.active').classList.remove('active');
               e.target.classList.add('active');
-              _context2.next = 8;
+              _context2.next = 9;
               return (0, _getFun.getAccesser)(e.target.id);
 
-            case 8:
+            case 9:
               newDateAccesser = _context2.sent;
               newLocationData = newDateAccesser.map(function (accesser) {
                 return accesser.relegation[0];
               });
+              devicesList.querySelectorAll('*').forEach(function (n) {
+                return n.remove();
+              });
+              newDateAccesser.forEach(function (e) {
+                var html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
+                var html2 = html1.replace('{{city}}', e.city[0]);
+                newHTML += html2;
+              });
               (0, _mapbox.displayMap)(newLocationData);
-              _context2.next = 21;
+              devicesList.insertAdjacentHTML('afterbegin', newHTML);
+              _context2.next = 28;
               break;
 
-            case 13:
+            case 17:
               if (!(isTimelineboxItem_child > -1)) {
-                _context2.next = 21;
+                _context2.next = 28;
                 break;
               }
 
               document.querySelector('.section-timelinebox__item.active').classList.remove('active');
               e.target.parentNode.classList.add('active');
-              _context2.next = 18;
+              _context2.next = 22;
               return (0, _getFun.getAccesser)(e.target.parentNode.id);
 
-            case 18:
+            case 22:
               _newDateAccesser = _context2.sent;
               _newLocationData = _newDateAccesser.map(function (accesser) {
                 return accesser.relegation[0];
               });
               (0, _mapbox.displayMap)(_newLocationData);
+              devicesList.querySelectorAll('*').forEach(function (n) {
+                return n.remove();
+              });
 
-            case 21:
+              _newDateAccesser.forEach(function (e) {
+                var html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
+                var html2 = html1.replace('{{city}}', e.city[0]);
+                newHTML += html2;
+              });
+
+              devicesList.insertAdjacentHTML('afterbegin', newHTML);
+
+            case 28:
             case "end":
               return _context2.stop();
           }
@@ -9170,7 +9193,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41621" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44685" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
