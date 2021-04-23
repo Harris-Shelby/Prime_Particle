@@ -18,6 +18,8 @@ const accesserSchema = new mongoose.Schema(
 		city: String,
 		isp: String,
 		isRobot: Boolean,
+		deviceInfo: String,
+		brower: String,
 		status: Number,
 		ts: Date,
 		duration: Number,
@@ -87,6 +89,15 @@ accesserSchema.virtual('reviews', {
 
 accesserSchema.pre('save', async function (next) {
 	const regex = ['谷歌'];
+	// eslint-disable-next-line no-useless-escape
+	const regx = /^([\w\/\-\.\s]+)\(?([\w\s\.\;\+\/\,\:]+)?\)?([\w\/\-\.\s]+)?\(?([\w\s\.\;\+\/\,\:]+)?\)?([\w\/\-\.\s]+)?\(?([\w\s\.\;\+\/\,\:]+)?\)?([\w\/\-\.\s]+)?$/g;
+	this.User_Agent[0].match(regx);
+	if (RegExp.$2) {
+		this.deviceInfo = RegExp.$2;
+	}
+	if (RegExp.$5) {
+		this.brower = RegExp.$5;
+	}
 	let a = await ipRegion.getIpRegion(this.remote_addr);
 	a.status === 'success'
 		? (this.relegation = a)
