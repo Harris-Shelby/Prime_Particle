@@ -39,34 +39,34 @@ block view
                     button.btn.btn-secondary.btn-round.monthly
                         i.far.fa-calendar &nbsp; Month
             ul.section-timelinebox
-                each day in calendar.currWeek
-                    if day.today
-                        a(href='#',id=day.newDay).section-timelinebox__item.active
-                            div.day= day.dayofWeek
-                            div.day-number= day.dayofMonth
-                            div.day-dot
-                    else 
-                        case day.dayofWeek
-                            when 'Wed'
-                                a(href='#',id=day.newDay).section-timelinebox__item.danger
-                                    div.day= day.dayofWeek
-                                    div.day-number= day.dayofMonth
-                                    div.day-dot
-                            when 'Mon'
-                                a(href='#',id=day.newDay).section-timelinebox__item.warning
-                                    div.day= day.dayofWeek
-                                    div.day-number= day.dayofMonth
-                                    div.day-dot
-                            when 'Thu'
-                                a(href='#',id=day.newDay).section-timelinebox__item.warning
-                                    div.day= day.dayofWeek
-                                    div.day-number= day.dayofMonth
-                                    div.day-dot
-                            default
-                                a(href='#',id=day.newDay).section-timelinebox__item.primary
-                                    div.day= day.dayofWeek
-                                    div.day-number= day.dayofMonth
-                                    div.day-dot
+                //- each day in calendar.currWeek
+                //-     if day.today
+                //-         a(href='#',id=day.newDay).section-timelinebox__item.active
+                //-             div.day= day.dayofWeek
+                //-             div.day-number= day.dayofMonth
+                //-             div.day-dot
+                //-     else 
+                //-         case day.dayofWeek
+                //-             when 'Wed'
+                //-                 a(href='#',id=day.newDay).section-timelinebox__item.danger
+                //-                     div.day= day.dayofWeek
+                //-                     div.day-number= day.dayofMonth
+                //-                     div.day-dot
+                //-             when 'Mon'
+                //-                 a(href='#',id=day.newDay).section-timelinebox__item.warning
+                //-                     div.day= day.dayofWeek
+                //-                     div.day-number= day.dayofMonth
+                //-                     div.day-dot
+                //-             when 'Thu'
+                //-                 a(href='#',id=day.newDay).section-timelinebox__item.warning
+                //-                     div.day= day.dayofWeek
+                //-                     div.day-number= day.dayofMonth
+                //-                     div.day-dot
+                //-             default
+                //-                 a(href='#',id=day.newDay).section-timelinebox__item.primary
+                //-                     div.day= day.dayofWeek
+                //-                     div.day-number= day.dayofMonth
+                //-                     div.day-dot
         section.section-primary
             div.section-titlebox
                 div.section-titlebox--main
