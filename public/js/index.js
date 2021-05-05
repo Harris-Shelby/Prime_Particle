@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import '@babel/polyfill';
+import moment from "moment";
 import { displayMap } from './mapbox';
 import { getAccesser } from './getFun';
 import { login, logout } from './login';
@@ -26,7 +27,7 @@ const html =
 const timeLineboxHtml =
 	'<a class="section-timelinebox__item {{DayClass}}" href="#" id={{newDay}}><div class="day">{{dayofWeek}}</div><div class="day-number">{{dayofMonth}}</div><div class="day-dot"></div></a>';
 // Values
-let timeLineboxData = new CALENDAR();
+let timeLineboxData = new CALENDAR(Date.now());
 
 if (mapBox) {
 	const locations = JSON.parse(mapBox.dataset.locations);
@@ -90,7 +91,9 @@ if (userPasswordForm) {
 if (timelinebox) {
 	let newDayHtml = '';
 	let html1 = '';
+	console.log(timeLineboxData)
 	timeLineboxData.currWeek.forEach((e) => {
+		// console.log(e.newDay.utc().toString())
 		if (e.today) {
 			html1 = timeLineboxHtml.replace('{{DayClass}}', 'active');
 		} else {
@@ -108,12 +111,13 @@ if (timelinebox) {
 					html1 = timeLineboxHtml.replace('{{DayClass}}', 'primary');
 			}
 		}
-		let html2 = html1.replace('{{newDay}}', e.newDay);
+		console.log(e.newDay.format().toString());
+		let html2 = html1.replace('{{newDay}}', e.newDay.format());
 		let html3 = html2.replace('{{dayofMonth}}', e.dayofMonth);
 		let html4 = html3.replace('{{dayofWeek}}', e.dayofWeek);
 		newDayHtml += html4;
 	});
-	timelinebox.insertAdjacentHTML('afterbegin', newDayHtml);
+	// timelinebox.insertAdjacentHTML('afterbegin', newDayHtml);
 	timelinebox.addEventListener('click', async (e) => {
 		let newHTML = '';
 		e.preventDefault();
