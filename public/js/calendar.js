@@ -12,6 +12,7 @@ export const CALENDAR = class CALENDAR {
 			day.dayofWeek = day.newDay.format('ddd');
 			day.monofYear = day.newDay.format('MMM');
 			day.dayofMonth = day.newDay.format('DD');
+			return day
 		});
 		this.currWeek = newcurrWeek;
 	}
@@ -21,6 +22,7 @@ export const CALENDAR = class CALENDAR {
 			day.dayofWeek = day.newDay.format('ddd');
 			day.monofYear = day.newDay.format('MMM');
 			day.dayofMonth = day.newDay.format('DD');
+			return day
 		});
 		this.currWeek = newcurrWeek;
 	}

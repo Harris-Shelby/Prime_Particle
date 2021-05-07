@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import '@babel/polyfill';
-import moment from "moment";
+import moment from 'moment';
 import { displayMap } from './mapbox';
 import { getAccesser } from './getFun';
 import { login, logout } from './login';
@@ -15,6 +15,7 @@ const logOutBtn = document.getElementById('logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const timelinebox = document.querySelector('.section-timelinebox');
+const monOfYearRange = document.getElementById('monOfYearRange');
 const preWeek = document.getElementById('preWeek');
 const nextWeek = document.getElementById('nextWeek');
 const devicesList = document.querySelector('.devices-list');
@@ -28,6 +29,50 @@ const timeLineboxHtml =
 	'<a class="section-timelinebox__item {{DayClass}}" href="#" id={{newDay}}><div class="day">{{dayofWeek}}</div><div class="day-number">{{dayofMonth}}</div><div class="day-dot"></div></a>';
 // Values
 let timeLineboxData = new CALENDAR(Date.now());
+
+const updateTimelineBoxUI = () => {
+	// if calendar.currWeek[0].monofYear === calendar.currWeek[6].monofYear
+	//     h2.heading-secondary#MonOfYearRange= `${calendar.currWeek[0].monofYear} ${calendar.currWeek[0].dayofMonth}-${calendar.currWeek[6].dayofMonth}`
+	// else
+	//     h2.heading-secondary#MonOfYearRange= `${calendar.currWeek[0].monofYear} ${calendar.currWeek[0].dayofMonth}-${calendar.currWeek[6].monofYear} ${calendar.currWeek[6].dayofMonth}`
+
+	let newDayHtml = '';
+	let html1 = '';
+	timelinebox.querySelectorAll('*').forEach((n) => n.remove());
+	// console.log(timeLineboxData)
+	timeLineboxData.currWeek.forEach((e) => {
+		// console.log(e.newDay.utc().toString())
+		if (e.today) {
+			html1 = timeLineboxHtml.replace('{{DayClass}}', 'active');
+		} else {
+			switch (e.dayofWeek) {
+				case 'Wed':
+					html1 = timeLineboxHtml.replace('{{DayClass}}', 'danger');
+					break;
+				case 'Mon':
+					html1 = timeLineboxHtml.replace('{{DayClass}}', 'warning');
+					break;
+				case 'Thu':
+					html1 = timeLineboxHtml.replace('{{DayClass}}', 'warning');
+					break;
+				default:
+					html1 = timeLineboxHtml.replace('{{DayClass}}', 'primary');
+			}
+		}
+		console.log(e.newDay.format().toString());
+		let html2 = html1.replace('{{newDay}}', e.newDay.format());
+		let html3 = html2.replace('{{dayofMonth}}', e.dayofMonth);
+		let html4 = html3.replace('{{dayofWeek}}', e.dayofWeek);
+		newDayHtml += html4;
+	});
+	timelinebox.insertAdjacentHTML('afterbegin', newDayHtml);
+	if(timeLineboxData.currWeek[0].monofYear === timeLineboxData.currWeek[6].monofYear) {
+		monOfYearRange.textContent = `${timeLineboxData.currWeek[0].monofYear} ${timeLineboxData.currWeek[0].dayofMonth}-${timeLineboxData.currWeek[6].dayofMonth}`;
+	} else {
+		monOfYearRange.textContent = `${timeLineboxData.currWeek[0].monofYear} ${timeLineboxData.currWeek[0].dayofMonth}-${timeLineboxData.currWeek[6].monofYear} ${timeLineboxData.currWeek[6].dayofMonth}`;
+	}
+	
+};
 
 if (mapBox) {
 	const locations = JSON.parse(mapBox.dataset.locations);
@@ -89,35 +134,6 @@ if (userPasswordForm) {
 }
 
 if (timelinebox) {
-	let newDayHtml = '';
-	let html1 = '';
-	console.log(timeLineboxData)
-	timeLineboxData.currWeek.forEach((e) => {
-		// console.log(e.newDay.utc().toString())
-		if (e.today) {
-			html1 = timeLineboxHtml.replace('{{DayClass}}', 'active');
-		} else {
-			switch (e.dayofWeek) {
-				case 'Wed':
-					html1 = timeLineboxHtml.replace('{{DayClass}}', 'danger');
-					break;
-				case 'Mon':
-					html1 = timeLineboxHtml.replace('{{DayClass}}', 'warning');
-					break;
-				case 'Thu':
-					html1 = timeLineboxHtml.replace('{{DayClass}}', 'warning');
-					break;
-				default:
-					html1 = timeLineboxHtml.replace('{{DayClass}}', 'primary');
-			}
-		}
-		console.log(e.newDay.format().toString());
-		let html2 = html1.replace('{{newDay}}', e.newDay.format());
-		let html3 = html2.replace('{{dayofMonth}}', e.dayofMonth);
-		let html4 = html3.replace('{{dayofWeek}}', e.dayofWeek);
-		newDayHtml += html4;
-	});
-	// timelinebox.insertAdjacentHTML('afterbegin', newDayHtml);
 	timelinebox.addEventListener('click', async (e) => {
 		let newHTML = '';
 		e.preventDefault();
@@ -166,7 +182,15 @@ if (timelinebox) {
 }
 
 if (preWeek) {
-	preWeek.addEventListener('click', (e) => {
-		console.log(e.target);
+	preWeek.addEventListener('click', async function (e) {
+		await timeLineboxData.getPreWeek();
+		updateTimelineBoxUI();
+	});
+}
+
+if (nextWeek) {
+	nextWeek.addEventListener('click', async function (e) {
+		await timeLineboxData.getNextWeek();
+		updateTimelineBoxUI();
 	});
 }
