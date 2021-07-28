@@ -75,5 +75,12 @@
 	},
 	"lint-staged": {
 		"*.js": "eslint --cache --fix"
+	},
+	"nodemonConfig": {
+		"ignore": [
+			"public/*",
+			"node_modules/*"
+		],
+		"delay": "2500"
 	}
 }
