@@ -7,7 +7,8 @@ const getDailyAccessers = async () => {
 	const d1 = new Date(moment(new Date()).format('YYYY-MM-DD'));
 	const d2 = new Date(moment(new Date()).add(1, 'days').format('YYYY-MM-DD'));
 	let numOfPageViews = 0;
-	const dailyStats = await Accesser.aggregate([
+	let numOfRobot = 0;
+	const stats = await Accesser.aggregate([
 		{
 			$match: {
 				ts: {
@@ -41,10 +42,19 @@ const getDailyAccessers = async () => {
 			$sort: { numofAccessers: -1 },
 		},
 	]);
+	const dailyStats = stats.map((n) => {
+		n.isRobot = !n.url.some((a) => {
+			return a === '/fonts/NotoColorEmoji.ttf';
+		});
+		return n;
+	});
 	dailyStats.forEach((n) => {
 		numOfPageViews += n.numofAccessers;
+		if (n.isRobot) {
+			numOfRobot++;
+		}
 	});
-	return { dailyStats, numOfPageViews };
+	return { dailyStats, numOfPageViews, numOfRobot };
 };
 
 const getMonthlyAccessers = async () => {
@@ -88,7 +98,7 @@ const getMonthlyAccessers = async () => {
 };
 
 exports.getOverview = catchAsync(async (req, res) => {
-	const { dailyStats, numOfPageViews } = await getDailyAccessers();
+	const { dailyStats, numOfPageViews, numOfRobot } = await getDailyAccessers();
 	const monthlyStats = await getMonthlyAccessers();
 	const calendar = new Calender(Date.now());
 	res.status(200).render('overview', {
@@ -96,6 +106,7 @@ exports.getOverview = catchAsync(async (req, res) => {
 		calendar,
 		dailyStats,
 		numOfPageViews,
+		numOfRobot,
 		monthlyStats,
 	});
 });

@@ -79,8 +79,8 @@ block view
             ul.overview-list
                 +overviewBox('warning active', 'far fa-user', 'Users', `${dailyStats.length} Pe`)
                 +overviewBox('danger', 'far fa-file', 'Pageviews', `${numOfPageViews} Co`)
-                +overviewBox('primary', 'fas fa-desktop', 'Computer', '10 Co')
-                +overviewBox('warning', 'fab fa-instagram', 'Mobile', '10 Co')
+                +overviewBox('primary', 'fas fa-desktop', 'Robots', `${numOfRobot} Co`)
+                +overviewBox('warning', 'fab fa-instagram', 'Human', `${dailyStats.length - numOfRobot} Co`)
         section.section-primary
             div.section-titlebox
                 div.section-titlebox--main

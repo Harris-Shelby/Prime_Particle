@@ -151,12 +151,17 @@ if (timelinebox) {
 				.querySelector('.section-timelinebox__item.active')
 				.classList.remove('active');
 			e.target.classList.add('active');
-			const { stats, numOfPageViews } = await getAccesser(e.target.id);
+			const { stats, numOfPageViews, numOfRobot } = await getAccesser(
+				e.target.id,
+			);
+			console.log(numOfPageViews, numOfRobot);
 			const newLocationData = stats.map((accesser) => {
 				return accesser.relegation[0];
 			});
 			reportsList[0].innerHTML = `${stats.length} Pe`;
 			reportsList[1].innerHTML = `${numOfPageViews} Co`;
+			reportsList[2].innerHTML = `${numOfRobot} Co`;
+			reportsList[3].innerHTML = `${stats.length - numOfRobot} Co`;
 			devicesList.querySelectorAll('*').forEach((n) => n.remove());
 			stats.forEach((e) => {
 				let html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
@@ -170,11 +175,13 @@ if (timelinebox) {
 				.querySelector('.section-timelinebox__item.active')
 				.classList.remove('active');
 			e.target.parentNode.classList.add('active');
-			const { stats, numOfPageViews } = await getAccesser(
+			const { stats, numOfPageViews, numOfRobot } = await getAccesser(
 				e.target.parentNode.id,
 			);
 			reportsList[0].innerHTML = `${stats.length} Pe`;
 			reportsList[1].innerHTML = `${numOfPageViews} Co`;
+			reportsList[2].innerHTML = `${numOfRobot} Co`;
+			reportsList[3].innerHTML = `${stats.length - numOfRobot} Co`;
 			const newLocationData = stats.map((accesser) => {
 				return accesser.relegation[0];
 			});

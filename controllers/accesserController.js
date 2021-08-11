@@ -21,7 +21,8 @@ exports.getDailyAccessers = catchAsync(async (req, res) => {
 		moment(req.params.id).add(1, 'days').format('YYYY-MM-DD'),
 	);
 	let numOfPageViews = 0;
-	const stats = await Accesser.aggregate([
+	let numOfRobot = 0;
+	const dailyStats = await Accesser.aggregate([
 		{
 			$match: {
 				ts: {
@@ -55,14 +56,24 @@ exports.getDailyAccessers = catchAsync(async (req, res) => {
 			$sort: { numofAccessers: -1 },
 		},
 	]);
+	const stats = dailyStats.map((n) => {
+		n.isRobot = !n.url.some((a) => {
+			return a === '/fonts/NotoColorEmoji.ttf';
+		});
+		return n;
+	});
 	stats.forEach((n) => {
 		numOfPageViews += n.numofAccessers;
+		if (n.isRobot) {
+			numOfRobot++;
+		}
 	});
 	res.status(203).json({
 		status: 'success',
 		data: {
 			stats,
 			numOfPageViews,
+			numOfRobot,
 		},
 	});
 });
