@@ -14241,7 +14241,7 @@ var getAccesser = /*#__PURE__*/function () {
               break;
             }
 
-            return _context.abrupt("return", res.data.data.stats);
+            return _context.abrupt("return", res.data.data);
 
           case 6:
             _context.next = 11;
@@ -14909,6 +14909,7 @@ var timelinebox = document.querySelector('.section-timelinebox');
 var monOfYearRange = document.getElementById('monOfYearRange');
 var preWeek = document.getElementById('preWeek');
 var nextWeek = document.getElementById('nextWeek');
+var reportsList = document.querySelectorAll('.overview-size');
 var devicesList = document.querySelector('.devices-list');
 var mapBox = document.getElementById('map');
 var html = '<li class="devices__item"><span>{{deviceInfo}}</span><span>{{city}}</span></li>';
@@ -15047,7 +15048,7 @@ if (userPasswordForm) {
 if (timelinebox) {
   timelinebox.addEventListener('click', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
-      var newHTML, isTimelineboxItem, isTimelineboxItem_child, newDateAccesser, newLocationData, _newDateAccesser, _newLocationData;
+      var newHTML, isTimelineboxItem, isTimelineboxItem_child, _yield$getAccesser, stats, numOfPageViews, newLocationData, _yield$getAccesser2, _stats, _numOfPageViews, _newLocationData;
 
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -15059,7 +15060,7 @@ if (timelinebox) {
               isTimelineboxItem_child = Object.values(e.target.parentNode.classList).indexOf('section-timelinebox__item');
 
               if (!(isTimelineboxItem > -1)) {
-                _context2.next = 17;
+                _context2.next = 21;
                 break;
               }
 
@@ -15069,37 +15070,45 @@ if (timelinebox) {
               return (0, _getFun.getAccesser)(e.target.id);
 
             case 9:
-              newDateAccesser = _context2.sent;
-              newLocationData = newDateAccesser.map(function (accesser) {
+              _yield$getAccesser = _context2.sent;
+              stats = _yield$getAccesser.stats;
+              numOfPageViews = _yield$getAccesser.numOfPageViews;
+              newLocationData = stats.map(function (accesser) {
                 return accesser.relegation[0];
               });
+              reportsList[0].innerHTML = "".concat(stats.length, " Pe");
+              reportsList[1].innerHTML = "".concat(numOfPageViews, " Co");
               devicesList.querySelectorAll('*').forEach(function (n) {
                 return n.remove();
               });
-              newDateAccesser.forEach(function (e) {
+              stats.forEach(function (e) {
                 var html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
                 var html2 = html1.replace('{{city}}', e.city[0]);
                 newHTML += html2;
               });
               (0, _mapbox.displayMap)(newLocationData);
               devicesList.insertAdjacentHTML('afterbegin', newHTML);
-              _context2.next = 28;
+              _context2.next = 36;
               break;
 
-            case 17:
+            case 21:
               if (!(isTimelineboxItem_child > -1)) {
-                _context2.next = 28;
+                _context2.next = 36;
                 break;
               }
 
               document.querySelector('.section-timelinebox__item.active').classList.remove('active');
               e.target.parentNode.classList.add('active');
-              _context2.next = 22;
+              _context2.next = 26;
               return (0, _getFun.getAccesser)(e.target.parentNode.id);
 
-            case 22:
-              _newDateAccesser = _context2.sent;
-              _newLocationData = _newDateAccesser.map(function (accesser) {
+            case 26:
+              _yield$getAccesser2 = _context2.sent;
+              _stats = _yield$getAccesser2.stats;
+              _numOfPageViews = _yield$getAccesser2.numOfPageViews;
+              reportsList[0].innerHTML = "".concat(_stats.length, " Pe");
+              reportsList[1].innerHTML = "".concat(_numOfPageViews, " Co");
+              _newLocationData = _stats.map(function (accesser) {
                 return accesser.relegation[0];
               });
               (0, _mapbox.displayMap)(_newLocationData);
@@ -15107,7 +15116,7 @@ if (timelinebox) {
                 return n.remove();
               });
 
-              _newDateAccesser.forEach(function (e) {
+              _stats.forEach(function (e) {
                 var html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
                 var html2 = html1.replace('{{city}}', e.city[0]);
                 newHTML += html2;
@@ -15115,7 +15124,7 @@ if (timelinebox) {
 
               devicesList.insertAdjacentHTML('afterbegin', newHTML);
 
-            case 28:
+            case 36:
             case "end":
               return _context2.stop();
           }
@@ -15210,7 +15219,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41315" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39599" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

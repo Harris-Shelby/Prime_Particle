@@ -18,6 +18,7 @@ const timelinebox = document.querySelector('.section-timelinebox');
 const monOfYearRange = document.getElementById('monOfYearRange');
 const preWeek = document.getElementById('preWeek');
 const nextWeek = document.getElementById('nextWeek');
+const reportsList = document.querySelectorAll('.overview-size');
 const devicesList = document.querySelector('.devices-list');
 
 const mapBox = document.getElementById('map');
@@ -66,12 +67,14 @@ const updateTimelineBoxUI = () => {
 		newDayHtml += html4;
 	});
 	timelinebox.insertAdjacentHTML('afterbegin', newDayHtml);
-	if(timeLineboxData.currWeek[0].monofYear === timeLineboxData.currWeek[6].monofYear) {
+	if (
+		timeLineboxData.currWeek[0].monofYear ===
+		timeLineboxData.currWeek[6].monofYear
+	) {
 		monOfYearRange.textContent = `${timeLineboxData.currWeek[0].monofYear} ${timeLineboxData.currWeek[0].dayofMonth}-${timeLineboxData.currWeek[6].dayofMonth}`;
 	} else {
 		monOfYearRange.textContent = `${timeLineboxData.currWeek[0].monofYear} ${timeLineboxData.currWeek[0].dayofMonth}-${timeLineboxData.currWeek[6].monofYear} ${timeLineboxData.currWeek[6].dayofMonth}`;
 	}
-	
 };
 
 if (mapBox) {
@@ -148,12 +151,14 @@ if (timelinebox) {
 				.querySelector('.section-timelinebox__item.active')
 				.classList.remove('active');
 			e.target.classList.add('active');
-			const newDateAccesser = await getAccesser(e.target.id);
-			const newLocationData = newDateAccesser.map((accesser) => {
+			const { stats, numOfPageViews } = await getAccesser(e.target.id);
+			const newLocationData = stats.map((accesser) => {
 				return accesser.relegation[0];
 			});
+			reportsList[0].innerHTML = `${stats.length} Pe`;
+			reportsList[1].innerHTML = `${numOfPageViews} Co`;
 			devicesList.querySelectorAll('*').forEach((n) => n.remove());
-			newDateAccesser.forEach((e) => {
+			stats.forEach((e) => {
 				let html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
 				let html2 = html1.replace('{{city}}', e.city[0]);
 				newHTML += html2;
@@ -165,13 +170,17 @@ if (timelinebox) {
 				.querySelector('.section-timelinebox__item.active')
 				.classList.remove('active');
 			e.target.parentNode.classList.add('active');
-			const newDateAccesser = await getAccesser(e.target.parentNode.id);
-			const newLocationData = newDateAccesser.map((accesser) => {
+			const { stats, numOfPageViews } = await getAccesser(
+				e.target.parentNode.id,
+			);
+			reportsList[0].innerHTML = `${stats.length} Pe`;
+			reportsList[1].innerHTML = `${numOfPageViews} Co`;
+			const newLocationData = stats.map((accesser) => {
 				return accesser.relegation[0];
 			});
 			displayMap(newLocationData);
 			devicesList.querySelectorAll('*').forEach((n) => n.remove());
-			newDateAccesser.forEach((e) => {
+			stats.forEach((e) => {
 				let html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
 				let html2 = html1.replace('{{city}}', e.city[0]);
 				newHTML += html2;

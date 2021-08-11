@@ -20,7 +20,7 @@ exports.getDailyAccessers = catchAsync(async (req, res) => {
 	const d2 = new Date(
 		moment(req.params.id).add(1, 'days').format('YYYY-MM-DD'),
 	);
-	console.log(d2);
+	let numOfPageViews = 0;
 	const stats = await Accesser.aggregate([
 		{
 			$match: {
@@ -55,11 +55,14 @@ exports.getDailyAccessers = catchAsync(async (req, res) => {
 			$sort: { numofAccessers: -1 },
 		},
 	]);
-
+	stats.forEach((n) => {
+		numOfPageViews += n.numofAccessers;
+	});
 	res.status(203).json({
 		status: 'success',
 		data: {
 			stats,
+			numOfPageViews,
 		},
 	});
 });

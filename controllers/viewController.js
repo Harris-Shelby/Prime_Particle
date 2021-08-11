@@ -6,7 +6,8 @@ const Accesser = require('../models/accesserModel');
 const getDailyAccessers = async () => {
 	const d1 = new Date(moment(new Date()).format('YYYY-MM-DD'));
 	const d2 = new Date(moment(new Date()).add(1, 'days').format('YYYY-MM-DD'));
-	const stats = await Accesser.aggregate([
+	let numOfPageViews = 0;
+	const dailyStats = await Accesser.aggregate([
 		{
 			$match: {
 				ts: {
@@ -40,7 +41,10 @@ const getDailyAccessers = async () => {
 			$sort: { numofAccessers: -1 },
 		},
 	]);
-	return stats;
+	dailyStats.forEach((n) => {
+		numOfPageViews += n.numofAccessers;
+	});
+	return { dailyStats, numOfPageViews };
 };
 
 const getMonthlyAccessers = async () => {
@@ -84,14 +88,14 @@ const getMonthlyAccessers = async () => {
 };
 
 exports.getOverview = catchAsync(async (req, res) => {
-	const dailyStats = await getDailyAccessers();
+	const { dailyStats, numOfPageViews } = await getDailyAccessers();
 	const monthlyStats = await getMonthlyAccessers();
 	const calendar = new Calender(Date.now());
-	console.log(dailyStats);
 	res.status(200).render('overview', {
 		title: 'overviews',
 		calendar,
 		dailyStats,
+		numOfPageViews,
 		monthlyStats,
 	});
 });

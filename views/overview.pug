@@ -77,9 +77,8 @@ block view
                         span.options__item.active Week
                         span.options__item Month
             ul.overview-list
-                - const pageViews = 100
                 +overviewBox('warning active', 'far fa-user', 'Users', `${dailyStats.length} Pe`)
-                +overviewBox('danger', 'far fa-file', 'Pageviews', `${pageViews} Co`)
+                +overviewBox('danger', 'far fa-file', 'Pageviews', `${numOfPageViews} Co`)
                 +overviewBox('primary', 'fas fa-desktop', 'Computer', '10 Co')
                 +overviewBox('warning', 'fab fa-instagram', 'Mobile', '10 Co')
         section.section-primary

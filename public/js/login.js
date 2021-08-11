@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import axios from 'axios';
-import {showAlert} from './alerts';
+import { showAlert } from './alerts';
 
 export const login = async (email, password) => {
 	try {
@@ -9,20 +9,18 @@ export const login = async (email, password) => {
 			url: 'https://sakura.qsomula.top/api/v1/users/login',
 			data: {
 				email,
-				password	
-			}
-		})
+				password,
+			},
+		});
 		if (res.data.status === 'success') {
 			showAlert('success', 'Logged in successfully!');
 			window.setTimeout(() => {
 				location.assign('/');
 			}, 1500);
 		}
-
 	} catch (err) {
 		showAlert('error', err.response.data.message);
 	}
-
 };
 
 export const logout = async () => {
@@ -31,9 +29,9 @@ export const logout = async () => {
 			method: 'GET',
 			url: 'https://sakura.qsomula.top/api/v1/users/logout',
 		});
-		if (res.data.status = 'success') location.reload(true);
+		if ((res.data.status = 'success')) location.reload(true);
 	} catch (err) {
 		console.log(err);
 		showAlert('error', 'Error logging out! Try again.');
 	}
-}
+};

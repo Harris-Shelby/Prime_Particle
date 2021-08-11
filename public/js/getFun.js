@@ -9,7 +9,7 @@ export const getAccesser = async (id) => {
 		});
 
 		if (res.data.status === 'success') {
-			return res.data.data.stats;
+			return res.data.data;
 		}
 	} catch (err) {
 		showAlert('error', err.response.data.message);
