@@ -14919,10 +14919,6 @@ var timeLineboxHtml = '<a class="section-timelinebox__item {{DayClass}}" href="#
 var timeLineboxData = new _calendar.CALENDAR(Date.now());
 
 var updateTimelineBoxUI = function updateTimelineBoxUI() {
-  // if calendar.currWeek[0].monofYear === calendar.currWeek[6].monofYear
-  //     h2.heading-secondary#MonOfYearRange= `${calendar.currWeek[0].monofYear} ${calendar.currWeek[0].dayofMonth}-${calendar.currWeek[6].dayofMonth}`
-  // else
-  //     h2.heading-secondary#MonOfYearRange= `${calendar.currWeek[0].monofYear} ${calendar.currWeek[0].dayofMonth}-${calendar.currWeek[6].monofYear} ${calendar.currWeek[6].dayofMonth}`
   var newDayHtml = '';
   var html1 = '';
   timelinebox.querySelectorAll('*').forEach(function (n) {
@@ -15046,7 +15042,7 @@ if (userPasswordForm) {
 if (timelinebox) {
   timelinebox.addEventListener('click', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
-      var newHTML, html1, html2, isTimelineboxItem, isTimelineboxItem_child, _yield$getAccesser, stats, numOfPageViews, numOfRobot, newLocationData, _yield$getAccesser2, _stats, _numOfPageViews, _numOfRobot, _newLocationData;
+      var newHTML, html1, html2, newData, isTimelineboxItem, isTimelineboxItem_child, _newData, stats, numOfPageViews, numOfRobot, newLocationData;
 
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -15056,22 +15052,37 @@ if (timelinebox) {
               e.preventDefault();
               isTimelineboxItem = Object.values(e.target.classList).indexOf('section-timelinebox__item');
               isTimelineboxItem_child = Object.values(e.target.parentNode.classList).indexOf('section-timelinebox__item');
+              document.querySelector('.section-timelinebox__item.active').classList.remove('active');
 
               if (!(isTimelineboxItem > -1)) {
-                _context2.next = 24;
+                _context2.next = 12;
                 break;
               }
 
-              document.querySelector('.section-timelinebox__item.active').classList.remove('active');
               e.target.classList.add('active');
               _context2.next = 9;
               return (0, _getFun.getAccesser)(e.target.id);
 
             case 9:
-              _yield$getAccesser = _context2.sent;
-              stats = _yield$getAccesser.stats;
-              numOfPageViews = _yield$getAccesser.numOfPageViews;
-              numOfRobot = _yield$getAccesser.numOfRobot;
+              newData = _context2.sent;
+              _context2.next = 17;
+              break;
+
+            case 12:
+              if (!(isTimelineboxItem_child > -1)) {
+                _context2.next = 17;
+                break;
+              }
+
+              e.target.parentNode.classList.add('active');
+              _context2.next = 16;
+              return (0, _getFun.getAccesser)(e.target.parentNode.id);
+
+            case 16:
+              newData = _context2.sent;
+
+            case 17:
+              _newData = newData, stats = _newData.stats, numOfPageViews = _newData.numOfPageViews, numOfRobot = _newData.numOfRobot;
               newLocationData = stats.map(function (accesser) {
                 return accesser.relegation[0];
               });
@@ -15095,52 +15106,8 @@ if (timelinebox) {
               });
               (0, _mapbox.displayMap)(newLocationData);
               devicesList.insertAdjacentHTML('afterbegin', newHTML);
-              _context2.next = 42;
-              break;
 
-            case 24:
-              if (!(isTimelineboxItem_child > -1)) {
-                _context2.next = 42;
-                break;
-              }
-
-              document.querySelector('.section-timelinebox__item.active').classList.remove('active');
-              e.target.parentNode.classList.add('active');
-              _context2.next = 29;
-              return (0, _getFun.getAccesser)(e.target.parentNode.id);
-
-            case 29:
-              _yield$getAccesser2 = _context2.sent;
-              _stats = _yield$getAccesser2.stats;
-              _numOfPageViews = _yield$getAccesser2.numOfPageViews;
-              _numOfRobot = _yield$getAccesser2.numOfRobot;
-              reportsList[0].innerHTML = "".concat(_stats.length, " Pe");
-              reportsList[1].innerHTML = "".concat(_numOfPageViews, " Co");
-              reportsList[2].innerHTML = "".concat(_numOfRobot, " Co");
-              reportsList[3].innerHTML = "".concat(_stats.length - _numOfRobot, " Co");
-              _newLocationData = _stats.map(function (accesser) {
-                return accesser.relegation[0];
-              });
-              (0, _mapbox.displayMap)(_newLocationData);
-              devicesList.querySelectorAll('*').forEach(function (n) {
-                return n.remove();
-              });
-
-              _stats.forEach(function (e) {
-                if (e.isRobot) {
-                  html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
-                  html2 = html1.replace('{{city}}', e.city[0]);
-                } else {
-                  html1 = htmlActice.replace('{{deviceInfo}}', e.deviceInfo[0]);
-                  html2 = html1.replace('{{city}}', e.city[0]);
-                }
-
-                newHTML += html2;
-              });
-
-              devicesList.insertAdjacentHTML('afterbegin', newHTML);
-
-            case 42:
+            case 27:
             case "end":
               return _context2.stop();
           }
@@ -15235,7 +15202,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36619" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45035" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

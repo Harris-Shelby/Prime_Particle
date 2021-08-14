@@ -35,11 +35,6 @@ const timeLineboxHtml =
 let timeLineboxData = new CALENDAR(Date.now());
 
 const updateTimelineBoxUI = () => {
-	// if calendar.currWeek[0].monofYear === calendar.currWeek[6].monofYear
-	//     h2.heading-secondary#MonOfYearRange= `${calendar.currWeek[0].monofYear} ${calendar.currWeek[0].dayofMonth}-${calendar.currWeek[6].dayofMonth}`
-	// else
-	//     h2.heading-secondary#MonOfYearRange= `${calendar.currWeek[0].monofYear} ${calendar.currWeek[0].dayofMonth}-${calendar.currWeek[6].monofYear} ${calendar.currWeek[6].dayofMonth}`
-
 	let newDayHtml = '';
 	let html1 = '';
 	timelinebox.querySelectorAll('*').forEach((n) => n.remove());
@@ -139,7 +134,7 @@ if (userPasswordForm) {
 if (timelinebox) {
 	timelinebox.addEventListener('click', async (e) => {
 		let newHTML = '';
-		let html1, html2;
+		let html1, html2, newData;
 		e.preventDefault();
 		const isTimelineboxItem = Object.values(e.target.classList).indexOf(
 			'section-timelinebox__item',
@@ -147,64 +142,38 @@ if (timelinebox) {
 		const isTimelineboxItem_child = Object.values(
 			e.target.parentNode.classList,
 		).indexOf('section-timelinebox__item');
+		document
+			.querySelector('.section-timelinebox__item.active')
+			.classList.remove('active');
 		if (isTimelineboxItem > -1) {
-			document
-				.querySelector('.section-timelinebox__item.active')
-				.classList.remove('active');
 			e.target.classList.add('active');
-			const { stats, numOfPageViews, numOfRobot } = await getAccesser(
-				e.target.id,
-			);
-			const newLocationData = stats.map((accesser) => {
-				return accesser.relegation[0];
-			});
-			reportsList[0].innerHTML = `${stats.length} Pe`;
-			reportsList[1].innerHTML = `${numOfPageViews} Co`;
-			reportsList[2].innerHTML = `${numOfRobot} Co`;
-			reportsList[3].innerHTML = `${stats.length - numOfRobot} Co`;
-			devicesList.querySelectorAll('*').forEach((n) => n.remove());
-			stats.forEach((e) => {
-				if (e.isRobot) {
-					html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
-					html2 = html1.replace('{{city}}', e.city[0]);
-				} else {
-					html1 = htmlActice.replace('{{deviceInfo}}', e.deviceInfo[0]);
-					html2 = html1.replace('{{city}}', e.city[0]);
-				}
-
-				newHTML += html2;
-			});
-			displayMap(newLocationData);
-			devicesList.insertAdjacentHTML('afterbegin', newHTML);
+			newData = await getAccesser(e.target.id);
 		} else if (isTimelineboxItem_child > -1) {
-			document
-				.querySelector('.section-timelinebox__item.active')
-				.classList.remove('active');
 			e.target.parentNode.classList.add('active');
-			const { stats, numOfPageViews, numOfRobot } = await getAccesser(
-				e.target.parentNode.id,
-			);
-			reportsList[0].innerHTML = `${stats.length} Pe`;
-			reportsList[1].innerHTML = `${numOfPageViews} Co`;
-			reportsList[2].innerHTML = `${numOfRobot} Co`;
-			reportsList[3].innerHTML = `${stats.length - numOfRobot} Co`;
-			const newLocationData = stats.map((accesser) => {
-				return accesser.relegation[0];
-			});
-			displayMap(newLocationData);
-			devicesList.querySelectorAll('*').forEach((n) => n.remove());
-			stats.forEach((e) => {
-				if (e.isRobot) {
-					html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
-					html2 = html1.replace('{{city}}', e.city[0]);
-				} else {
-					html1 = htmlActice.replace('{{deviceInfo}}', e.deviceInfo[0]);
-					html2 = html1.replace('{{city}}', e.city[0]);
-				}
-				newHTML += html2;
-			});
-			devicesList.insertAdjacentHTML('afterbegin', newHTML);
+			newData = await getAccesser(e.target.parentNode.id);
 		}
+		const { stats, numOfPageViews, numOfRobot } = newData;
+		const newLocationData = stats.map((accesser) => {
+			return accesser.relegation[0];
+		});
+		reportsList[0].innerHTML = `${stats.length} Pe`;
+		reportsList[1].innerHTML = `${numOfPageViews} Co`;
+		reportsList[2].innerHTML = `${numOfRobot} Co`;
+		reportsList[3].innerHTML = `${stats.length - numOfRobot} Co`;
+		devicesList.querySelectorAll('*').forEach((n) => n.remove());
+		stats.forEach((e) => {
+			if (e.isRobot) {
+				html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
+				html2 = html1.replace('{{city}}', e.city[0]);
+			} else {
+				html1 = htmlActice.replace('{{deviceInfo}}', e.deviceInfo[0]);
+				html2 = html1.replace('{{city}}', e.city[0]);
+			}
+
+			newHTML += html2;
+		});
+		displayMap(newLocationData);
+		devicesList.insertAdjacentHTML('afterbegin', newHTML);
 	});
 }
 
