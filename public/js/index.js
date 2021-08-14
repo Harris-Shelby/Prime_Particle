@@ -26,6 +26,9 @@ const mapBox = document.getElementById('map');
 const html =
 	'<li class="devices__item"><span>{{deviceInfo}}</span><span>{{city}}</span></li>';
 
+const htmlActice =
+	'<li class="devices__item active"><span>{{deviceInfo}}</span><span>{{city}}</span></li>';
+
 const timeLineboxHtml =
 	'<a class="section-timelinebox__item {{DayClass}}" href="#" id={{newDay}}><div class="day">{{dayofWeek}}</div><div class="day-number">{{dayofMonth}}</div><div class="day-dot"></div></a>';
 // Values
@@ -40,9 +43,7 @@ const updateTimelineBoxUI = () => {
 	let newDayHtml = '';
 	let html1 = '';
 	timelinebox.querySelectorAll('*').forEach((n) => n.remove());
-	// console.log(timeLineboxData)
 	timeLineboxData.currWeek.forEach((e) => {
-		// console.log(e.newDay.utc().toString())
 		if (e.today) {
 			html1 = timeLineboxHtml.replace('{{DayClass}}', 'active');
 		} else {
@@ -60,7 +61,6 @@ const updateTimelineBoxUI = () => {
 					html1 = timeLineboxHtml.replace('{{DayClass}}', 'primary');
 			}
 		}
-		console.log(e.newDay.format().toString());
 		let html2 = html1.replace('{{newDay}}', e.newDay.format());
 		let html3 = html2.replace('{{dayofMonth}}', e.dayofMonth);
 		let html4 = html3.replace('{{dayofWeek}}', e.dayofWeek);
@@ -139,6 +139,7 @@ if (userPasswordForm) {
 if (timelinebox) {
 	timelinebox.addEventListener('click', async (e) => {
 		let newHTML = '';
+		let html1, html2;
 		e.preventDefault();
 		const isTimelineboxItem = Object.values(e.target.classList).indexOf(
 			'section-timelinebox__item',
@@ -154,7 +155,6 @@ if (timelinebox) {
 			const { stats, numOfPageViews, numOfRobot } = await getAccesser(
 				e.target.id,
 			);
-			console.log(numOfPageViews, numOfRobot);
 			const newLocationData = stats.map((accesser) => {
 				return accesser.relegation[0];
 			});
@@ -164,8 +164,14 @@ if (timelinebox) {
 			reportsList[3].innerHTML = `${stats.length - numOfRobot} Co`;
 			devicesList.querySelectorAll('*').forEach((n) => n.remove());
 			stats.forEach((e) => {
-				let html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
-				let html2 = html1.replace('{{city}}', e.city[0]);
+				if (e.isRobot) {
+					html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
+					html2 = html1.replace('{{city}}', e.city[0]);
+				} else {
+					html1 = htmlActice.replace('{{deviceInfo}}', e.deviceInfo[0]);
+					html2 = html1.replace('{{city}}', e.city[0]);
+				}
+
 				newHTML += html2;
 			});
 			displayMap(newLocationData);
@@ -188,8 +194,13 @@ if (timelinebox) {
 			displayMap(newLocationData);
 			devicesList.querySelectorAll('*').forEach((n) => n.remove());
 			stats.forEach((e) => {
-				let html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
-				let html2 = html1.replace('{{city}}', e.city[0]);
+				if (e.isRobot) {
+					html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
+					html2 = html1.replace('{{city}}', e.city[0]);
+				} else {
+					html1 = htmlActice.replace('{{deviceInfo}}', e.deviceInfo[0]);
+					html2 = html1.replace('{{city}}', e.city[0]);
+				}
 				newHTML += html2;
 			});
 			devicesList.insertAdjacentHTML('afterbegin', newHTML);

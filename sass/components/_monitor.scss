@@ -8,10 +8,10 @@
 		list-style-type: none;
 		.active {
 			color: white;
-			background: rgba(51,42,124,1);
+			background: rgba(51, 42, 124, 1);
 			.gauge::before {
 				color: white;
-				background: rgba(51,42,124,1);
+				background: rgba(51, 42, 124, 1);
 			}
 		}
 	}
@@ -20,7 +20,7 @@
 		display: grid;
 		grid-template-columns: repeat(2, auto);
 		align-items: center;
-		padding: 15px 30px;
+		padding: 5px 16px;
 		box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 		border-radius: 20px;
 
@@ -37,7 +37,7 @@
 			}
 		}
 		&-gaugebox {
-			padding: 0 0 0 40px;
+			padding: 0 0 0 20px;
 			border-left: 1px solid rgba(231, 234, 238, 1);
 
 			.gauge {
@@ -48,24 +48,29 @@
 				align-items: center;
 				border-radius: 50%;
 				position: relative;
-				--gauge-percentage: calc(var(--gauge-value) / var(--gauge-max-value) * 100%);
-				color: rgba(86,83,136,1);
+				--gauge-percentage: calc(
+					var(--gauge-value) / var(--gauge-max-value) * 100%
+				);
+				color: rgba(86, 83, 136, 1);
 				font-weight: lighter;
-				background: conic-gradient(rgba(237,84,100,1) var(--gauge-percentage),rgba(247,247,253,1) 0);
+				background: conic-gradient(
+					rgba(237, 84, 100, 1) var(--gauge-percentage),
+					rgba(247, 247, 253, 1) 0
+				);
 				counter-reset: value var(--gauge-value);
-				
+
 				&::before {
 					position: absolute;
-    				top: auto;
+					top: auto;
 					left: auto;
 					display: flex;
-    				justify-content: center;
+					justify-content: center;
 					align-items: center;
 					background: white;
 					border-radius: inherit;
 					width: 87%;
-    				height: 87%;
-    				content: counter(value) "%";
+					height: 87%;
+					content: counter(value) '%';
 				}
 			}
 		}

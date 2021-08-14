@@ -19,5 +19,20 @@
 		// color: white;
 		border-radius: 15px;
 		background-color: rgb(247, 247, 253);
+		&:nth-child(n + 5) {
+			display: none;
+		}
+	}
+	&__item.active {
+		background-color: rgba(255, 208, 208, 0.6);
+	}
+	&__item > span:first-child {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		max-width: 22rem;
+		// white-space: nowrap;
 	}
 }

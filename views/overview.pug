@@ -104,9 +104,14 @@ block view
                     h2.heading-secondary Accesser lists
             ul.devices-list 
                 each day in dailyStats
-                    li.devices__item
-                        span=day.deviceInfo[0]
-                        span=day.city[0]
+                    if day.isRobot 
+                        li.devices__item
+                            span=day.deviceInfo[0]
+                            span=day.city[0]
+                    else 
+                        li.devices__item.active
+                            span=day.deviceInfo[0]
+                            span=day.city[0]
 block space 
     div.dashboard__space
         div.section-titlebox

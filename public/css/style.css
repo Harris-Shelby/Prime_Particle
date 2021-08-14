@@ -109,6 +109,19 @@ body {
   font-weight: lighter;
   border-radius: 15px;
   background-color: #f7f7fd; }
+  .devices__item:nth-child(n + 5) {
+    display: none; }
+
+.devices__item.active {
+  background-color: rgba(255, 208, 208, 0.6); }
+
+.devices__item > span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  max-width: 22rem; }
 
 .form__input {
   display: block;
@@ -207,7 +220,7 @@ body {
   display: grid;
   grid-template-columns: repeat(2, auto);
   align-items: center;
-  padding: 15px 30px;
+  padding: 5px 16px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   border-radius: 20px; }
   .monitor__item-textbox {
@@ -220,7 +233,7 @@ body {
       font-size: 14px;
       font-weight: lighter; }
   .monitor__item-gaugebox {
-    padding: 0 0 0 40px;
+    padding: 0 0 0 20px;
     border-left: 1px solid #e7eaee; }
     .monitor__item-gaugebox .gauge {
       width: 70px;
@@ -230,7 +243,9 @@ body {
       align-items: center;
       border-radius: 50%;
       position: relative;
-      --gauge-percentage: calc(var(--gauge-value) / var(--gauge-max-value) * 100%);
+      --gauge-percentage: calc(
+					var(--gauge-value) / var(--gauge-max-value) * 100%
+				);
       color: #565388;
       font-weight: lighter;
       background: conic-gradient(#ed5464 var(--gauge-percentage), #f7f7fd 0);
@@ -275,7 +290,7 @@ body {
     color: white; }
   .overview__item.active .overview-size {
     margin-top: 21px;
-    padding: 18px 36px;
+    padding: 18px 16px;
     color: white;
     background: var(--color);
     border-radius: 15px; }
@@ -357,7 +372,7 @@ body {
   grid-template-rows: repeat(4, auto);
   gap: 3rem;
   margin: 1.5rem auto;
-  max-width: 240rem;
+  max-width: 135rem;
   padding: 0 1.5rem; }
 
 .section-titlebox {
