@@ -290,7 +290,7 @@ body {
     color: white; }
   .overview__item.active .overview-size {
     margin-top: 21px;
-    padding: 18px 16px;
+    padding: 18px 36px;
     color: white;
     background: var(--color);
     border-radius: 15px; }
@@ -303,7 +303,7 @@ body {
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  padding: 18px 24px;
+  padding: 18px 16px;
   border: 1px solid #e7eaee;
   border-radius: 20px; }
   .overview__item .overview-icon {
