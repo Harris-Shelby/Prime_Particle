@@ -14230,7 +14230,7 @@ var getAccesser = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'GET',
-              url: "https://sakura.qsomula.top/api/v1/accessers/daily-stats/".concat(id)
+              url: "http://localhost:4000/api/v1/accessers/daily-stats/".concat(id)
             });
 
           case 3:
@@ -15050,38 +15050,44 @@ if (timelinebox) {
             case 0:
               newHTML = '';
               e.preventDefault();
+
+              if (!(e.target.classList[0] !== 'section-timelinebox')) {
+                _context2.next = 28;
+                break;
+              }
+
               isTimelineboxItem = Object.values(e.target.classList).indexOf('section-timelinebox__item');
               isTimelineboxItem_child = Object.values(e.target.parentNode.classList).indexOf('section-timelinebox__item');
               document.querySelector('.section-timelinebox__item.active').classList.remove('active');
 
               if (!(isTimelineboxItem > -1)) {
-                _context2.next = 12;
+                _context2.next = 13;
                 break;
               }
 
               e.target.classList.add('active');
-              _context2.next = 9;
+              _context2.next = 10;
               return (0, _getFun.getAccesser)(e.target.id);
 
-            case 9:
+            case 10:
               newData = _context2.sent;
-              _context2.next = 17;
+              _context2.next = 18;
               break;
 
-            case 12:
+            case 13:
               if (!(isTimelineboxItem_child > -1)) {
-                _context2.next = 17;
+                _context2.next = 18;
                 break;
               }
 
               e.target.parentNode.classList.add('active');
-              _context2.next = 16;
+              _context2.next = 17;
               return (0, _getFun.getAccesser)(e.target.parentNode.id);
 
-            case 16:
+            case 17:
               newData = _context2.sent;
 
-            case 17:
+            case 18:
               _newData = newData, stats = _newData.stats, numOfPageViews = _newData.numOfPageViews, numOfRobot = _newData.numOfRobot;
               newLocationData = stats.map(function (accesser) {
                 return accesser.relegation[0];
@@ -15107,7 +15113,7 @@ if (timelinebox) {
               (0, _mapbox.displayMap)(newLocationData);
               devicesList.insertAdjacentHTML('afterbegin', newHTML);
 
-            case 27:
+            case 28:
             case "end":
               return _context2.stop();
           }
@@ -15202,7 +15208,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45035" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51252" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

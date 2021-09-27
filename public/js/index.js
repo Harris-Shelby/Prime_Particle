@@ -136,44 +136,46 @@ if (timelinebox) {
 		let newHTML = '';
 		let html1, html2, newData;
 		e.preventDefault();
-		const isTimelineboxItem = Object.values(e.target.classList).indexOf(
-			'section-timelinebox__item',
-		);
-		const isTimelineboxItem_child = Object.values(
-			e.target.parentNode.classList,
-		).indexOf('section-timelinebox__item');
-		document
-			.querySelector('.section-timelinebox__item.active')
-			.classList.remove('active');
-		if (isTimelineboxItem > -1) {
-			e.target.classList.add('active');
-			newData = await getAccesser(e.target.id);
-		} else if (isTimelineboxItem_child > -1) {
-			e.target.parentNode.classList.add('active');
-			newData = await getAccesser(e.target.parentNode.id);
-		}
-		const { stats, numOfPageViews, numOfRobot } = newData;
-		const newLocationData = stats.map((accesser) => {
-			return accesser.relegation[0];
-		});
-		reportsList[0].innerHTML = `${stats.length} Pe`;
-		reportsList[1].innerHTML = `${numOfPageViews} Co`;
-		reportsList[2].innerHTML = `${numOfRobot} Co`;
-		reportsList[3].innerHTML = `${stats.length - numOfRobot} Co`;
-		devicesList.querySelectorAll('*').forEach((n) => n.remove());
-		stats.forEach((e) => {
-			if (e.isRobot) {
-				html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
-				html2 = html1.replace('{{city}}', e.city[0]);
-			} else {
-				html1 = htmlActice.replace('{{deviceInfo}}', e.deviceInfo[0]);
-				html2 = html1.replace('{{city}}', e.city[0]);
+		if (e.target.classList[0] !== 'section-timelinebox') {
+			const isTimelineboxItem = Object.values(e.target.classList).indexOf(
+				'section-timelinebox__item',
+			);
+			const isTimelineboxItem_child = Object.values(
+				e.target.parentNode.classList,
+			).indexOf('section-timelinebox__item');
+			document
+				.querySelector('.section-timelinebox__item.active')
+				.classList.remove('active');
+			if (isTimelineboxItem > -1) {
+				e.target.classList.add('active');
+				newData = await getAccesser(e.target.id);
+			} else if (isTimelineboxItem_child > -1) {
+				e.target.parentNode.classList.add('active');
+				newData = await getAccesser(e.target.parentNode.id);
 			}
+			const { stats, numOfPageViews, numOfRobot } = newData;
+			const newLocationData = stats.map((accesser) => {
+				return accesser.relegation[0];
+			});
+			reportsList[0].innerHTML = `${stats.length} Pe`;
+			reportsList[1].innerHTML = `${numOfPageViews} Co`;
+			reportsList[2].innerHTML = `${numOfRobot} Co`;
+			reportsList[3].innerHTML = `${stats.length - numOfRobot} Co`;
+			devicesList.querySelectorAll('*').forEach((n) => n.remove());
+			stats.forEach((e) => {
+				if (e.isRobot) {
+					html1 = html.replace('{{deviceInfo}}', e.deviceInfo[0]);
+					html2 = html1.replace('{{city}}', e.city[0]);
+				} else {
+					html1 = htmlActice.replace('{{deviceInfo}}', e.deviceInfo[0]);
+					html2 = html1.replace('{{city}}', e.city[0]);
+				}
 
-			newHTML += html2;
-		});
-		displayMap(newLocationData);
-		devicesList.insertAdjacentHTML('afterbegin', newHTML);
+				newHTML += html2;
+			});
+			displayMap(newLocationData);
+			devicesList.insertAdjacentHTML('afterbegin', newHTML);
+		}
 	});
 }
 
