@@ -14230,7 +14230,7 @@ var getAccesser = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'GET',
-              url: "http://localhost:4000/api/v1/accessers/daily-stats/".concat(id)
+              url: "https://sakura.qsomula.top/api/v1/accessers/daily-stats/".concat(id)
             });
 
           case 3:
@@ -15208,7 +15208,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51252" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55392" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
