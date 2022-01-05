@@ -31,42 +31,47 @@ block view
                     else 
                         h2.heading-secondary#monOfYearRange= `${calendar.currWeek[0].monofYear} ${calendar.currWeek[0].dayofMonth}-${calendar.currWeek[6].monofYear} ${calendar.currWeek[6].dayofMonth}`
                     div.btn-group
-                        button.btn.btn-danger.btn-round#preWeek
+                        button.btn.btn-danger.btn-round#preWeek(role="button")
                             i.fas.fa-chevron-left
-                        button.btn.btn-danger.btn-round#nextWeek
+                        button.btn.btn-danger.btn-round#nextWeek(role="button")
                             i.fas.fa-chevron-right               
                 div.section-titlebox--sub
-                    button.btn.btn-secondary.btn-round.monthly
+                    button.btn.btn-secondary.btn-round.monthly(role="button")
                         i.far.fa-calendar &nbsp; Month
             ul.section-timelinebox
                 each day in calendar.currWeek
                     if day.today
-                        a(href='#',id=day.newDay).section-timelinebox__item.active
-                            div.day= day.dayofWeek
-                            div.day-number= day.dayofMonth
-                            div.day-dot
+                        li
+                            a(href='#',id=day.newDay).section-timelinebox__item.active
+                                div.day= day.dayofWeek
+                                div.day-number= day.dayofMonth
+                                div.day-dot
                     else 
                         case day.dayofWeek
                             when 'Wed'
-                                a(href='#',id=day.newDay).section-timelinebox__item.danger
-                                    div.day= day.dayofWeek
-                                    div.day-number= day.dayofMonth
-                                    div.day-dot
+                                li
+                                    a(href='#',id=day.newDay).section-timelinebox__item.danger
+                                        div.day= day.dayofWeek
+                                        div.day-number= day.dayofMonth
+                                        div.day-dot
                             when 'Mon'
-                                a(href='#',id=day.newDay).section-timelinebox__item.warning
-                                    div.day= day.dayofWeek
-                                    div.day-number= day.dayofMonth
-                                    div.day-dot
+                                li 
+                                    a(href='#',id=day.newDay).section-timelinebox__item.warning
+                                        div.day= day.dayofWeek
+                                        div.day-number= day.dayofMonth
+                                        div.day-dot
                             when 'Thu'
-                                a(href='#',id=day.newDay).section-timelinebox__item.warning
-                                    div.day= day.dayofWeek
-                                    div.day-number= day.dayofMonth
-                                    div.day-dot
+                                li
+                                    a(href='#',id=day.newDay).section-timelinebox__item.warning
+                                        div.day= day.dayofWeek
+                                        div.day-number= day.dayofMonth
+                                        div.day-dot
                             default
-                                a(href='#',id=day.newDay).section-timelinebox__item.primary
-                                    div.day= day.dayofWeek
-                                    div.day-number= day.dayofMonth
-                                    div.day-dot
+                                li 
+                                    a(href='#',id=day.newDay).section-timelinebox__item.primary
+                                        div.day= day.dayofWeek
+                                        div.day-number= day.dayofMonth
+                                        div.day-dot
         section.section-primary
             div.section-titlebox
                 div.section-titlebox--main

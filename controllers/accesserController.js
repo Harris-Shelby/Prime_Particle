@@ -58,7 +58,7 @@ exports.getDailyAccessers = catchAsync(async (req, res) => {
 	]);
 	const stats = dailyStats.map((n) => {
 		n.isRobot = !n.url.some((a) => {
-			return a === '/fonts/NotoColorEmoji.ttf';
+			return a === 'js/bundle.js';
 		});
 		return n;
 	});
