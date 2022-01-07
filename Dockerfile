@@ -1,10 +1,21 @@
-FROM node:14-alpine
+FROM alpine:3.14 AS base
 
-WORKDIR /app
+ENV NODE_ENV=production \
+    APP_PATH=/node/app
+    
+WORKDIR $APP_PATH
 
-COPY ["package.json", "package-lock.json*", "./"]
+RUN apk add --no-cache --update nodejs=14.18.1-r0 npm=7.17.0-r0
 
-RUN npm install --production
+FROM base AS install
+
+COPY package.json ./
+
+RUN npm install
+
+FROM base
+
+COPY --from=install $APP_PATH/node_modules ./node_modules
 
 COPY . .
 
