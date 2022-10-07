@@ -5,6 +5,7 @@ import { displayMap } from './mapbox';
 import { getAccesser } from './getFun';
 import { login, logout } from './login';
 import { updateSetting } from './updateSettings';
+import { uploadEpaperImg } from './uploadImg';
 import { CALENDAR } from './calendar';
 // DOM elememt
 const signUpButton = document.getElementById('signup');
@@ -14,6 +15,7 @@ const loginForm = document.getElementById('loginForm');
 const logOutBtn = document.getElementById('logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
+const epaperImgForm = document.querySelector('.form-epaerImg-data');
 const timelinebox = document.querySelector('.section-timelinebox');
 const monOfYearRange = document.getElementById('monOfYearRange');
 const preWeek = document.getElementById('preWeek');
@@ -98,6 +100,20 @@ if (loginForm) {
 	});
 }
 
+if (epaperImgForm) {
+	epaperImgForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+		const imgdata = new FormData();
+		imgdata.append(
+			'epaper-photo',
+			document.getElementById('epaper-photo').files[0],
+		);
+		// console.log(imgdata);
+
+		uploadEpaperImg(imgdata);
+	});
+}
+
 if (userDataForm) {
 	userDataForm.addEventListener('submit', (e) => {
 		e.preventDefault();
@@ -105,7 +121,7 @@ if (userDataForm) {
 		form.append('name', document.getElementById('name').value);
 		form.append('email', document.getElementById('email').value);
 		form.append('photo', document.getElementById('photo').files[0]);
-		console.log(form);
+		// console.log(form);
 
 		updateSetting(form, 'data');
 	});

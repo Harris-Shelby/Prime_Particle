@@ -121,6 +121,13 @@ exports.getAccount = (req, res) => {
 	});
 };
 
+exports.getImage = (req, res) => {
+	res.status(200).render('image', {
+		title: 'qso Blog',
+	});
+};
+
+
 exports.getBlog = (req, res) => {
 	res.status(200).render('blog', {
 		title: 'qso Blog',

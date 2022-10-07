@@ -12,6 +12,7 @@ const cookieParser = require('cookie-parser');
 const AppError = require('../utils/appError');
 const globalErrorHandler = require('../controllers/errorController');
 const accessersRoute = require('../routes/accesserRoutes');
+const epaperImgRoute = require('../routes/epaperImgRoutes');
 const usersRoute = require('../routes/userRoutes');
 const reviewRoute = require('../routes/reviewRoutes');
 const viewRoute = require('../routes/viewRoutes');
@@ -73,6 +74,7 @@ server.use((req, res, next) => {
 server.use('/', viewRoute);
 server.use('/api/v1/accessers', accessersRoute);
 server.use('/api/v1/users', usersRoute);
+server.use('/api/v1/EpaperImg', epaperImgRoute);
 server.use('/api/v1/reviews', reviewRoute);
 
 server.all('*', (req, res, next) => {

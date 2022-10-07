@@ -1,0 +1,66 @@
+extends base
+
+block nav 
+    include _navigation 
+
+block view
+    div.dashboard__view.speccc
+        header.welcome__banner
+            h1.heading-primary 
+                span.heading-primary--main Hi,Harris Shelby!
+                span.heading-primary--sub Welcome back, Sir!
+        section.section-secondary
+            div.section-titlebox
+                div.section-titlebox--main
+                    h2.heading-secondary Image Schedule
+            form.form.form-epaerImg-data
+                //- .form__group
+                //- label.form__label(for='name') Name
+                //- //- input#name.form__input(type='text', value=`${user.name}`, required, name='name')
+                //- .form__group.ma-bt-md
+                //- label.form__label(for='email') Email address
+                //- input#email.form__input(type='email', value=`${user.email}`, required, name='email')
+                .form__group.form__photo-upload
+                //- label.form__label(for='email') Email address
+                //- img.form__user-photo(src=`/img/users/${user.photo}`, alt='User photo')
+                input.form__upload(type='file', accept='image/*', id='epaper-photo', name='epaper-photo')
+                label(for='epaper-photo') Choose new photo
+                
+                .form__group.right
+                button.btn-round Upload Img
+block controller
+    div.dashboard__controller.speccc
+        section.section-secondary
+            div.section-titlebox
+                div.section-titlebox--main
+                    h2.heading-secondary Image Schedule
+            form.form
+                //- .form__group
+                //- label.form__label(for='name') Name
+                //- //- input#name.form__input(type='text', value=`${user.name}`, required, name='name')
+                //- .form__group.ma-bt-md
+                //- label.form__label(for='email') Email address
+                //- input#email.form__input(type='email', value=`${user.email}`, required, name='email')
+                //- .form__group.form__photo-upload
+                //- //- label.form__label(for='email') Email address
+                //- //- img.form__user-photo(src=`/img/users/${user.photo}`, alt='User photo')
+                //- input.form__upload(type='file', accept='image/*', id='photo', name='photo')
+                //- label(for='photo') Choose new photo
+                
+                //- .form__group.right
+                //- button.btn-round Save settings
+
+block space 
+    div.dashboard__space
+        div.section-titlebox
+            div.options
+                span.options__item
+                    i.far.fa-bell
+                span.options__item 
+                    i.fas.fa-cog
+                if user
+                    span.options__item
+                        //- img.usr-logo(src=`/img/users/${user.photo}`)
+                else
+                    span.options__item
+                        i.far.fa-user
