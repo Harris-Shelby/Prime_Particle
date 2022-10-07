@@ -5,7 +5,7 @@ ENV NODE_ENV=production \
     
 WORKDIR $APP_PATH
 
-RUN apk add --no-cache --update nodejs=14.18.1-r0 npm=7.17.0-r0
+RUN apk add --no-cache --update nodejs npm
 
 FROM base AS install
 
