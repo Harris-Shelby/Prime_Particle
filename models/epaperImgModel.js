@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const epaperImgSchema = new mongoose.Schema({
 	EpaperImgData: {
-		type: String,
-		required: [true, 'Review can not be empty!'],
+		type: Array,
 	},
 });
 

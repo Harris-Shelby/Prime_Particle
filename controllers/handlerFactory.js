@@ -84,3 +84,19 @@ exports.getAll = (Model) =>
 			},
 		});
 	});
+
+
+exports.getAllImg = (Model) =>
+	catchAsync(async (req, res) => {
+		let filter = {};
+		if (req.params.accesserId) filter = { accesser: req.params.accesserId };
+		const features = new APIFeatures(Model.find(filter), req.query)
+			.filter()
+			.sort()
+			.limitFields()
+			.paginate();
+		const doc = await features.query;
+		res.status(200);
+		res.setHeader('Content-Type', 'application/json');
+		res.send(JSON.stringify({ data: doc }, null, 3));
+	});
