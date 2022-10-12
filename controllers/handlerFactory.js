@@ -98,5 +98,5 @@ exports.getAllImg = (Model) =>
 		const doc = await features.query;
 		res.status(200);
 		res.setHeader('Content-Type', 'application/json');
-		res.send(JSON.stringify({ data: doc }, null, 3));
+		res.send(JSON.stringify({ data: doc }));
 	});

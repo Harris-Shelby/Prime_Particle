@@ -62,7 +62,7 @@ exports.formatEpaperImg = async (req, res, next) => {
 		let BinImgData = group(b, 8);
 		BinImgData.forEach((e, i) => {
 			let bind = `${e[0]}${e[1]}${e[2]}${e[3]}${e[4]}${e[5]}${e[6]}${e[7]}`;
-			cacheData.push(bind);
+			cacheData.push(parseInt(bind, 2));
 		});
 		// console.log(cacheData);
 		// fs.writeFile(__dirname + './out.txt', c, { flag: 'w' }, function (err) {
