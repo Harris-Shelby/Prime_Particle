@@ -105,7 +105,7 @@ const multer = require('multer');
 		// 	.catch((err) => {
 		// 		console.log(err);
 		// 	});
-		User.findByIdAndUpdate('635e89dd0dd9f83853b42a75', {
+		EpaperImg.findByIdAndUpdate('635e89dd0dd9f83853b42a75', {
 			EpaperImgData: cacheData,
 		});
 		next();
