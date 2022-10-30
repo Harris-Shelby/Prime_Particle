@@ -68,7 +68,7 @@ const multer = require('multer');
 				let pre = `${e[4]}${e[5]}${e[6]}${e[7]}`;
 				let newBre = setHex(bre);
 				let newPre = setHex(pre);
-				c += `0X${newBre}${newPre},`;
+				c += `${newBre}${newPre}`;
 			});
 			cacheData = c;
 			// fs.writeFile(__dirname + './out.txt', c, { flag: 'w' }, function (err) {
