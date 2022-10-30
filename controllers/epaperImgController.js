@@ -93,17 +93,22 @@ const multer = require('multer');
  // 	return newObj;
  // };
 
+
  exports.saveEpaperImg = catchAsync(async (req, res, next) => {
 		console.log({ EpaperImgData: cacheData });
-		const newEpaperImg = new EpaperImg({ EpaperImgData: cacheData });
-		newEpaperImg
-			.save()
-			.then(() => {
-				console.log('Yep,EpaperImg data saved!');
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		// const newEpaperImg = new EpaperImg({ EpaperImgData: cacheData });
+		// newEpaperImg
+		// 	.save()
+		// 	.then(() => {
+		// 		console.log('Yep,EpaperImg data saved!');
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 	});
+		User.findByIdAndUpdate('635e89dd0dd9f83853b42a75', {
+			EpaperImgData: cacheData,
+		});
+		next();
 		// const filteredBody = filterObj(req.body, 'name', 'email');
 		// if (req.file) filteredBody.photo = req.file.filename;
 		// const updateUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
