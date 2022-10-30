@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
-const epaperImgSchema = new mongoose.Schema({
-	EpaperImgData: {
-		type: Array,
-	},
-});
+ const epaperImgSchema = new mongoose.Schema({
+		EpaperImgData: {
+			type: String,
+			required: [true, 'Review can not be empty!'],
+		},
+ });
 
-const epaperImg = mongoose.model('epaperImg', epaperImgSchema);
+ const epaperImg = mongoose.model('epaperImg', epaperImgSchema);
 
-module.exports = epaperImg;
+ module.exports = epaperImg;
