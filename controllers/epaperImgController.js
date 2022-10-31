@@ -118,7 +118,9 @@ const multer = require('multer');
 		});
  });
 
- exports.getAllEpaperImg = factory.getAll(EpaperImg);
+exports.getAllEpaperImg = factory.getAll(EpaperImg);
+exports.getEpaperImg = factory.getOne(EpaperImg);
+exports.deleteEpaperImg = factory.deleteOne(EpaperImg);
 
  const getPixelsPro = (formatImageUrl) => {
 		return new Promise((resolve, reject) => {

@@ -13,4 +13,9 @@ router.patch(
 
 router.route('/').get(epaperImgController.getAllEpaperImg);
 
+router
+	.route('/:id')
+	.get(epaperImgController.getEpaperImg)
+	.delete(epaperImgController.deleteEpaperImg);
+
 module.exports = router;
