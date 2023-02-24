@@ -3,7 +3,7 @@ const multer = require('multer');
  // const User = require('../models/userModel');
  const AppError = require('../utils/appError');
  const catchAsync = require('../utils/catchAsync');
-//  const fs = require('fs');
+ const fs = require('fs');
  const floydSteinberg = require('floyd-steinberg');
  const PNG = require('pngjs').PNG;
  const getPixelsAsync = require('get-pixels');
@@ -103,6 +103,42 @@ const multer = require('multer');
 		}
 
 		return ret;
+ };
+ const setHex = (key) => {
+		switch (key) {
+			case '0001':
+				return '1';
+			case '0010':
+				return '2';
+			case '0011':
+				return '3';
+			case '0100':
+				return '4';
+			case '0101':
+				return '5';
+			case '0110':
+				return '6';
+			case '0111':
+				return '7';
+			case '1000':
+				return '8';
+			case '1001':
+				return '9';
+			case '1010':
+				return 'A';
+			case '1011':
+				return 'B';
+			case '1100':
+				return 'C';
+			case '1101':
+				return 'D';
+			case '1110':
+				return 'E';
+			case '1111':
+				return 'F';
+			default:
+				return '0';
+		}
  };
 
 // const filterObj = (obj, ...allowFields) => {
