@@ -6,7 +6,6 @@ const multer = require('multer');
  const fs = require('fs');
  const floydSteinberg = require('floyd-steinberg');
  const PNG = require('pngjs').PNG;
- const getPixelsAsync = require('get-pixels');
  let cacheData = '';
  const multerStorage = multer.memoryStorage();
 
@@ -77,15 +76,6 @@ const multer = require('multer');
 		}
 
 		next();
- };
-
- const getPixelsPro = async (formatImageUrl) => {
-		try {
-			const pixels = await getPixelsAsync(formatImageUrl);
-			return pixels.data.slice();
-		} catch (error) {
-			throw new Error('Bad image path');
-		}
  };
 
  const formatRGBAs = (imagePixel) => {
